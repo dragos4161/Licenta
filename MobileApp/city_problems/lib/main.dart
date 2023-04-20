@@ -1,3 +1,4 @@
+import 'package:city_problems/presentation/home_page.dart';
 import 'package:city_problems/presentation/login.dart';
 import 'package:city_problems/presentation/signup.dart';
 import 'package:flutter/material.dart';
@@ -15,15 +16,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        '/login': (context) => LoginPage(),
-        '/signup': (context) => SignupPage(),
+        '/login': (context) => const LoginPage(),
+        '/signup': (context) => const SignupPage(),
       },
       title: 'City Dangers',
       theme: ThemeData(
         useMaterial3: true,
         primarySwatch: Colors.blue,
+        splashColor: Color.fromARGB(255, 13, 63, 139),
       ),
-      home: const LoginPage(),
+      home: const HomePage(),
     );
   }
 }
