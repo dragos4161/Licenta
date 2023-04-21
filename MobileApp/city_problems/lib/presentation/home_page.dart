@@ -15,16 +15,11 @@ class _HomePageState extends State<HomePage> {
       Completer<GoogleMapController>();
 
   static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
+    target: LatLng(45.760696, 21.226788),
     zoom: 14.4746,
   );
 
-  static const CameraPosition _kLake = CameraPosition(
-    bearing: 192.8334901395799,
-    target: LatLng(37.43296265331129, -122.08832357078792),
-    tilt: 59.440717697143555,
-    zoom: 19.151926040649414,
-  );
+  final TextEditingController _searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,12 +37,34 @@ class _HomePageState extends State<HomePage> {
             ),
             Positioned(
               top: 70,
-              left: 50,
-              right: 50,
+              left: 65,
+              right: 65,
               child: Container(
-                height: 60,
-                color: Colors.blue,
-                child: const Text('Something'),
+                height: MediaQuery.of(context).size.height * 0.06,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: Colors.white,
+                ),
+                child: Expanded(
+                  child: TextField(
+                    controller: _searchController,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      contentPadding: const EdgeInsets.all(10),
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          FocusManager.instance.primaryFocus?.unfocus();
+                        },
+                        child: const Icon(Icons.filter_alt_outlined),
+                      ),
+                      labelText: 'Categorie',
+                      labelStyle: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
+                ),
               ),
             )
           ],
@@ -55,7 +72,6 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        //shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(15)),
         shape: const CircleBorder(),
         elevation: 20,
         backgroundColor: const Color.fromRGBO(80, 151, 255, 1),
