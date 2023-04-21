@@ -1,9 +1,16 @@
+import 'package:city_problems/firebase_options.dart';
 import 'package:city_problems/presentation/home_page.dart';
 import 'package:city_problems/presentation/login.dart';
 import 'package:city_problems/presentation/signup.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
 }
 
