@@ -18,6 +18,18 @@ class AuthApi {
     );
   }
 
+  Future<AppUser> signUp({required String email, required String password, required String displayName}) async {
+    final UserCredential credentials = await auth.createUserWithEmailAndPassword(email: email, password: password);
+
+    final User user = credentials.user!;
+    await user.updateDisplayName(displayName);
+    return AppUser(
+      uid: user.uid,
+      email: email,
+      displayName: user.displayName,
+    );
+  }
+
   Future<AppUser?> getUser() async {
     final User? user = auth.currentUser;
     if (user == null) {
