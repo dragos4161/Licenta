@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
                             },
                             child: const Icon(Icons.filter_alt_outlined),
                           ),
-                          labelText: user == null ? 'Category':user.email,
+                          labelText: user == null ? 'Category':user.displayName,
                           labelStyle: const TextStyle(
                             color: Colors.grey,
                             fontSize: 15,

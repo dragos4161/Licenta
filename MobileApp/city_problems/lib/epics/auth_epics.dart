@@ -26,6 +26,15 @@ class AuthEpics{
     });
   }
 
+  Stream<dynamic> _signUpStart(Stream<SignUpStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((SignUpStart action){
+      return Stream<void>.value(null)
+          .asyncMap((_) => api.signUp(email: action.email, password: action.password, displayName: action.displayName))
+          .map((AppUser user) => SignUp.successful(user))
+          .onErrorReturnWith((Object error, StackTrace stackTrace) => SignUp.error(error, stackTrace));
+    });
+  }
+
   Stream<void> _initializeUserStart(Stream<InitializeUserStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((InitializeUserStart action) {
       return Stream<void>.value(null) //
@@ -35,12 +44,4 @@ class AuthEpics{
     });
   }
 
-  Stream<void> _signUpStart(Stream<SignUpStart> actions, EpicStore<AppState> store) {
-    return actions.flatMap((SignUpStart action){
-      return Stream<void>.value(null)
-          .asyncMap((_) => api.signUp(email: action.email, password: action.password, displayName: action.displayName))
-          .map((AppUser user) => SignUp.successful(user))
-          .onErrorReturnWith((Object error, StackTrace stackTrace) => SignUpError(error, stackTrace));
-    });
-  }
 }

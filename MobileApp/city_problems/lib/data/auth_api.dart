@@ -22,11 +22,13 @@ class AuthApi {
     final UserCredential credentials = await auth.createUserWithEmailAndPassword(email: email, password: password);
 
     final User user = credentials.user!;
-    await user.updateDisplayName(displayName);
+    final String name = displayName;
+    await user.updateDisplayName(name);
+
     return AppUser(
       uid: user.uid,
       email: email,
-      displayName: user.displayName,
+      displayName: name,
     );
   }
 
