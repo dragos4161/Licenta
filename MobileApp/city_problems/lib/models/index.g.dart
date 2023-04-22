@@ -31,7 +31,7 @@ Map<String, dynamic> _$$AuthState$ToJson(_$AuthState$ instance) =>
 _$AppUser$ _$$AppUser$FromJson(Map<String, dynamic> json) => _$AppUser$(
       uid: json['uid'] as String,
       email: json['email'] as String,
-      displayName: json['displayName'] as String,
+      displayName: json['displayName'] as String?,
       imageUrl: json['imageUrl'] as String?,
     );
 

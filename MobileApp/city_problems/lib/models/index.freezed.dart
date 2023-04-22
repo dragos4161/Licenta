@@ -320,7 +320,7 @@ AppUser _$AppUserFromJson(Map<String, dynamic> json) {
 mixin _$AppUser {
   String get uid => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
-  String get displayName => throw _privateConstructorUsedError;
+  String? get displayName => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -333,7 +333,7 @@ abstract class $AppUserCopyWith<$Res> {
   factory $AppUserCopyWith(AppUser value, $Res Function(AppUser) then) =
       _$AppUserCopyWithImpl<$Res, AppUser>;
   @useResult
-  $Res call({String uid, String email, String displayName, String? imageUrl});
+  $Res call({String uid, String email, String? displayName, String? imageUrl});
 }
 
 /// @nodoc
@@ -351,7 +351,7 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
   $Res call({
     Object? uid = null,
     Object? email = null,
-    Object? displayName = null,
+    Object? displayName = freezed,
     Object? imageUrl = freezed,
   }) {
     return _then(_value.copyWith(
@@ -363,10 +363,10 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      displayName: null == displayName
+      displayName: freezed == displayName
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -382,7 +382,7 @@ abstract class _$$AppUser$CopyWith<$Res> implements $AppUserCopyWith<$Res> {
       __$$AppUser$CopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String uid, String email, String displayName, String? imageUrl});
+  $Res call({String uid, String email, String? displayName, String? imageUrl});
 }
 
 /// @nodoc
@@ -397,7 +397,7 @@ class __$$AppUser$CopyWithImpl<$Res>
   $Res call({
     Object? uid = null,
     Object? email = null,
-    Object? displayName = null,
+    Object? displayName = freezed,
     Object? imageUrl = freezed,
   }) {
     return _then(_$AppUser$(
@@ -409,10 +409,10 @@ class __$$AppUser$CopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      displayName: null == displayName
+      displayName: freezed == displayName
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -427,7 +427,7 @@ class _$AppUser$ implements AppUser$ {
   const _$AppUser$(
       {required this.uid,
       required this.email,
-      required this.displayName,
+      this.displayName,
       this.imageUrl});
 
   factory _$AppUser$.fromJson(Map<String, dynamic> json) =>
@@ -438,7 +438,7 @@ class _$AppUser$ implements AppUser$ {
   @override
   final String email;
   @override
-  final String displayName;
+  final String? displayName;
   @override
   final String? imageUrl;
 
@@ -483,7 +483,7 @@ abstract class AppUser$ implements AppUser {
   const factory AppUser$(
       {required final String uid,
       required final String email,
-      required final String displayName,
+      final String? displayName,
       final String? imageUrl}) = _$AppUser$;
 
   factory AppUser$.fromJson(Map<String, dynamic> json) = _$AppUser$.fromJson;
@@ -493,7 +493,7 @@ abstract class AppUser$ implements AppUser {
   @override
   String get email;
   @override
-  String get displayName;
+  String? get displayName;
   @override
   String? get imageUrl;
   @override
