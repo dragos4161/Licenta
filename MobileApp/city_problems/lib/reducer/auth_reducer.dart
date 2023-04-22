@@ -24,4 +24,3 @@ AuthState _initializeUserSuccessful(AuthState state, InitializeUserSuccessful ac
     user: action.user,
   );
 }
-
