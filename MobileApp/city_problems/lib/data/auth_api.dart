@@ -14,7 +14,7 @@ class AuthApi {
     return AppUser(
       uid: user.uid,
       email: email,
-      displayName: user.displayName!,
+      displayName: user.displayName,
     );
   }
 
@@ -26,7 +26,7 @@ class AuthApi {
     return AppUser(
       uid: user.uid,
       email: user.email!,
-      displayName: user.displayName!,
+      displayName: user.displayName,
     );
   }
 }

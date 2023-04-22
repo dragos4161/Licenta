@@ -6,6 +6,7 @@ import 'package:city_problems/epics/app_epics.dart';
 import 'package:city_problems/firebase_options.dart';
 import 'package:city_problems/models/index.dart';
 import 'package:city_problems/presentation/home.dart';
+import 'package:city_problems/presentation/home_page.dart';
 import 'package:city_problems/presentation/login.dart';
 import 'package:city_problems/presentation/signup.dart';
 import 'package:city_problems/reducer/reducer.dart';
@@ -60,10 +61,11 @@ class MyApp extends StatelessWidget {
           '/': (BuildContext context) => const Home(),
           '/login': (BuildContext context) => const LoginPage(),
           '/signup': (BuildContext context) => const SignupPage(),
+          '/home': (BuildContext context) => const HomePage(),
         },
         title: 'City Dangers',
         theme: ThemeData(
-          useMaterial3: true,
+          useMaterial3: false,
           primarySwatch: Colors.blue,
           splashColor: const Color.fromARGB(255, 13, 63, 139),
         ),
