@@ -43,4 +43,8 @@ class AuthApi {
       displayName: user.displayName,
     );
   }
+
+  Future<void> logout() async {
+    await auth.signOut();
+  }
 }
