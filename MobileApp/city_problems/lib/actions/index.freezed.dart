@@ -1542,3 +1542,432 @@ abstract class SignUpError implements SignUp {
   _$$SignUpErrorCopyWith<_$SignUpError> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$Logout {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(LogoutStart value) $default, {
+    required TResult Function(LogoutSuccessful value) successful,
+    required TResult Function(LogoutError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(LogoutStart value)? $default, {
+    TResult? Function(LogoutSuccessful value)? successful,
+    TResult? Function(LogoutError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(LogoutStart value)? $default, {
+    TResult Function(LogoutSuccessful value)? successful,
+    TResult Function(LogoutError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LogoutCopyWith<$Res> {
+  factory $LogoutCopyWith(Logout value, $Res Function(Logout) then) =
+      _$LogoutCopyWithImpl<$Res, Logout>;
+}
+
+/// @nodoc
+class _$LogoutCopyWithImpl<$Res, $Val extends Logout>
+    implements $LogoutCopyWith<$Res> {
+  _$LogoutCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$LogoutStartCopyWith<$Res> {
+  factory _$$LogoutStartCopyWith(
+          _$LogoutStart value, $Res Function(_$LogoutStart) then) =
+      __$$LogoutStartCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LogoutStartCopyWithImpl<$Res>
+    extends _$LogoutCopyWithImpl<$Res, _$LogoutStart>
+    implements _$$LogoutStartCopyWith<$Res> {
+  __$$LogoutStartCopyWithImpl(
+      _$LogoutStart _value, $Res Function(_$LogoutStart) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$LogoutStart implements LogoutStart {
+  const _$LogoutStart();
+
+  @override
+  String toString() {
+    return 'Logout()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LogoutStart);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return $default?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(LogoutStart value) $default, {
+    required TResult Function(LogoutSuccessful value) successful,
+    required TResult Function(LogoutError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(LogoutStart value)? $default, {
+    TResult? Function(LogoutSuccessful value)? successful,
+    TResult? Function(LogoutError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(LogoutStart value)? $default, {
+    TResult Function(LogoutSuccessful value)? successful,
+    TResult Function(LogoutError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LogoutStart implements Logout {
+  const factory LogoutStart() = _$LogoutStart;
+}
+
+/// @nodoc
+abstract class _$$LogoutSuccessfulCopyWith<$Res> {
+  factory _$$LogoutSuccessfulCopyWith(
+          _$LogoutSuccessful value, $Res Function(_$LogoutSuccessful) then) =
+      __$$LogoutSuccessfulCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LogoutSuccessfulCopyWithImpl<$Res>
+    extends _$LogoutCopyWithImpl<$Res, _$LogoutSuccessful>
+    implements _$$LogoutSuccessfulCopyWith<$Res> {
+  __$$LogoutSuccessfulCopyWithImpl(
+      _$LogoutSuccessful _value, $Res Function(_$LogoutSuccessful) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$LogoutSuccessful implements LogoutSuccessful {
+  const _$LogoutSuccessful();
+
+  @override
+  String toString() {
+    return 'Logout.successful()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LogoutSuccessful);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return successful?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(LogoutStart value) $default, {
+    required TResult Function(LogoutSuccessful value) successful,
+    required TResult Function(LogoutError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(LogoutStart value)? $default, {
+    TResult? Function(LogoutSuccessful value)? successful,
+    TResult? Function(LogoutError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(LogoutStart value)? $default, {
+    TResult Function(LogoutSuccessful value)? successful,
+    TResult Function(LogoutError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LogoutSuccessful implements Logout {
+  const factory LogoutSuccessful() = _$LogoutSuccessful;
+}
+
+/// @nodoc
+abstract class _$$LogoutErrorCopyWith<$Res> {
+  factory _$$LogoutErrorCopyWith(
+          _$LogoutError value, $Res Function(_$LogoutError) then) =
+      __$$LogoutErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$LogoutErrorCopyWithImpl<$Res>
+    extends _$LogoutCopyWithImpl<$Res, _$LogoutError>
+    implements _$$LogoutErrorCopyWith<$Res> {
+  __$$LogoutErrorCopyWithImpl(
+      _$LogoutError _value, $Res Function(_$LogoutError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$LogoutError(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LogoutError implements LogoutError {
+  const _$LogoutError(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'Logout.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LogoutError &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LogoutErrorCopyWith<_$LogoutError> get copyWith =>
+      __$$LogoutErrorCopyWithImpl<_$LogoutError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return error?.call(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(LogoutStart value) $default, {
+    required TResult Function(LogoutSuccessful value) successful,
+    required TResult Function(LogoutError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(LogoutStart value)? $default, {
+    TResult? Function(LogoutSuccessful value)? successful,
+    TResult? Function(LogoutError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(LogoutStart value)? $default, {
+    TResult Function(LogoutSuccessful value)? successful,
+    TResult Function(LogoutError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LogoutError implements Logout {
+  const factory LogoutError(final Object error, final StackTrace stackTrace) =
+      _$LogoutError;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @JsonKey(ignore: true)
+  _$$LogoutErrorCopyWith<_$LogoutError> get copyWith =>
+      throw _privateConstructorUsedError;
+}

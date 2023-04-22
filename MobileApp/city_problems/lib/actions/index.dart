@@ -8,5 +8,7 @@ part 'initialize_user.dart';
 
 part 'signup.dart';
 
+part 'logout.dart';
+
 
 part 'index.freezed.dart';
