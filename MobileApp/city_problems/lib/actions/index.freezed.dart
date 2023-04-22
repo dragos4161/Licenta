@@ -1005,3 +1005,540 @@ abstract class InitializeUserError implements InitializeUser {
   _$$InitializeUserErrorCopyWith<_$InitializeUserError> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$SignUp {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String email, String password, String displayName)
+        $default, {
+    required TResult Function(AppUser user) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String email, String password, String displayName)?
+        $default, {
+    TResult? Function(AppUser user)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String email, String password, String displayName)?
+        $default, {
+    TResult Function(AppUser user)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(SignUpStart value) $default, {
+    required TResult Function(SignUpSuccessful value) successful,
+    required TResult Function(SignUpError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(SignUpStart value)? $default, {
+    TResult? Function(SignUpSuccessful value)? successful,
+    TResult? Function(SignUpError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(SignUpStart value)? $default, {
+    TResult Function(SignUpSuccessful value)? successful,
+    TResult Function(SignUpError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SignUpCopyWith<$Res> {
+  factory $SignUpCopyWith(SignUp value, $Res Function(SignUp) then) =
+      _$SignUpCopyWithImpl<$Res, SignUp>;
+}
+
+/// @nodoc
+class _$SignUpCopyWithImpl<$Res, $Val extends SignUp>
+    implements $SignUpCopyWith<$Res> {
+  _$SignUpCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$SignUpStartCopyWith<$Res> {
+  factory _$$SignUpStartCopyWith(
+          _$SignUpStart value, $Res Function(_$SignUpStart) then) =
+      __$$SignUpStartCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String email, String password, String displayName});
+}
+
+/// @nodoc
+class __$$SignUpStartCopyWithImpl<$Res>
+    extends _$SignUpCopyWithImpl<$Res, _$SignUpStart>
+    implements _$$SignUpStartCopyWith<$Res> {
+  __$$SignUpStartCopyWithImpl(
+      _$SignUpStart _value, $Res Function(_$SignUpStart) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+    Object? password = null,
+    Object? displayName = null,
+  }) {
+    return _then(_$SignUpStart(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      displayName: null == displayName
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SignUpStart implements SignUpStart {
+  const _$SignUpStart(
+      {required this.email, required this.password, required this.displayName});
+
+  @override
+  final String email;
+  @override
+  final String password;
+  @override
+  final String displayName;
+
+  @override
+  String toString() {
+    return 'SignUp(email: $email, password: $password, displayName: $displayName)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SignUpStart &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.displayName, displayName) ||
+                other.displayName == displayName));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, email, password, displayName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SignUpStartCopyWith<_$SignUpStart> get copyWith =>
+      __$$SignUpStartCopyWithImpl<_$SignUpStart>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String email, String password, String displayName)
+        $default, {
+    required TResult Function(AppUser user) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default(email, password, displayName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String email, String password, String displayName)?
+        $default, {
+    TResult? Function(AppUser user)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return $default?.call(email, password, displayName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String email, String password, String displayName)?
+        $default, {
+    TResult Function(AppUser user)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(email, password, displayName);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(SignUpStart value) $default, {
+    required TResult Function(SignUpSuccessful value) successful,
+    required TResult Function(SignUpError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(SignUpStart value)? $default, {
+    TResult? Function(SignUpSuccessful value)? successful,
+    TResult? Function(SignUpError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(SignUpStart value)? $default, {
+    TResult Function(SignUpSuccessful value)? successful,
+    TResult Function(SignUpError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SignUpStart implements SignUp {
+  const factory SignUpStart(
+      {required final String email,
+      required final String password,
+      required final String displayName}) = _$SignUpStart;
+
+  String get email;
+  String get password;
+  String get displayName;
+  @JsonKey(ignore: true)
+  _$$SignUpStartCopyWith<_$SignUpStart> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SignUpSuccessfulCopyWith<$Res> {
+  factory _$$SignUpSuccessfulCopyWith(
+          _$SignUpSuccessful value, $Res Function(_$SignUpSuccessful) then) =
+      __$$SignUpSuccessfulCopyWithImpl<$Res>;
+  @useResult
+  $Res call({AppUser user});
+
+  $AppUserCopyWith<$Res> get user;
+}
+
+/// @nodoc
+class __$$SignUpSuccessfulCopyWithImpl<$Res>
+    extends _$SignUpCopyWithImpl<$Res, _$SignUpSuccessful>
+    implements _$$SignUpSuccessfulCopyWith<$Res> {
+  __$$SignUpSuccessfulCopyWithImpl(
+      _$SignUpSuccessful _value, $Res Function(_$SignUpSuccessful) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user = null,
+  }) {
+    return _then(_$SignUpSuccessful(
+      null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as AppUser,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AppUserCopyWith<$Res> get user {
+    return $AppUserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$SignUpSuccessful implements SignUpSuccessful {
+  const _$SignUpSuccessful(this.user);
+
+  @override
+  final AppUser user;
+
+  @override
+  String toString() {
+    return 'SignUp.successful(user: $user)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SignUpSuccessful &&
+            (identical(other.user, user) || other.user == user));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, user);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SignUpSuccessfulCopyWith<_$SignUpSuccessful> get copyWith =>
+      __$$SignUpSuccessfulCopyWithImpl<_$SignUpSuccessful>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String email, String password, String displayName)
+        $default, {
+    required TResult Function(AppUser user) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String email, String password, String displayName)?
+        $default, {
+    TResult? Function(AppUser user)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return successful?.call(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String email, String password, String displayName)?
+        $default, {
+    TResult Function(AppUser user)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(SignUpStart value) $default, {
+    required TResult Function(SignUpSuccessful value) successful,
+    required TResult Function(SignUpError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(SignUpStart value)? $default, {
+    TResult? Function(SignUpSuccessful value)? successful,
+    TResult? Function(SignUpError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(SignUpStart value)? $default, {
+    TResult Function(SignUpSuccessful value)? successful,
+    TResult Function(SignUpError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SignUpSuccessful implements SignUp {
+  const factory SignUpSuccessful(final AppUser user) = _$SignUpSuccessful;
+
+  AppUser get user;
+  @JsonKey(ignore: true)
+  _$$SignUpSuccessfulCopyWith<_$SignUpSuccessful> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SignUpErrorCopyWith<$Res> {
+  factory _$$SignUpErrorCopyWith(
+          _$SignUpError value, $Res Function(_$SignUpError) then) =
+      __$$SignUpErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$SignUpErrorCopyWithImpl<$Res>
+    extends _$SignUpCopyWithImpl<$Res, _$SignUpError>
+    implements _$$SignUpErrorCopyWith<$Res> {
+  __$$SignUpErrorCopyWithImpl(
+      _$SignUpError _value, $Res Function(_$SignUpError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$SignUpError(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SignUpError implements SignUpError {
+  const _$SignUpError(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'SignUp.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SignUpError &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SignUpErrorCopyWith<_$SignUpError> get copyWith =>
+      __$$SignUpErrorCopyWithImpl<_$SignUpError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String email, String password, String displayName)
+        $default, {
+    required TResult Function(AppUser user) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String email, String password, String displayName)?
+        $default, {
+    TResult? Function(AppUser user)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return error?.call(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String email, String password, String displayName)?
+        $default, {
+    TResult Function(AppUser user)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(SignUpStart value) $default, {
+    required TResult Function(SignUpSuccessful value) successful,
+    required TResult Function(SignUpError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(SignUpStart value)? $default, {
+    TResult? Function(SignUpSuccessful value)? successful,
+    TResult? Function(SignUpError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(SignUpStart value)? $default, {
+    TResult Function(SignUpSuccessful value)? successful,
+    TResult Function(SignUpError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SignUpError implements SignUp {
+  const factory SignUpError(final Object error, final StackTrace stackTrace) =
+      _$SignUpError;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @JsonKey(ignore: true)
+  _$$SignUpErrorCopyWith<_$SignUpError> get copyWith =>
+      throw _privateConstructorUsedError;
+}

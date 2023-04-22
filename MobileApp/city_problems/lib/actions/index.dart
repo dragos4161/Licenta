@@ -6,5 +6,7 @@ part 'login.dart';
 
 part 'initialize_user.dart';
 
+part 'signup.dart';
+
 
 part 'index.freezed.dart';
