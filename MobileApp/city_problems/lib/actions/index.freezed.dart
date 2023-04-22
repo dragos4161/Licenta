@@ -526,3 +526,482 @@ abstract class LoginError implements Login {
   _$$LoginErrorCopyWith<_$LoginError> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$InitializeUser {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(AppUser? user) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function(AppUser? user)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(AppUser? user)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(InitializeUserStart value) $default, {
+    required TResult Function(InitializeUserSuccessful value) successful,
+    required TResult Function(InitializeUserError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(InitializeUserStart value)? $default, {
+    TResult? Function(InitializeUserSuccessful value)? successful,
+    TResult? Function(InitializeUserError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(InitializeUserStart value)? $default, {
+    TResult Function(InitializeUserSuccessful value)? successful,
+    TResult Function(InitializeUserError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $InitializeUserCopyWith<$Res> {
+  factory $InitializeUserCopyWith(
+          InitializeUser value, $Res Function(InitializeUser) then) =
+      _$InitializeUserCopyWithImpl<$Res, InitializeUser>;
+}
+
+/// @nodoc
+class _$InitializeUserCopyWithImpl<$Res, $Val extends InitializeUser>
+    implements $InitializeUserCopyWith<$Res> {
+  _$InitializeUserCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$InitializeUserStartCopyWith<$Res> {
+  factory _$$InitializeUserStartCopyWith(_$InitializeUserStart value,
+          $Res Function(_$InitializeUserStart) then) =
+      __$$InitializeUserStartCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$InitializeUserStartCopyWithImpl<$Res>
+    extends _$InitializeUserCopyWithImpl<$Res, _$InitializeUserStart>
+    implements _$$InitializeUserStartCopyWith<$Res> {
+  __$$InitializeUserStartCopyWithImpl(
+      _$InitializeUserStart _value, $Res Function(_$InitializeUserStart) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$InitializeUserStart implements InitializeUserStart {
+  const _$InitializeUserStart();
+
+  @override
+  String toString() {
+    return 'InitializeUser()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$InitializeUserStart);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(AppUser? user) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function(AppUser? user)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return $default?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(AppUser? user)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(InitializeUserStart value) $default, {
+    required TResult Function(InitializeUserSuccessful value) successful,
+    required TResult Function(InitializeUserError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(InitializeUserStart value)? $default, {
+    TResult? Function(InitializeUserSuccessful value)? successful,
+    TResult? Function(InitializeUserError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(InitializeUserStart value)? $default, {
+    TResult Function(InitializeUserSuccessful value)? successful,
+    TResult Function(InitializeUserError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InitializeUserStart implements InitializeUser {
+  const factory InitializeUserStart() = _$InitializeUserStart;
+}
+
+/// @nodoc
+abstract class _$$InitializeUserSuccessfulCopyWith<$Res> {
+  factory _$$InitializeUserSuccessfulCopyWith(_$InitializeUserSuccessful value,
+          $Res Function(_$InitializeUserSuccessful) then) =
+      __$$InitializeUserSuccessfulCopyWithImpl<$Res>;
+  @useResult
+  $Res call({AppUser? user});
+
+  $AppUserCopyWith<$Res>? get user;
+}
+
+/// @nodoc
+class __$$InitializeUserSuccessfulCopyWithImpl<$Res>
+    extends _$InitializeUserCopyWithImpl<$Res, _$InitializeUserSuccessful>
+    implements _$$InitializeUserSuccessfulCopyWith<$Res> {
+  __$$InitializeUserSuccessfulCopyWithImpl(_$InitializeUserSuccessful _value,
+      $Res Function(_$InitializeUserSuccessful) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user = freezed,
+  }) {
+    return _then(_$InitializeUserSuccessful(
+      freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as AppUser?,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AppUserCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $AppUserCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$InitializeUserSuccessful implements InitializeUserSuccessful {
+  const _$InitializeUserSuccessful(this.user);
+
+  @override
+  final AppUser? user;
+
+  @override
+  String toString() {
+    return 'InitializeUser.successful(user: $user)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InitializeUserSuccessful &&
+            (identical(other.user, user) || other.user == user));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, user);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitializeUserSuccessfulCopyWith<_$InitializeUserSuccessful>
+      get copyWith =>
+          __$$InitializeUserSuccessfulCopyWithImpl<_$InitializeUserSuccessful>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(AppUser? user) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function(AppUser? user)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return successful?.call(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(AppUser? user)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(InitializeUserStart value) $default, {
+    required TResult Function(InitializeUserSuccessful value) successful,
+    required TResult Function(InitializeUserError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(InitializeUserStart value)? $default, {
+    TResult? Function(InitializeUserSuccessful value)? successful,
+    TResult? Function(InitializeUserError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(InitializeUserStart value)? $default, {
+    TResult Function(InitializeUserSuccessful value)? successful,
+    TResult Function(InitializeUserError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InitializeUserSuccessful implements InitializeUser {
+  const factory InitializeUserSuccessful(final AppUser? user) =
+      _$InitializeUserSuccessful;
+
+  AppUser? get user;
+  @JsonKey(ignore: true)
+  _$$InitializeUserSuccessfulCopyWith<_$InitializeUserSuccessful>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$InitializeUserErrorCopyWith<$Res> {
+  factory _$$InitializeUserErrorCopyWith(_$InitializeUserError value,
+          $Res Function(_$InitializeUserError) then) =
+      __$$InitializeUserErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$InitializeUserErrorCopyWithImpl<$Res>
+    extends _$InitializeUserCopyWithImpl<$Res, _$InitializeUserError>
+    implements _$$InitializeUserErrorCopyWith<$Res> {
+  __$$InitializeUserErrorCopyWithImpl(
+      _$InitializeUserError _value, $Res Function(_$InitializeUserError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$InitializeUserError(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InitializeUserError implements InitializeUserError {
+  const _$InitializeUserError(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'InitializeUser.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InitializeUserError &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitializeUserErrorCopyWith<_$InitializeUserError> get copyWith =>
+      __$$InitializeUserErrorCopyWithImpl<_$InitializeUserError>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(AppUser? user) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function(AppUser? user)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return error?.call(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(AppUser? user)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(InitializeUserStart value) $default, {
+    required TResult Function(InitializeUserSuccessful value) successful,
+    required TResult Function(InitializeUserError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(InitializeUserStart value)? $default, {
+    TResult? Function(InitializeUserSuccessful value)? successful,
+    TResult? Function(InitializeUserError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(InitializeUserStart value)? $default, {
+    TResult Function(InitializeUserSuccessful value)? successful,
+    TResult Function(InitializeUserError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InitializeUserError implements InitializeUser {
+  const factory InitializeUserError(
+      final Object error, final StackTrace stackTrace) = _$InitializeUserError;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @JsonKey(ignore: true)
+  _$$InitializeUserErrorCopyWith<_$InitializeUserError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
