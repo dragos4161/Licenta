@@ -1,5 +1,8 @@
+import 'package:city_problems/actions/index.dart';
+import 'package:city_problems/models/index.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -13,6 +16,7 @@ class _SignupPageState extends State<SignupPage> {
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
+    final TextEditingController nameController = TextEditingController();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Padding(
@@ -83,6 +87,33 @@ class _SignupPageState extends State<SignupPage> {
                 ),
               ),
               const SizedBox(
+                height: 50,
+              ),
+              Material(
+                elevation: 5,
+                shadowColor: const Color.fromRGBO(80, 151, 255, 1),
+                borderRadius: BorderRadius.circular(25),
+                child: TextField(
+                  controller: nameController,
+                  keyboardType: TextInputType.text,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25),
+                      borderSide: BorderSide.none,
+                    ),
+                    filled: true,
+                    hintText: 'name',
+                    hintStyle: const TextStyle(
+                      color: Color.fromRGBO(132, 150, 155, 1),
+                      fontFamily: 'ebrima',
+                      fontWeight: FontWeight.bold,
+                    ),
+                    fillColor: Colors.white,
+                  ),
+                ),
+              ),
+              const SizedBox(
                 height: 30,
               ),
               Row(
@@ -117,33 +148,37 @@ class _SignupPageState extends State<SignupPage> {
               const SizedBox(
                 height: 50,
               ),
-              ElevatedButton(
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        emailController.text + passwordController.text,
+              Builder(
+                builder: (BuildContext context) {
+                  return ElevatedButton(
+                    onPressed: () async {
+                      final SignUp action = SignUp(
+                        email: emailController.text,
+                        password: passwordController.text,
+                        displayName: nameController.text,
+                      );
+
+                      StoreProvider.of<AppState>(context).dispatch(action);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromRGBO(80, 151, 255, 1),
+                    ),
+                    child: const SizedBox(
+                      width: 200,
+                      height: 60,
+                      child: Center(
+                        child: Text(
+                          'SIGN UP',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 35,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
                   );
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromRGBO(80, 151, 255, 1),
-                ),
-                child: const SizedBox(
-                  width: 200,
-                  height: 60,
-                  child: Center(
-                    child: Text(
-                      'SIGN UP',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 35,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
               )
             ],
           ),
