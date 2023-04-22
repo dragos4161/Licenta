@@ -17,4 +17,16 @@ class AuthApi {
       displayName: user.displayName!,
     );
   }
+
+  Future<AppUser?> getUser() async {
+    final User? user = auth.currentUser;
+    if (user == null) {
+      return null;
+    }
+    return AppUser(
+      uid: user.uid,
+      email: user.email!,
+      displayName: user.displayName!,
+    );
+  }
 }
