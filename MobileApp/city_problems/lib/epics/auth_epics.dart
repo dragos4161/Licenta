@@ -12,8 +12,9 @@ class AuthEpics{
   Epic<AppState> get epic{
     return combineEpics(<Epic<AppState>>[
       TypedEpic<AppState,LoginStart>(_loginStart),
-      TypedEpic<AppState,InitializeUserStart>(_initializeUserStart),
       TypedEpic<AppState,SignUpStart>(_signUpStart),
+      TypedEpic<AppState,InitializeUserStart>(_initializeUserStart),
+      TypedEpic<AppState,LogoutStart>(_logoutStart),
     ]);
   }
 
@@ -43,5 +44,16 @@ class AuthEpics{
           .onErrorReturnWith((Object error, StackTrace stackTrace) => InitializeUser.error(error, stackTrace));
     });
   }
+
+  Stream<void> _logoutStart(Stream<LogoutStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((LogoutStart action) {
+      return Stream<void>.value(null) //
+          .asyncMap((_) => api.logout())
+          .map((_) => const Logout.successful())
+          .onErrorReturnWith((Object error, StackTrace stackTrace) => Logout.error(error, stackTrace));
+    });
+  }
+
+
 
 }

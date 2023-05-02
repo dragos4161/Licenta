@@ -28,7 +28,7 @@ class AuthApi {
     return AppUser(
       uid: user.uid,
       email: email,
-      displayName: name,
+      displayName: user.displayName,
     );
   }
 

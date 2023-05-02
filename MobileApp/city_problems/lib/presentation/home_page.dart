@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:city_problems/actions/index.dart';
 import 'package:city_problems/models/index.dart';
 import 'package:city_problems/presentation/containers/user_container.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class HomePage extends StatefulWidget {
@@ -49,28 +51,26 @@ class _HomePageState extends State<HomePage> {
                   left: 65,
                   right: 65,
                   child: Container(
-                    height: MediaQuery.of(context).size.height * 0.06,
+                    height: MediaQuery.of(context).size.height*0.06,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       color: Colors.white,
                     ),
-                    child: Expanded(
-                      child: TextField(
-                        controller: _searchController,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          contentPadding: const EdgeInsets.all(10),
-                          suffixIcon: GestureDetector(
-                            onTap: () {
-                              FocusManager.instance.primaryFocus?.unfocus();
-                            },
-                            child: const Icon(Icons.filter_alt_outlined),
-                          ),
-                          labelText: user == null ? 'Category':user.displayName,
-                          labelStyle: const TextStyle(
-                            color: Colors.grey,
-                            fontSize: 15,
-                          ),
+                    child: TextField(
+                      controller: _searchController,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        contentPadding: const EdgeInsets.all(10),
+                        suffixIcon: GestureDetector(
+                          onTap: () {
+                            FocusManager.instance.primaryFocus?.unfocus();
+                          },
+                          child: const Icon(Icons.filter_alt_outlined),
+                        ),
+                        labelText: user == null ? 'Category':user.displayName,
+                        labelStyle: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 15,
                         ),
                       ),
                     ),
@@ -103,7 +103,9 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     MaterialButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        StoreProvider.of<AppState>(context).dispatch(const Logout());
+                      },
                       splashColor: Colors.white,
                       child: const Icon(Icons.person_outline_rounded),
                     ),
