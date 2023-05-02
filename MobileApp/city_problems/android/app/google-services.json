@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "754551260926",
+    "project_id": "licenta-b9043",
+    "storage_bucket": "licenta-b9043.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:754551260926:android:9d3285b4a6f1727aff47af",
+        "android_client_info": {
+          "package_name": "com.example.city_problems"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "754551260926-6ecfutghk9pm2chvtvfjh6r4nqia0eaj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfhNSZTxePG_dgRJTAxgucK1VwLkhPfSY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "754551260926-6ecfutghk9pm2chvtvfjh6r4nqia0eaj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
