@@ -79,15 +79,18 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {},
-            shape: const CircleBorder(),
-            elevation: 20,
-            backgroundColor: const Color.fromRGBO(80, 151, 255, 1),
-            splashColor: const Color.fromRGBO(11, 68, 112, 1),
-            child: const Icon(
-              Icons.add,
-              size: 35,
+          floatingActionButton:Visibility(
+            visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
+            child: FloatingActionButton(
+              onPressed: () {},
+              shape: const CircleBorder(),
+              elevation: 20,
+              backgroundColor: const Color.fromRGBO(80, 151, 255, 1),
+              splashColor: const Color.fromRGBO(11, 68, 112, 1),
+              child: const Icon(
+                Icons.add,
+                size: 35,
+              ),
             ),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
