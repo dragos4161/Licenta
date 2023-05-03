@@ -22,6 +22,7 @@ AppState _$AppStateFromJson(Map<String, dynamic> json) {
 mixin _$AppState {
   AuthState get auth => throw _privateConstructorUsedError;
   DangerState get danger => throw _privateConstructorUsedError;
+  DangerLocation? get currentLocation => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,10 +35,12 @@ abstract class $AppStateCopyWith<$Res> {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
       _$AppStateCopyWithImpl<$Res, AppState>;
   @useResult
-  $Res call({AuthState auth, DangerState danger});
+  $Res call(
+      {AuthState auth, DangerState danger, DangerLocation? currentLocation});
 
   $AuthStateCopyWith<$Res> get auth;
   $DangerStateCopyWith<$Res> get danger;
+  $DangerLocationCopyWith<$Res>? get currentLocation;
 }
 
 /// @nodoc
@@ -55,6 +58,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
   $Res call({
     Object? auth = null,
     Object? danger = null,
+    Object? currentLocation = freezed,
   }) {
     return _then(_value.copyWith(
       auth: null == auth
@@ -65,6 +69,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.danger
           : danger // ignore: cast_nullable_to_non_nullable
               as DangerState,
+      currentLocation: freezed == currentLocation
+          ? _value.currentLocation
+          : currentLocation // ignore: cast_nullable_to_non_nullable
+              as DangerLocation?,
     ) as $Val);
   }
 
@@ -83,6 +91,18 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
       return _then(_value.copyWith(danger: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $DangerLocationCopyWith<$Res>? get currentLocation {
+    if (_value.currentLocation == null) {
+      return null;
+    }
+
+    return $DangerLocationCopyWith<$Res>(_value.currentLocation!, (value) {
+      return _then(_value.copyWith(currentLocation: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -92,12 +112,15 @@ abstract class _$$AppState$CopyWith<$Res> implements $AppStateCopyWith<$Res> {
       __$$AppState$CopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AuthState auth, DangerState danger});
+  $Res call(
+      {AuthState auth, DangerState danger, DangerLocation? currentLocation});
 
   @override
   $AuthStateCopyWith<$Res> get auth;
   @override
   $DangerStateCopyWith<$Res> get danger;
+  @override
+  $DangerLocationCopyWith<$Res>? get currentLocation;
 }
 
 /// @nodoc
@@ -113,6 +136,7 @@ class __$$AppState$CopyWithImpl<$Res>
   $Res call({
     Object? auth = null,
     Object? danger = null,
+    Object? currentLocation = freezed,
   }) {
     return _then(_$AppState$(
       auth: null == auth
@@ -123,6 +147,10 @@ class __$$AppState$CopyWithImpl<$Res>
           ? _value.danger
           : danger // ignore: cast_nullable_to_non_nullable
               as DangerState,
+      currentLocation: freezed == currentLocation
+          ? _value.currentLocation
+          : currentLocation // ignore: cast_nullable_to_non_nullable
+              as DangerLocation?,
     ));
   }
 }
@@ -131,7 +159,9 @@ class __$$AppState$CopyWithImpl<$Res>
 @JsonSerializable()
 class _$AppState$ implements AppState$ {
   const _$AppState$(
-      {this.auth = const AuthState(), this.danger = const DangerState()});
+      {this.auth = const AuthState(),
+      this.danger = const DangerState(),
+      this.currentLocation});
 
   factory _$AppState$.fromJson(Map<String, dynamic> json) =>
       _$$AppState$FromJson(json);
@@ -142,10 +172,12 @@ class _$AppState$ implements AppState$ {
   @override
   @JsonKey()
   final DangerState danger;
+  @override
+  final DangerLocation? currentLocation;
 
   @override
   String toString() {
-    return 'AppState(auth: $auth, danger: $danger)';
+    return 'AppState(auth: $auth, danger: $danger, currentLocation: $currentLocation)';
   }
 
   @override
@@ -154,12 +186,14 @@ class _$AppState$ implements AppState$ {
         (other.runtimeType == runtimeType &&
             other is _$AppState$ &&
             (identical(other.auth, auth) || other.auth == auth) &&
-            (identical(other.danger, danger) || other.danger == danger));
+            (identical(other.danger, danger) || other.danger == danger) &&
+            (identical(other.currentLocation, currentLocation) ||
+                other.currentLocation == currentLocation));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, auth, danger);
+  int get hashCode => Object.hash(runtimeType, auth, danger, currentLocation);
 
   @JsonKey(ignore: true)
   @override
@@ -176,8 +210,10 @@ class _$AppState$ implements AppState$ {
 }
 
 abstract class AppState$ implements AppState {
-  const factory AppState$({final AuthState auth, final DangerState danger}) =
-      _$AppState$;
+  const factory AppState$(
+      {final AuthState auth,
+      final DangerState danger,
+      final DangerLocation? currentLocation}) = _$AppState$;
 
   factory AppState$.fromJson(Map<String, dynamic> json) = _$AppState$.fromJson;
 
@@ -185,6 +221,8 @@ abstract class AppState$ implements AppState {
   AuthState get auth;
   @override
   DangerState get danger;
+  @override
+  DangerLocation? get currentLocation;
   @override
   @JsonKey(ignore: true)
   _$$AppState$CopyWith<_$AppState$> get copyWith =>
