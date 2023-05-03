@@ -13,17 +13,12 @@ _$AppState$ _$$AppState$FromJson(Map<String, dynamic> json) => _$AppState$(
       danger: json['danger'] == null
           ? const DangerState()
           : DangerState.fromJson(json['danger'] as Map<String, dynamic>),
-      currentLocation: json['currentLocation'] == null
-          ? null
-          : DangerLocation.fromJson(
-              json['currentLocation'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$AppState$ToJson(_$AppState$ instance) =>
     <String, dynamic>{
       'auth': instance.auth,
       'danger': instance.danger,
-      'currentLocation': instance.currentLocation,
     };
 
 _$AuthState$ _$$AuthState$FromJson(Map<String, dynamic> json) => _$AuthState$(
@@ -83,9 +78,14 @@ _$DangerState$ _$$DangerState$FromJson(Map<String, dynamic> json) =>
               ?.map((e) => Danger.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const <Danger>[],
+      currentLocation: json['currentLocation'] == null
+          ? null
+          : DangerLocation.fromJson(
+              json['currentLocation'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$DangerState$ToJson(_$DangerState$ instance) =>
     <String, dynamic>{
       'dangers': instance.dangers,
+      'currentLocation': instance.currentLocation,
     };
