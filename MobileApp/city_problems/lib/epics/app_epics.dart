@@ -1,5 +1,6 @@
 import 'package:city_problems/data/auth_api.dart';
 import 'package:city_problems/epics/auth_epics.dart';
+import 'package:city_problems/epics/danger_epic.dart';
 import 'package:city_problems/models/index.dart';
 import 'package:redux_epics/redux_epics.dart';
 
@@ -12,6 +13,7 @@ class AppEpics{
     return combineEpics(
       <Epic<AppState>>[
         AuthEpics(api: authApi).epic,
+        DangerEpics(api: authApi).epic,
       ],
     );
   }
