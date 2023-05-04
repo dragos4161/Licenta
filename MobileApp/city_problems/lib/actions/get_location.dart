@@ -4,7 +4,7 @@ part of actions;
 class GetLocation with _$GetLocation {
   const factory GetLocation() = GetLocationStart;
 
-  const factory GetLocation.successful(DangerLocation location) = GetLocationSuccessful;
+  const factory GetLocation.successful(CurrentLocation location) = GetLocationSuccessful;
 
   const factory GetLocation.error(Object error, StackTrace stackTrace) = GetLocationError;
 }

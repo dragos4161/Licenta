@@ -1977,21 +1977,21 @@ mixin _$GetLocation {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(DangerLocation location) successful,
+    required TResult Function(CurrentLocation location) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(DangerLocation location)? successful,
+    TResult? Function(CurrentLocation location)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(DangerLocation location)? successful,
+    TResult Function(CurrentLocation location)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) =>
@@ -2077,7 +2077,7 @@ class _$GetLocationStart implements GetLocationStart {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(DangerLocation location) successful,
+    required TResult Function(CurrentLocation location) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return $default();
@@ -2087,7 +2087,7 @@ class _$GetLocationStart implements GetLocationStart {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(DangerLocation location)? successful,
+    TResult? Function(CurrentLocation location)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return $default?.call();
@@ -2097,7 +2097,7 @@ class _$GetLocationStart implements GetLocationStart {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(DangerLocation location)? successful,
+    TResult Function(CurrentLocation location)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
@@ -2152,9 +2152,9 @@ abstract class _$$GetLocationSuccessfulCopyWith<$Res> {
           $Res Function(_$GetLocationSuccessful) then) =
       __$$GetLocationSuccessfulCopyWithImpl<$Res>;
   @useResult
-  $Res call({DangerLocation location});
+  $Res call({CurrentLocation location});
 
-  $DangerLocationCopyWith<$Res> get location;
+  $CurrentLocationCopyWith<$Res> get location;
 }
 
 /// @nodoc
@@ -2174,14 +2174,14 @@ class __$$GetLocationSuccessfulCopyWithImpl<$Res>
       null == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as DangerLocation,
+              as CurrentLocation,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $DangerLocationCopyWith<$Res> get location {
-    return $DangerLocationCopyWith<$Res>(_value.location, (value) {
+  $CurrentLocationCopyWith<$Res> get location {
+    return $CurrentLocationCopyWith<$Res>(_value.location, (value) {
       return _then(_value.copyWith(location: value));
     });
   }
@@ -2193,7 +2193,7 @@ class _$GetLocationSuccessful implements GetLocationSuccessful {
   const _$GetLocationSuccessful(this.location);
 
   @override
-  final DangerLocation location;
+  final CurrentLocation location;
 
   @override
   String toString() {
@@ -2223,7 +2223,7 @@ class _$GetLocationSuccessful implements GetLocationSuccessful {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(DangerLocation location) successful,
+    required TResult Function(CurrentLocation location) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return successful(location);
@@ -2233,7 +2233,7 @@ class _$GetLocationSuccessful implements GetLocationSuccessful {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(DangerLocation location)? successful,
+    TResult? Function(CurrentLocation location)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return successful?.call(location);
@@ -2243,7 +2243,7 @@ class _$GetLocationSuccessful implements GetLocationSuccessful {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(DangerLocation location)? successful,
+    TResult Function(CurrentLocation location)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
@@ -2289,10 +2289,10 @@ class _$GetLocationSuccessful implements GetLocationSuccessful {
 }
 
 abstract class GetLocationSuccessful implements GetLocation {
-  const factory GetLocationSuccessful(final DangerLocation location) =
+  const factory GetLocationSuccessful(final CurrentLocation location) =
       _$GetLocationSuccessful;
 
-  DangerLocation get location;
+  CurrentLocation get location;
   @JsonKey(ignore: true)
   _$$GetLocationSuccessfulCopyWith<_$GetLocationSuccessful> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2370,7 +2370,7 @@ class _$GetLocationError implements GetLocationError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(DangerLocation location) successful,
+    required TResult Function(CurrentLocation location) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return error(this.error, stackTrace);
@@ -2380,7 +2380,7 @@ class _$GetLocationError implements GetLocationError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(DangerLocation location)? successful,
+    TResult? Function(CurrentLocation location)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return error?.call(this.error, stackTrace);
@@ -2390,7 +2390,7 @@ class _$GetLocationError implements GetLocationError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(DangerLocation location)? successful,
+    TResult Function(CurrentLocation location)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
