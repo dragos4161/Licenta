@@ -45,7 +45,7 @@ class AuthApi {
     );
   }
 
-  Future<DangerLocation?> getLocation() async {
+  Future<CurrentLocation?> getLocation() async {
     final Location location = Location();
 
     late bool serviceEnabled;
@@ -68,7 +68,7 @@ class AuthApi {
       }
     }
     locationData = await location.getLocation();
-    return DangerLocation(latitude: locationData.longitude!, longitude: locationData.latitude!);
+    return CurrentLocation(latitude: locationData.longitude!, longitude: locationData.latitude!);
   }
 
   Future<void> logout() async {
