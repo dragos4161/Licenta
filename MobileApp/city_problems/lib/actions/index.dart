@@ -10,5 +10,7 @@ part 'signup.dart';
 
 part 'logout.dart';
 
+part 'get_location.dart';
+
 
 part 'index.freezed.dart';
