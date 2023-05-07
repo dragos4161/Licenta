@@ -31,6 +31,15 @@ class _HomePageState extends State<HomePage> {
     super.didChangeDependencies();
   }
 
+  List<String> categories = <String>[
+    'pothole',
+    'overturned trash can',
+    'destroyed bench',
+    'dangerous building',
+    'broken traffic light',
+    'missing sign'
+  ];
+
   final TextEditingController _searchController = TextEditingController();
 
   Set<Marker> markers = <Marker>{};
@@ -136,8 +145,30 @@ class _HomePageState extends State<HomePage> {
                                             itemBuilder: (BuildContext context, int index) {
                                               return GestureDetector(
                                                 onTap: () {},
-                                                child: Container(
-                                                  color: Colors.yellow,
+                                                child: Column(
+                                                  children: <Widget>[
+                                                    SizedBox(
+                                                      width: 100,
+                                                      height: 100,
+                                                      child: ClipOval(
+                                                        child: Image.asset(
+                                                          'assets/images/${categories[index].split(' ').first}.jpg',
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    const SizedBox(height: 10),
+                                                    Center(
+                                                      child: Text(
+                                                        categories[index],
+                                                        style: const TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 15,
+                                                        ),
+                                                        maxLines: 1,
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               );
                                             },
