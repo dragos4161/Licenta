@@ -21,6 +21,9 @@ AppState _$AppStateFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$AppState {
   AuthState get auth => throw _privateConstructorUsedError;
+  DangerState get danger => throw _privateConstructorUsedError;
+  CurrentLocation? get userLocation => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,9 +36,15 @@ abstract class $AppStateCopyWith<$Res> {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
       _$AppStateCopyWithImpl<$Res, AppState>;
   @useResult
-  $Res call({AuthState auth});
+  $Res call(
+      {AuthState auth,
+      DangerState danger,
+      CurrentLocation? userLocation,
+      bool isLoading});
 
   $AuthStateCopyWith<$Res> get auth;
+  $DangerStateCopyWith<$Res> get danger;
+  $CurrentLocationCopyWith<$Res>? get userLocation;
 }
 
 /// @nodoc
@@ -52,12 +61,27 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
   @override
   $Res call({
     Object? auth = null,
+    Object? danger = null,
+    Object? userLocation = freezed,
+    Object? isLoading = null,
   }) {
     return _then(_value.copyWith(
       auth: null == auth
           ? _value.auth
           : auth // ignore: cast_nullable_to_non_nullable
               as AuthState,
+      danger: null == danger
+          ? _value.danger
+          : danger // ignore: cast_nullable_to_non_nullable
+              as DangerState,
+      userLocation: freezed == userLocation
+          ? _value.userLocation
+          : userLocation // ignore: cast_nullable_to_non_nullable
+              as CurrentLocation?,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -66,6 +90,26 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
   $AuthStateCopyWith<$Res> get auth {
     return $AuthStateCopyWith<$Res>(_value.auth, (value) {
       return _then(_value.copyWith(auth: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $DangerStateCopyWith<$Res> get danger {
+    return $DangerStateCopyWith<$Res>(_value.danger, (value) {
+      return _then(_value.copyWith(danger: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CurrentLocationCopyWith<$Res>? get userLocation {
+    if (_value.userLocation == null) {
+      return null;
+    }
+
+    return $CurrentLocationCopyWith<$Res>(_value.userLocation!, (value) {
+      return _then(_value.copyWith(userLocation: value) as $Val);
     });
   }
 }
@@ -77,10 +121,18 @@ abstract class _$$AppState$CopyWith<$Res> implements $AppStateCopyWith<$Res> {
       __$$AppState$CopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AuthState auth});
+  $Res call(
+      {AuthState auth,
+      DangerState danger,
+      CurrentLocation? userLocation,
+      bool isLoading});
 
   @override
   $AuthStateCopyWith<$Res> get auth;
+  @override
+  $DangerStateCopyWith<$Res> get danger;
+  @override
+  $CurrentLocationCopyWith<$Res>? get userLocation;
 }
 
 /// @nodoc
@@ -95,12 +147,27 @@ class __$$AppState$CopyWithImpl<$Res>
   @override
   $Res call({
     Object? auth = null,
+    Object? danger = null,
+    Object? userLocation = freezed,
+    Object? isLoading = null,
   }) {
     return _then(_$AppState$(
       auth: null == auth
           ? _value.auth
           : auth // ignore: cast_nullable_to_non_nullable
               as AuthState,
+      danger: null == danger
+          ? _value.danger
+          : danger // ignore: cast_nullable_to_non_nullable
+              as DangerState,
+      userLocation: freezed == userLocation
+          ? _value.userLocation
+          : userLocation // ignore: cast_nullable_to_non_nullable
+              as CurrentLocation?,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -108,7 +175,11 @@ class __$$AppState$CopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AppState$ implements AppState$ {
-  const _$AppState$({this.auth = const AuthState()});
+  const _$AppState$(
+      {this.auth = const AuthState(),
+      this.danger = const DangerState(),
+      this.userLocation,
+      this.isLoading = true});
 
   factory _$AppState$.fromJson(Map<String, dynamic> json) =>
       _$$AppState$FromJson(json);
@@ -116,10 +187,18 @@ class _$AppState$ implements AppState$ {
   @override
   @JsonKey()
   final AuthState auth;
+  @override
+  @JsonKey()
+  final DangerState danger;
+  @override
+  final CurrentLocation? userLocation;
+  @override
+  @JsonKey()
+  final bool isLoading;
 
   @override
   String toString() {
-    return 'AppState(auth: $auth)';
+    return 'AppState(auth: $auth, danger: $danger, userLocation: $userLocation, isLoading: $isLoading)';
   }
 
   @override
@@ -127,12 +206,18 @@ class _$AppState$ implements AppState$ {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppState$ &&
-            (identical(other.auth, auth) || other.auth == auth));
+            (identical(other.auth, auth) || other.auth == auth) &&
+            (identical(other.danger, danger) || other.danger == danger) &&
+            (identical(other.userLocation, userLocation) ||
+                other.userLocation == userLocation) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, auth);
+  int get hashCode =>
+      Object.hash(runtimeType, auth, danger, userLocation, isLoading);
 
   @JsonKey(ignore: true)
   @override
@@ -149,12 +234,22 @@ class _$AppState$ implements AppState$ {
 }
 
 abstract class AppState$ implements AppState {
-  const factory AppState$({final AuthState auth}) = _$AppState$;
+  const factory AppState$(
+      {final AuthState auth,
+      final DangerState danger,
+      final CurrentLocation? userLocation,
+      final bool isLoading}) = _$AppState$;
 
   factory AppState$.fromJson(Map<String, dynamic> json) = _$AppState$.fromJson;
 
   @override
   AuthState get auth;
+  @override
+  DangerState get danger;
+  @override
+  CurrentLocation? get userLocation;
+  @override
+  bool get isLoading;
   @override
   @JsonKey(ignore: true)
   _$$AppState$CopyWith<_$AppState$> get copyWith =>
@@ -499,5 +594,680 @@ abstract class AppUser$ implements AppUser {
   @override
   @JsonKey(ignore: true)
   _$$AppUser$CopyWith<_$AppUser$> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Danger _$DangerFromJson(Map<String, dynamic> json) {
+  return Danger$.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Danger {
+  String get category => throw _privateConstructorUsedError;
+  String get uid => throw _privateConstructorUsedError;
+  CurrentLocation get location => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DangerCopyWith<Danger> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DangerCopyWith<$Res> {
+  factory $DangerCopyWith(Danger value, $Res Function(Danger) then) =
+      _$DangerCopyWithImpl<$Res, Danger>;
+  @useResult
+  $Res call({String category, String uid, CurrentLocation location});
+
+  $CurrentLocationCopyWith<$Res> get location;
+}
+
+/// @nodoc
+class _$DangerCopyWithImpl<$Res, $Val extends Danger>
+    implements $DangerCopyWith<$Res> {
+  _$DangerCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? category = null,
+    Object? uid = null,
+    Object? location = null,
+  }) {
+    return _then(_value.copyWith(
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
+      location: null == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as CurrentLocation,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CurrentLocationCopyWith<$Res> get location {
+    return $CurrentLocationCopyWith<$Res>(_value.location, (value) {
+      return _then(_value.copyWith(location: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$Danger$CopyWith<$Res> implements $DangerCopyWith<$Res> {
+  factory _$$Danger$CopyWith(_$Danger$ value, $Res Function(_$Danger$) then) =
+      __$$Danger$CopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String category, String uid, CurrentLocation location});
+
+  @override
+  $CurrentLocationCopyWith<$Res> get location;
+}
+
+/// @nodoc
+class __$$Danger$CopyWithImpl<$Res>
+    extends _$DangerCopyWithImpl<$Res, _$Danger$>
+    implements _$$Danger$CopyWith<$Res> {
+  __$$Danger$CopyWithImpl(_$Danger$ _value, $Res Function(_$Danger$) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? category = null,
+    Object? uid = null,
+    Object? location = null,
+  }) {
+    return _then(_$Danger$(
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
+      location: null == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as CurrentLocation,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$Danger$ implements Danger$ {
+  const _$Danger$(
+      {required this.category, required this.uid, required this.location});
+
+  factory _$Danger$.fromJson(Map<String, dynamic> json) =>
+      _$$Danger$FromJson(json);
+
+  @override
+  final String category;
+  @override
+  final String uid;
+  @override
+  final CurrentLocation location;
+
+  @override
+  String toString() {
+    return 'Danger(category: $category, uid: $uid, location: $location)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$Danger$ &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.uid, uid) || other.uid == uid) &&
+            (identical(other.location, location) ||
+                other.location == location));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, category, uid, location);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$Danger$CopyWith<_$Danger$> get copyWith =>
+      __$$Danger$CopyWithImpl<_$Danger$>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$Danger$ToJson(
+      this,
+    );
+  }
+}
+
+abstract class Danger$ implements Danger {
+  const factory Danger$(
+      {required final String category,
+      required final String uid,
+      required final CurrentLocation location}) = _$Danger$;
+
+  factory Danger$.fromJson(Map<String, dynamic> json) = _$Danger$.fromJson;
+
+  @override
+  String get category;
+  @override
+  String get uid;
+  @override
+  CurrentLocation get location;
+  @override
+  @JsonKey(ignore: true)
+  _$$Danger$CopyWith<_$Danger$> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+DangerLocation _$DangerLocationFromJson(Map<String, dynamic> json) {
+  return DangerLocation$.fromJson(json);
+}
+
+/// @nodoc
+mixin _$DangerLocation {
+  double get latitude => throw _privateConstructorUsedError;
+  double get longitude => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DangerLocationCopyWith<DangerLocation> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DangerLocationCopyWith<$Res> {
+  factory $DangerLocationCopyWith(
+          DangerLocation value, $Res Function(DangerLocation) then) =
+      _$DangerLocationCopyWithImpl<$Res, DangerLocation>;
+  @useResult
+  $Res call({double latitude, double longitude});
+}
+
+/// @nodoc
+class _$DangerLocationCopyWithImpl<$Res, $Val extends DangerLocation>
+    implements $DangerLocationCopyWith<$Res> {
+  _$DangerLocationCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? latitude = null,
+    Object? longitude = null,
+  }) {
+    return _then(_value.copyWith(
+      latitude: null == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double,
+      longitude: null == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$DangerLocation$CopyWith<$Res>
+    implements $DangerLocationCopyWith<$Res> {
+  factory _$$DangerLocation$CopyWith(
+          _$DangerLocation$ value, $Res Function(_$DangerLocation$) then) =
+      __$$DangerLocation$CopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({double latitude, double longitude});
+}
+
+/// @nodoc
+class __$$DangerLocation$CopyWithImpl<$Res>
+    extends _$DangerLocationCopyWithImpl<$Res, _$DangerLocation$>
+    implements _$$DangerLocation$CopyWith<$Res> {
+  __$$DangerLocation$CopyWithImpl(
+      _$DangerLocation$ _value, $Res Function(_$DangerLocation$) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? latitude = null,
+    Object? longitude = null,
+  }) {
+    return _then(_$DangerLocation$(
+      latitude: null == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double,
+      longitude: null == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$DangerLocation$ implements DangerLocation$ {
+  const _$DangerLocation$({required this.latitude, required this.longitude});
+
+  factory _$DangerLocation$.fromJson(Map<String, dynamic> json) =>
+      _$$DangerLocation$FromJson(json);
+
+  @override
+  final double latitude;
+  @override
+  final double longitude;
+
+  @override
+  String toString() {
+    return 'DangerLocation(latitude: $latitude, longitude: $longitude)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DangerLocation$ &&
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, latitude, longitude);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DangerLocation$CopyWith<_$DangerLocation$> get copyWith =>
+      __$$DangerLocation$CopyWithImpl<_$DangerLocation$>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$DangerLocation$ToJson(
+      this,
+    );
+  }
+}
+
+abstract class DangerLocation$ implements DangerLocation {
+  const factory DangerLocation$(
+      {required final double latitude,
+      required final double longitude}) = _$DangerLocation$;
+
+  factory DangerLocation$.fromJson(Map<String, dynamic> json) =
+      _$DangerLocation$.fromJson;
+
+  @override
+  double get latitude;
+  @override
+  double get longitude;
+  @override
+  @JsonKey(ignore: true)
+  _$$DangerLocation$CopyWith<_$DangerLocation$> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+DangerState _$DangerStateFromJson(Map<String, dynamic> json) {
+  return DangerState$.fromJson(json);
+}
+
+/// @nodoc
+mixin _$DangerState {
+  List<Danger> get dangers => throw _privateConstructorUsedError;
+  DangerLocation? get currentLocation => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DangerStateCopyWith<DangerState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DangerStateCopyWith<$Res> {
+  factory $DangerStateCopyWith(
+          DangerState value, $Res Function(DangerState) then) =
+      _$DangerStateCopyWithImpl<$Res, DangerState>;
+  @useResult
+  $Res call({List<Danger> dangers, DangerLocation? currentLocation});
+
+  $DangerLocationCopyWith<$Res>? get currentLocation;
+}
+
+/// @nodoc
+class _$DangerStateCopyWithImpl<$Res, $Val extends DangerState>
+    implements $DangerStateCopyWith<$Res> {
+  _$DangerStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? dangers = null,
+    Object? currentLocation = freezed,
+  }) {
+    return _then(_value.copyWith(
+      dangers: null == dangers
+          ? _value.dangers
+          : dangers // ignore: cast_nullable_to_non_nullable
+              as List<Danger>,
+      currentLocation: freezed == currentLocation
+          ? _value.currentLocation
+          : currentLocation // ignore: cast_nullable_to_non_nullable
+              as DangerLocation?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $DangerLocationCopyWith<$Res>? get currentLocation {
+    if (_value.currentLocation == null) {
+      return null;
+    }
+
+    return $DangerLocationCopyWith<$Res>(_value.currentLocation!, (value) {
+      return _then(_value.copyWith(currentLocation: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$DangerState$CopyWith<$Res>
+    implements $DangerStateCopyWith<$Res> {
+  factory _$$DangerState$CopyWith(
+          _$DangerState$ value, $Res Function(_$DangerState$) then) =
+      __$$DangerState$CopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<Danger> dangers, DangerLocation? currentLocation});
+
+  @override
+  $DangerLocationCopyWith<$Res>? get currentLocation;
+}
+
+/// @nodoc
+class __$$DangerState$CopyWithImpl<$Res>
+    extends _$DangerStateCopyWithImpl<$Res, _$DangerState$>
+    implements _$$DangerState$CopyWith<$Res> {
+  __$$DangerState$CopyWithImpl(
+      _$DangerState$ _value, $Res Function(_$DangerState$) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? dangers = null,
+    Object? currentLocation = freezed,
+  }) {
+    return _then(_$DangerState$(
+      dangers: null == dangers
+          ? _value._dangers
+          : dangers // ignore: cast_nullable_to_non_nullable
+              as List<Danger>,
+      currentLocation: freezed == currentLocation
+          ? _value.currentLocation
+          : currentLocation // ignore: cast_nullable_to_non_nullable
+              as DangerLocation?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$DangerState$ implements DangerState$ {
+  const _$DangerState$(
+      {final List<Danger> dangers = const <Danger>[], this.currentLocation})
+      : _dangers = dangers;
+
+  factory _$DangerState$.fromJson(Map<String, dynamic> json) =>
+      _$$DangerState$FromJson(json);
+
+  final List<Danger> _dangers;
+  @override
+  @JsonKey()
+  List<Danger> get dangers {
+    if (_dangers is EqualUnmodifiableListView) return _dangers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_dangers);
+  }
+
+  @override
+  final DangerLocation? currentLocation;
+
+  @override
+  String toString() {
+    return 'DangerState(dangers: $dangers, currentLocation: $currentLocation)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DangerState$ &&
+            const DeepCollectionEquality().equals(other._dangers, _dangers) &&
+            (identical(other.currentLocation, currentLocation) ||
+                other.currentLocation == currentLocation));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_dangers), currentLocation);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DangerState$CopyWith<_$DangerState$> get copyWith =>
+      __$$DangerState$CopyWithImpl<_$DangerState$>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$DangerState$ToJson(
+      this,
+    );
+  }
+}
+
+abstract class DangerState$ implements DangerState {
+  const factory DangerState$(
+      {final List<Danger> dangers,
+      final DangerLocation? currentLocation}) = _$DangerState$;
+
+  factory DangerState$.fromJson(Map<String, dynamic> json) =
+      _$DangerState$.fromJson;
+
+  @override
+  List<Danger> get dangers;
+  @override
+  DangerLocation? get currentLocation;
+  @override
+  @JsonKey(ignore: true)
+  _$$DangerState$CopyWith<_$DangerState$> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+CurrentLocation _$CurrentLocationFromJson(Map<String, dynamic> json) {
+  return CurrentLocation$.fromJson(json);
+}
+
+/// @nodoc
+mixin _$CurrentLocation {
+  double get latitude => throw _privateConstructorUsedError;
+  double get longitude => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CurrentLocationCopyWith<CurrentLocation> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CurrentLocationCopyWith<$Res> {
+  factory $CurrentLocationCopyWith(
+          CurrentLocation value, $Res Function(CurrentLocation) then) =
+      _$CurrentLocationCopyWithImpl<$Res, CurrentLocation>;
+  @useResult
+  $Res call({double latitude, double longitude});
+}
+
+/// @nodoc
+class _$CurrentLocationCopyWithImpl<$Res, $Val extends CurrentLocation>
+    implements $CurrentLocationCopyWith<$Res> {
+  _$CurrentLocationCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? latitude = null,
+    Object? longitude = null,
+  }) {
+    return _then(_value.copyWith(
+      latitude: null == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double,
+      longitude: null == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$CurrentLocation$CopyWith<$Res>
+    implements $CurrentLocationCopyWith<$Res> {
+  factory _$$CurrentLocation$CopyWith(
+          _$CurrentLocation$ value, $Res Function(_$CurrentLocation$) then) =
+      __$$CurrentLocation$CopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({double latitude, double longitude});
+}
+
+/// @nodoc
+class __$$CurrentLocation$CopyWithImpl<$Res>
+    extends _$CurrentLocationCopyWithImpl<$Res, _$CurrentLocation$>
+    implements _$$CurrentLocation$CopyWith<$Res> {
+  __$$CurrentLocation$CopyWithImpl(
+      _$CurrentLocation$ _value, $Res Function(_$CurrentLocation$) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? latitude = null,
+    Object? longitude = null,
+  }) {
+    return _then(_$CurrentLocation$(
+      latitude: null == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double,
+      longitude: null == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$CurrentLocation$ implements CurrentLocation$ {
+  const _$CurrentLocation$({required this.latitude, required this.longitude});
+
+  factory _$CurrentLocation$.fromJson(Map<String, dynamic> json) =>
+      _$$CurrentLocation$FromJson(json);
+
+  @override
+  final double latitude;
+  @override
+  final double longitude;
+
+  @override
+  String toString() {
+    return 'CurrentLocation(latitude: $latitude, longitude: $longitude)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CurrentLocation$ &&
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, latitude, longitude);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CurrentLocation$CopyWith<_$CurrentLocation$> get copyWith =>
+      __$$CurrentLocation$CopyWithImpl<_$CurrentLocation$>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$CurrentLocation$ToJson(
+      this,
+    );
+  }
+}
+
+abstract class CurrentLocation$ implements CurrentLocation {
+  const factory CurrentLocation$(
+      {required final double latitude,
+      required final double longitude}) = _$CurrentLocation$;
+
+  factory CurrentLocation$.fromJson(Map<String, dynamic> json) =
+      _$CurrentLocation$.fromJson;
+
+  @override
+  double get latitude;
+  @override
+  double get longitude;
+  @override
+  @JsonKey(ignore: true)
+  _$$CurrentLocation$CopyWith<_$CurrentLocation$> get copyWith =>
       throw _privateConstructorUsedError;
 }
