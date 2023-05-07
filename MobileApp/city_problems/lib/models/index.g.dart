@@ -17,6 +17,7 @@ _$AppState$ _$$AppState$FromJson(Map<String, dynamic> json) => _$AppState$(
           ? null
           : CurrentLocation.fromJson(
               json['userLocation'] as Map<String, dynamic>),
+      isLoading: json['isLoading'] as bool? ?? true,
     );
 
 Map<String, dynamic> _$$AppState$ToJson(_$AppState$ instance) =>
@@ -24,6 +25,7 @@ Map<String, dynamic> _$$AppState$ToJson(_$AppState$ instance) =>
       'auth': instance.auth,
       'danger': instance.danger,
       'userLocation': instance.userLocation,
+      'isLoading': instance.isLoading,
     };
 
 _$AuthState$ _$$AuthState$FromJson(Map<String, dynamic> json) => _$AuthState$(
@@ -56,7 +58,7 @@ _$Danger$ _$$Danger$FromJson(Map<String, dynamic> json) => _$Danger$(
       category: json['category'] as String,
       uid: json['uid'] as String,
       location:
-          DangerLocation.fromJson(json['location'] as Map<String, dynamic>),
+          CurrentLocation.fromJson(json['location'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$Danger$ToJson(_$Danger$ instance) => <String, dynamic>{
