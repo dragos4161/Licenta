@@ -68,7 +68,7 @@ class AuthApi {
       }
     }
     locationData = await location.getLocation();
-    return CurrentLocation(latitude: locationData.longitude!, longitude: locationData.latitude!);
+    return CurrentLocation(latitude: locationData.latitude!, longitude: locationData.longitude!);
   }
 
   Future<void> logout() async {
