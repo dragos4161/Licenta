@@ -7,6 +7,7 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   _reducer,
   TypedReducer<AppState,LogoutSuccessful>(_logoutSuccessful),
   TypedReducer<AppState,GetLocationSuccessful>(_getLocationSuccessful),
+  TypedReducer<AppState,GetLocationStart>(_getLocationStart),
 ]);
 
 AppState _reducer(AppState state, dynamic action){
@@ -22,5 +23,12 @@ AppState _logoutSuccessful(AppState state, LogoutSuccessful action) {
 AppState _getLocationSuccessful(AppState state, GetLocationSuccessful action) {
   return state.copyWith(
     userLocation: action.location,
+    isLoading: false,
+  );
+}
+
+AppState _getLocationStart(AppState state, GetLocationStart action) {
+  return state.copyWith(
+    isLoading: true,
   );
 }
