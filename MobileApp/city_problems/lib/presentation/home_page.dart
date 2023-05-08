@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:city_problems/actions/index.dart';
 import 'package:city_problems/models/index.dart';
@@ -119,62 +120,66 @@ class _HomePageState extends State<HomePage> {
                             showModalBottomSheet<void>(
                               context: context,
                               isScrollControlled: true,
+                              backgroundColor: Colors.white.withOpacity(0.3),
                               shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(10),
-                                  topRight: Radius.circular(10),
+                                  topLeft: Radius.circular(40),
+                                  topRight: Radius.circular(40),
                                 ),
                               ),
                               builder: (BuildContext builder) {
-                                return SingleChildScrollView(
-                                  child: Container(
-                                    color: const Color.fromRGBO(103, 169, 249, 1),
-                                    height: MediaQuery.of(context).size.height - 150,
-                                    child: Column(
-                                      children: <Widget>[
-                                        SizedBox(
-                                          height: MediaQuery.of(context).size.height - 150,
-                                          child: GridView.builder(
-                                            itemCount: 6,
-                                            padding: const EdgeInsets.all(20),
-                                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                              crossAxisCount: 2,
-                                              mainAxisSpacing: 20,
-                                              crossAxisSpacing: 20,
+                                return BackdropFilter(
+                                  filter: ImageFilter.blur(sigmaX: 5,sigmaY: 5),
+                                  child: SingleChildScrollView(
+                                    child: Container(
+                                      color: Colors.transparent,
+                                      height: MediaQuery.of(context).size.height - 150,
+                                      child: Column(
+                                        children: <Widget>[
+                                          SizedBox(
+                                            height: MediaQuery.of(context).size.height - 150,
+                                            child: GridView.builder(
+                                              itemCount: 6,
+                                              padding: const EdgeInsets.all(20),
+                                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisCount: 2,
+                                                mainAxisSpacing: 20,
+                                                crossAxisSpacing: 20,
+                                              ),
+                                              itemBuilder: (BuildContext context, int index) {
+                                                return GestureDetector(
+                                                  onTap: () {},
+                                                  child: Column(
+                                                    children: <Widget>[
+                                                      SizedBox(
+                                                        width: 100,
+                                                        height: 100,
+                                                        child: ClipOval(
+                                                          child: Image.asset(
+                                                            'assets/images/${categories[index].split(' ').first}.jpg',
+                                                            fit: BoxFit.cover,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      const SizedBox(height: 10),
+                                                      Center(
+                                                        child: Text(
+                                                          categories[index],
+                                                          style: const TextStyle(
+                                                            color: Colors.white,
+                                                            fontSize: 15,
+                                                          ),
+                                                          maxLines: 1,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              },
                                             ),
-                                            itemBuilder: (BuildContext context, int index) {
-                                              return GestureDetector(
-                                                onTap: () {},
-                                                child: Column(
-                                                  children: <Widget>[
-                                                    SizedBox(
-                                                      width: 100,
-                                                      height: 100,
-                                                      child: ClipOval(
-                                                        child: Image.asset(
-                                                          'assets/images/${categories[index].split(' ').first}.jpg',
-                                                          fit: BoxFit.cover,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    const SizedBox(height: 10),
-                                                    Center(
-                                                      child: Text(
-                                                        categories[index],
-                                                        style: const TextStyle(
-                                                          color: Colors.white,
-                                                          fontSize: 15,
-                                                        ),
-                                                        maxLines: 1,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        )
-                                      ],
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 );

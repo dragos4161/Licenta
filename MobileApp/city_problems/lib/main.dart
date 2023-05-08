@@ -66,6 +66,7 @@ class MyApp extends StatelessWidget {
         title: 'City Dangers',
         theme: ThemeData(
           useMaterial3: false,
+          //bottomSheetTheme: BottomSheetThemeData(backgroundColor: Colors.white.withOpacity(0.7)),
           primarySwatch: Colors.blue,
           splashColor: const Color.fromARGB(255, 13, 63, 139),
         ),
