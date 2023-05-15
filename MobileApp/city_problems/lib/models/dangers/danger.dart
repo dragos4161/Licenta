@@ -6,6 +6,7 @@ class Danger with _$Danger {
     required String category,
     required String uid,
     required CurrentLocation location,
+    String? image,
 }) = Danger$;
 
   factory Danger.fromJson(Map<dynamic, dynamic> json) => _$DangerFromJson(Map<String, dynamic>.from(json));

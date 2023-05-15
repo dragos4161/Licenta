@@ -148,7 +148,9 @@ class _HomePageState extends State<HomePage> {
                                               ),
                                               itemBuilder: (BuildContext context, int index) {
                                                 return GestureDetector(
-                                                  onTap: () {},
+                                                  onTap: () async{
+                                                    await StoreProvider.of<AppState>(context).dispatch(const TakePicture());
+                                                  },
                                                   child: Column(
                                                     children: <Widget>[
                                                       SizedBox(

@@ -2451,21 +2451,21 @@ mixin _$TakePicture {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(File? picture) successful,
+    required TResult Function(String? url) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(File? picture)? successful,
+    TResult? Function(String? url)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(File? picture)? successful,
+    TResult Function(String? url)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) =>
@@ -2551,7 +2551,7 @@ class _$TakePictureStart implements TakePictureStart {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(File? picture) successful,
+    required TResult Function(String? url) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return $default();
@@ -2561,7 +2561,7 @@ class _$TakePictureStart implements TakePictureStart {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(File? picture)? successful,
+    TResult? Function(String? url)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return $default?.call();
@@ -2571,7 +2571,7 @@ class _$TakePictureStart implements TakePictureStart {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(File? picture)? successful,
+    TResult Function(String? url)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
@@ -2626,7 +2626,7 @@ abstract class _$$TakePictureSuccessfulCopyWith<$Res> {
           $Res Function(_$TakePictureSuccessful) then) =
       __$$TakePictureSuccessfulCopyWithImpl<$Res>;
   @useResult
-  $Res call({File? picture});
+  $Res call({String? url});
 }
 
 /// @nodoc
@@ -2640,13 +2640,13 @@ class __$$TakePictureSuccessfulCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? picture = freezed,
+    Object? url = freezed,
   }) {
     return _then(_$TakePictureSuccessful(
-      freezed == picture
-          ? _value.picture
-          : picture // ignore: cast_nullable_to_non_nullable
-              as File?,
+      freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -2654,14 +2654,14 @@ class __$$TakePictureSuccessfulCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TakePictureSuccessful implements TakePictureSuccessful {
-  const _$TakePictureSuccessful(this.picture);
+  const _$TakePictureSuccessful(this.url);
 
   @override
-  final File? picture;
+  final String? url;
 
   @override
   String toString() {
-    return 'TakePicture.successful(picture: $picture)';
+    return 'TakePicture.successful(url: $url)';
   }
 
   @override
@@ -2669,11 +2669,11 @@ class _$TakePictureSuccessful implements TakePictureSuccessful {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TakePictureSuccessful &&
-            (identical(other.picture, picture) || other.picture == picture));
+            (identical(other.url, url) || other.url == url));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, picture);
+  int get hashCode => Object.hash(runtimeType, url);
 
   @JsonKey(ignore: true)
   @override
@@ -2686,32 +2686,32 @@ class _$TakePictureSuccessful implements TakePictureSuccessful {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(File? picture) successful,
+    required TResult Function(String? url) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return successful(picture);
+    return successful(url);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(File? picture)? successful,
+    TResult? Function(String? url)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return successful?.call(picture);
+    return successful?.call(url);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(File? picture)? successful,
+    TResult Function(String? url)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if (successful != null) {
-      return successful(picture);
+      return successful(url);
     }
     return orElse();
   }
@@ -2752,10 +2752,10 @@ class _$TakePictureSuccessful implements TakePictureSuccessful {
 }
 
 abstract class TakePictureSuccessful implements TakePicture {
-  const factory TakePictureSuccessful(final File? picture) =
+  const factory TakePictureSuccessful(final String? url) =
       _$TakePictureSuccessful;
 
-  File? get picture;
+  String? get url;
   @JsonKey(ignore: true)
   _$$TakePictureSuccessfulCopyWith<_$TakePictureSuccessful> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2833,7 +2833,7 @@ class _$TakePictureError implements TakePictureError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(File? picture) successful,
+    required TResult Function(String? url) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return error(this.error, stackTrace);
@@ -2843,7 +2843,7 @@ class _$TakePictureError implements TakePictureError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(File? picture)? successful,
+    TResult? Function(String? url)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return error?.call(this.error, stackTrace);
@@ -2853,7 +2853,7 @@ class _$TakePictureError implements TakePictureError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(File? picture)? successful,
+    TResult Function(String? url)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {

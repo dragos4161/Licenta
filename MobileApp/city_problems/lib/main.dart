@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:city_problems/actions/index.dart';
 import 'package:city_problems/data/auth_api.dart';
+import 'package:city_problems/data/take_camera_picture.dart';
 import 'package:city_problems/epics/app_epics.dart';
 import 'package:city_problems/firebase_options.dart';
 import 'package:city_problems/models/index.dart';
@@ -23,7 +24,8 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   final AuthApi authApi = AuthApi(auth: FirebaseAuth.instance);
-  final AppEpics epics = AppEpics(authApi: authApi);
+  final PictureApi pictureApi = PictureApi();
+  final AppEpics epics = AppEpics(authApi: authApi,imageApi: pictureApi);
 
   final StreamController<dynamic> controller = StreamController<dynamic>();
 

@@ -4,7 +4,7 @@ part of actions;
 class TakePicture with _$TakePicture {
   const factory TakePicture() = TakePictureStart;
 
-  const factory TakePicture.successful(File? picture) = TakePictureSuccessful;
+  const factory TakePicture.successful(String? url) = TakePictureSuccessful;
 
   const factory TakePicture.error(Object error, StackTrace stackTrace) = TakePictureError;
 }
