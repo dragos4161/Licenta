@@ -7,7 +7,8 @@ class Danger with _$Danger {
     required String uid,
     required CurrentLocation location,
     String? image,
-}) = Danger$;
+    @Default('submitted') String status,
+  }) = Danger$;
 
   factory Danger.fromJson(Map<dynamic, dynamic> json) => _$DangerFromJson(Map<String, dynamic>.from(json));
 }

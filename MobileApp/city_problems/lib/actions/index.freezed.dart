@@ -3372,3 +3372,517 @@ abstract class UploadPictureError implements UploadPicture {
   _$$UploadPictureErrorCopyWith<_$UploadPictureError> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$PostDanger {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(Danger danger) $default, {
+    required TResult Function(Danger danger) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(Danger danger)? $default, {
+    TResult? Function(Danger danger)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(Danger danger)? $default, {
+    TResult Function(Danger danger)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(PostDangerStart value) $default, {
+    required TResult Function(PostDangerSuccessful value) successful,
+    required TResult Function(PostDangerError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(PostDangerStart value)? $default, {
+    TResult? Function(PostDangerSuccessful value)? successful,
+    TResult? Function(PostDangerError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(PostDangerStart value)? $default, {
+    TResult Function(PostDangerSuccessful value)? successful,
+    TResult Function(PostDangerError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PostDangerCopyWith<$Res> {
+  factory $PostDangerCopyWith(
+          PostDanger value, $Res Function(PostDanger) then) =
+      _$PostDangerCopyWithImpl<$Res, PostDanger>;
+}
+
+/// @nodoc
+class _$PostDangerCopyWithImpl<$Res, $Val extends PostDanger>
+    implements $PostDangerCopyWith<$Res> {
+  _$PostDangerCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$PostDangerStartCopyWith<$Res> {
+  factory _$$PostDangerStartCopyWith(
+          _$PostDangerStart value, $Res Function(_$PostDangerStart) then) =
+      __$$PostDangerStartCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Danger danger});
+
+  $DangerCopyWith<$Res> get danger;
+}
+
+/// @nodoc
+class __$$PostDangerStartCopyWithImpl<$Res>
+    extends _$PostDangerCopyWithImpl<$Res, _$PostDangerStart>
+    implements _$$PostDangerStartCopyWith<$Res> {
+  __$$PostDangerStartCopyWithImpl(
+      _$PostDangerStart _value, $Res Function(_$PostDangerStart) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? danger = null,
+  }) {
+    return _then(_$PostDangerStart(
+      null == danger
+          ? _value.danger
+          : danger // ignore: cast_nullable_to_non_nullable
+              as Danger,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $DangerCopyWith<$Res> get danger {
+    return $DangerCopyWith<$Res>(_value.danger, (value) {
+      return _then(_value.copyWith(danger: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$PostDangerStart implements PostDangerStart {
+  const _$PostDangerStart(this.danger);
+
+  @override
+  final Danger danger;
+
+  @override
+  String toString() {
+    return 'PostDanger(danger: $danger)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PostDangerStart &&
+            (identical(other.danger, danger) || other.danger == danger));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, danger);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PostDangerStartCopyWith<_$PostDangerStart> get copyWith =>
+      __$$PostDangerStartCopyWithImpl<_$PostDangerStart>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(Danger danger) $default, {
+    required TResult Function(Danger danger) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default(danger);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(Danger danger)? $default, {
+    TResult? Function(Danger danger)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return $default?.call(danger);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(Danger danger)? $default, {
+    TResult Function(Danger danger)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(danger);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(PostDangerStart value) $default, {
+    required TResult Function(PostDangerSuccessful value) successful,
+    required TResult Function(PostDangerError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(PostDangerStart value)? $default, {
+    TResult? Function(PostDangerSuccessful value)? successful,
+    TResult? Function(PostDangerError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(PostDangerStart value)? $default, {
+    TResult Function(PostDangerSuccessful value)? successful,
+    TResult Function(PostDangerError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PostDangerStart implements PostDanger {
+  const factory PostDangerStart(final Danger danger) = _$PostDangerStart;
+
+  Danger get danger;
+  @JsonKey(ignore: true)
+  _$$PostDangerStartCopyWith<_$PostDangerStart> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$PostDangerSuccessfulCopyWith<$Res> {
+  factory _$$PostDangerSuccessfulCopyWith(_$PostDangerSuccessful value,
+          $Res Function(_$PostDangerSuccessful) then) =
+      __$$PostDangerSuccessfulCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Danger danger});
+
+  $DangerCopyWith<$Res> get danger;
+}
+
+/// @nodoc
+class __$$PostDangerSuccessfulCopyWithImpl<$Res>
+    extends _$PostDangerCopyWithImpl<$Res, _$PostDangerSuccessful>
+    implements _$$PostDangerSuccessfulCopyWith<$Res> {
+  __$$PostDangerSuccessfulCopyWithImpl(_$PostDangerSuccessful _value,
+      $Res Function(_$PostDangerSuccessful) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? danger = null,
+  }) {
+    return _then(_$PostDangerSuccessful(
+      null == danger
+          ? _value.danger
+          : danger // ignore: cast_nullable_to_non_nullable
+              as Danger,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $DangerCopyWith<$Res> get danger {
+    return $DangerCopyWith<$Res>(_value.danger, (value) {
+      return _then(_value.copyWith(danger: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$PostDangerSuccessful implements PostDangerSuccessful {
+  const _$PostDangerSuccessful(this.danger);
+
+  @override
+  final Danger danger;
+
+  @override
+  String toString() {
+    return 'PostDanger.successful(danger: $danger)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PostDangerSuccessful &&
+            (identical(other.danger, danger) || other.danger == danger));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, danger);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PostDangerSuccessfulCopyWith<_$PostDangerSuccessful> get copyWith =>
+      __$$PostDangerSuccessfulCopyWithImpl<_$PostDangerSuccessful>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(Danger danger) $default, {
+    required TResult Function(Danger danger) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful(danger);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(Danger danger)? $default, {
+    TResult? Function(Danger danger)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return successful?.call(danger);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(Danger danger)? $default, {
+    TResult Function(Danger danger)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(danger);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(PostDangerStart value) $default, {
+    required TResult Function(PostDangerSuccessful value) successful,
+    required TResult Function(PostDangerError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(PostDangerStart value)? $default, {
+    TResult? Function(PostDangerSuccessful value)? successful,
+    TResult? Function(PostDangerError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(PostDangerStart value)? $default, {
+    TResult Function(PostDangerSuccessful value)? successful,
+    TResult Function(PostDangerError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PostDangerSuccessful implements PostDanger {
+  const factory PostDangerSuccessful(final Danger danger) =
+      _$PostDangerSuccessful;
+
+  Danger get danger;
+  @JsonKey(ignore: true)
+  _$$PostDangerSuccessfulCopyWith<_$PostDangerSuccessful> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$PostDangerErrorCopyWith<$Res> {
+  factory _$$PostDangerErrorCopyWith(
+          _$PostDangerError value, $Res Function(_$PostDangerError) then) =
+      __$$PostDangerErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$PostDangerErrorCopyWithImpl<$Res>
+    extends _$PostDangerCopyWithImpl<$Res, _$PostDangerError>
+    implements _$$PostDangerErrorCopyWith<$Res> {
+  __$$PostDangerErrorCopyWithImpl(
+      _$PostDangerError _value, $Res Function(_$PostDangerError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$PostDangerError(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$PostDangerError implements PostDangerError {
+  const _$PostDangerError(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'PostDanger.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PostDangerError &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PostDangerErrorCopyWith<_$PostDangerError> get copyWith =>
+      __$$PostDangerErrorCopyWithImpl<_$PostDangerError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(Danger danger) $default, {
+    required TResult Function(Danger danger) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(Danger danger)? $default, {
+    TResult? Function(Danger danger)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return error?.call(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(Danger danger)? $default, {
+    TResult Function(Danger danger)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(PostDangerStart value) $default, {
+    required TResult Function(PostDangerSuccessful value) successful,
+    required TResult Function(PostDangerError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(PostDangerStart value)? $default, {
+    TResult? Function(PostDangerSuccessful value)? successful,
+    TResult? Function(PostDangerError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(PostDangerStart value)? $default, {
+    TResult Function(PostDangerSuccessful value)? successful,
+    TResult Function(PostDangerError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PostDangerError implements PostDanger {
+  const factory PostDangerError(
+      final Object error, final StackTrace stackTrace) = _$PostDangerError;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @JsonKey(ignore: true)
+  _$$PostDangerErrorCopyWith<_$PostDangerError> get copyWith =>
+      throw _privateConstructorUsedError;
+}

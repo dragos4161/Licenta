@@ -19,4 +19,6 @@ part 'take_picture.dart';
 
 part 'upload_picture.dart';
 
+part 'post_danger.dart';
+
 part 'index.freezed.dart';

@@ -62,6 +62,7 @@ _$Danger$ _$$Danger$FromJson(Map<String, dynamic> json) => _$Danger$(
       location:
           CurrentLocation.fromJson(json['location'] as Map<String, dynamic>),
       image: json['image'] as String?,
+      status: json['status'] as String? ?? 'submitted',
     );
 
 Map<String, dynamic> _$$Danger$ToJson(_$Danger$ instance) => <String, dynamic>{
@@ -69,6 +70,7 @@ Map<String, dynamic> _$$Danger$ToJson(_$Danger$ instance) => <String, dynamic>{
       'uid': instance.uid,
       'location': instance.location,
       'image': instance.image,
+      'status': instance.status,
     };
 
 _$DangerLocation$ _$$DangerLocation$FromJson(Map<String, dynamic> json) =>

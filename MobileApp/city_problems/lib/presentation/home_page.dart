@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                           children: <Widget>[
                             GoogleMap(
                               initialCameraPosition: CameraPosition(
-                                target: LatLng(currentLocation!.latitude,currentLocation.longitude),
+                                target: LatLng(currentLocation!.latitude, currentLocation.longitude),
                                 zoom: 14.4746,
                               ),
                               myLocationEnabled: true,
@@ -129,7 +129,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               builder: (BuildContext builder) {
                                 return BackdropFilter(
-                                  filter: ImageFilter.blur(sigmaX: 5,sigmaY: 5),
+                                  filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                                   child: SingleChildScrollView(
                                     child: Container(
                                       color: Colors.transparent,
@@ -148,8 +148,37 @@ class _HomePageState extends State<HomePage> {
                                               ),
                                               itemBuilder: (BuildContext context, int index) {
                                                 return GestureDetector(
-                                                  onTap: () async{
-                                                    await StoreProvider.of<AppState>(context).dispatch(const TakePicture());
+                                                  onTap: () async {
+                                                    late final Danger danger;
+                                                    await StoreProvider.of<AppState>(context)
+                                                        .dispatch(const TakePicture());
+                                                    while(store.state.danger.currentDangerUrl == null){
+                                                      await Future<void>.delayed(const Duration(seconds: 1));
+                                                    }
+                                                    danger = Danger(
+                                                      category: categories[index],
+                                                      uid: user!.uid,
+                                                      location: currentLocation,
+                                                      image: store.state.danger.currentDangerUrl,
+                                                    );
+                                                    if (!mounted) {
+                                                      Future<void>.delayed(const Duration(seconds: 2), () async {
+                                                        if (mounted) {
+                                                          await StoreProvider.of<AppState>(context).dispatch(
+                                                            PostDanger(
+                                                              danger,
+                                                            ),
+                                                          );
+                                                        }
+                                                      });
+                                                    }
+                                                    if (mounted) {
+                                                      await StoreProvider.of<AppState>(context).dispatch(
+                                                        PostDanger(
+                                                          danger,
+                                                        ),
+                                                      );
+                                                    }
                                                   },
                                                   child: Column(
                                                     children: <Widget>[
