@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:async';
 import 'dart:ui';
 
@@ -149,36 +151,26 @@ class _HomePageState extends State<HomePage> {
                                               itemBuilder: (BuildContext context, int index) {
                                                 return GestureDetector(
                                                   onTap: () async {
-                                                    late final Danger danger;
+                                                    late final Danger postDanger;
                                                     await StoreProvider.of<AppState>(context)
                                                         .dispatch(const TakePicture());
-                                                    while(store.state.danger.currentDangerUrl == null){
+                                                    while (store.state.danger.currentDangerUrl == null) {
                                                       await Future<void>.delayed(const Duration(seconds: 1));
                                                     }
-                                                    danger = Danger(
+                                                    postDanger = Danger(
                                                       category: categories[index],
                                                       uid: user!.uid,
                                                       location: currentLocation,
                                                       image: store.state.danger.currentDangerUrl,
                                                     );
                                                     if (!mounted) {
-                                                      Future<void>.delayed(const Duration(seconds: 2), () async {
-                                                        if (mounted) {
-                                                          await StoreProvider.of<AppState>(context).dispatch(
-                                                            PostDanger(
-                                                              danger,
-                                                            ),
-                                                          );
-                                                        }
-                                                      });
+                                                      const SnackBar snackBar =
+                                                          SnackBar(content: Text('Try again in a minute'));
+                                                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                                      return;
                                                     }
-                                                    if (mounted) {
-                                                      await StoreProvider.of<AppState>(context).dispatch(
-                                                        PostDanger(
-                                                          danger,
-                                                        ),
-                                                      );
-                                                    }
+                                                    await StoreProvider.of<AppState>(context)
+                                                        .dispatch(PostDanger(postDanger));
                                                   },
                                                   child: Column(
                                                     children: <Widget>[
@@ -241,14 +233,16 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 MaterialButton(
-                                  onPressed: () async {
-                                    StoreProvider.of<AppState>(context).dispatch(const Logout());
+                                  onPressed: () {
+                                    Navigator.of(context).pushNamed('/profile');
                                   },
                                   splashColor: Colors.white,
                                   child: const Icon(Icons.person_outline_rounded),
                                 ),
                                 MaterialButton(
-                                  onPressed: () {},
+                                  onPressed: () async {
+                                    StoreProvider.of<AppState>(context).dispatch(const Logout());
+                                  },
                                   splashColor: Colors.white,
                                   child: const Icon(Icons.messenger_outline_rounded),
                                 ),

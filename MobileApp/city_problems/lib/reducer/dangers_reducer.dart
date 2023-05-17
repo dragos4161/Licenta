@@ -3,9 +3,10 @@ import 'package:city_problems/models/index.dart';
 import 'package:redux/redux.dart';
 
 Reducer<DangerState> dangersReducer = combineReducers(<Reducer<DangerState>>[
-  TypedReducer<DangerState,TakePictureSuccessful>(_takePictureSuccessful),
-  TypedReducer<DangerState,PostDangerSuccessful>(_postDangerSuccessful),
-  TypedReducer<DangerState,TakePictureStart>(_takePictureStart),
+  TypedReducer<DangerState, TakePictureSuccessful>(_takePictureSuccessful),
+  TypedReducer<DangerState, PostDangerSuccessful>(_postDangerSuccessful),
+  TypedReducer<DangerState, TakePictureStart>(_takePictureStart),
+  TypedReducer<DangerState, OnDangerEvent>(_onDangerEvent),
 ]);
 
 DangerState _takePictureSuccessful(DangerState state, TakePictureSuccessful action) {
@@ -23,5 +24,11 @@ DangerState _postDangerSuccessful(DangerState state, PostDangerSuccessful action
 DangerState _takePictureStart(DangerState state, TakePictureStart action) {
   return state.copyWith(
     currentDangerUrl: null,
+  );
+}
+
+DangerState _onDangerEvent(DangerState state, OnDangerEvent action) {
+  return state.copyWith(
+    dangers: action.userDangers,
   );
 }

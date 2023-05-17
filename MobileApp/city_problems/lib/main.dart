@@ -10,6 +10,7 @@ import 'package:city_problems/models/index.dart';
 import 'package:city_problems/presentation/home.dart';
 import 'package:city_problems/presentation/home_page.dart';
 import 'package:city_problems/presentation/login_page.dart';
+import 'package:city_problems/presentation/profile_page.dart';
 import 'package:city_problems/presentation/signup_page.dart';
 import 'package:city_problems/reducer/reducer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -68,6 +69,7 @@ class MyApp extends StatelessWidget {
           '/login': (BuildContext context) => const LoginPage(),
           '/signup': (BuildContext context) => const SignupPage(),
           '/home': (BuildContext context) => const HomePage(),
+          '/profile': (BuildContext context) => const ProfilePage(),
         },
         title: 'City Dangers',
         theme: ThemeData(

@@ -3886,3 +3886,645 @@ abstract class PostDangerError implements PostDanger {
   _$$PostDangerErrorCopyWith<_$PostDangerError> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$ListenForDangers {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String uid) start,
+    required TResult Function() done,
+    required TResult Function(List<Danger> userDangers) event,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String uid)? start,
+    TResult? Function()? done,
+    TResult? Function(List<Danger> userDangers)? event,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String uid)? start,
+    TResult Function()? done,
+    TResult Function(List<Danger> userDangers)? event,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ListenForDangersStart value) start,
+    required TResult Function(ListenForDangersDone value) done,
+    required TResult Function(OnDangerEvent value) event,
+    required TResult Function(_ListenForDangersError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ListenForDangersStart value)? start,
+    TResult? Function(ListenForDangersDone value)? done,
+    TResult? Function(OnDangerEvent value)? event,
+    TResult? Function(_ListenForDangersError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ListenForDangersStart value)? start,
+    TResult Function(ListenForDangersDone value)? done,
+    TResult Function(OnDangerEvent value)? event,
+    TResult Function(_ListenForDangersError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ListenForDangersCopyWith<$Res> {
+  factory $ListenForDangersCopyWith(
+          ListenForDangers value, $Res Function(ListenForDangers) then) =
+      _$ListenForDangersCopyWithImpl<$Res, ListenForDangers>;
+}
+
+/// @nodoc
+class _$ListenForDangersCopyWithImpl<$Res, $Val extends ListenForDangers>
+    implements $ListenForDangersCopyWith<$Res> {
+  _$ListenForDangersCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$ListenForDangersStartCopyWith<$Res> {
+  factory _$$ListenForDangersStartCopyWith(_$ListenForDangersStart value,
+          $Res Function(_$ListenForDangersStart) then) =
+      __$$ListenForDangersStartCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String uid});
+}
+
+/// @nodoc
+class __$$ListenForDangersStartCopyWithImpl<$Res>
+    extends _$ListenForDangersCopyWithImpl<$Res, _$ListenForDangersStart>
+    implements _$$ListenForDangersStartCopyWith<$Res> {
+  __$$ListenForDangersStartCopyWithImpl(_$ListenForDangersStart _value,
+      $Res Function(_$ListenForDangersStart) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? uid = null,
+  }) {
+    return _then(_$ListenForDangersStart(
+      null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ListenForDangersStart implements ListenForDangersStart {
+  const _$ListenForDangersStart(this.uid);
+
+  @override
+  final String uid;
+
+  @override
+  String toString() {
+    return 'ListenForDangers.start(uid: $uid)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ListenForDangersStart &&
+            (identical(other.uid, uid) || other.uid == uid));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, uid);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ListenForDangersStartCopyWith<_$ListenForDangersStart> get copyWith =>
+      __$$ListenForDangersStartCopyWithImpl<_$ListenForDangersStart>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String uid) start,
+    required TResult Function() done,
+    required TResult Function(List<Danger> userDangers) event,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return start(uid);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String uid)? start,
+    TResult? Function()? done,
+    TResult? Function(List<Danger> userDangers)? event,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return start?.call(uid);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String uid)? start,
+    TResult Function()? done,
+    TResult Function(List<Danger> userDangers)? event,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (start != null) {
+      return start(uid);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ListenForDangersStart value) start,
+    required TResult Function(ListenForDangersDone value) done,
+    required TResult Function(OnDangerEvent value) event,
+    required TResult Function(_ListenForDangersError value) error,
+  }) {
+    return start(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ListenForDangersStart value)? start,
+    TResult? Function(ListenForDangersDone value)? done,
+    TResult? Function(OnDangerEvent value)? event,
+    TResult? Function(_ListenForDangersError value)? error,
+  }) {
+    return start?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ListenForDangersStart value)? start,
+    TResult Function(ListenForDangersDone value)? done,
+    TResult Function(OnDangerEvent value)? event,
+    TResult Function(_ListenForDangersError value)? error,
+    required TResult orElse(),
+  }) {
+    if (start != null) {
+      return start(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ListenForDangersStart implements ListenForDangers {
+  const factory ListenForDangersStart(final String uid) =
+      _$ListenForDangersStart;
+
+  String get uid;
+  @JsonKey(ignore: true)
+  _$$ListenForDangersStartCopyWith<_$ListenForDangersStart> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ListenForDangersDoneCopyWith<$Res> {
+  factory _$$ListenForDangersDoneCopyWith(_$ListenForDangersDone value,
+          $Res Function(_$ListenForDangersDone) then) =
+      __$$ListenForDangersDoneCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ListenForDangersDoneCopyWithImpl<$Res>
+    extends _$ListenForDangersCopyWithImpl<$Res, _$ListenForDangersDone>
+    implements _$$ListenForDangersDoneCopyWith<$Res> {
+  __$$ListenForDangersDoneCopyWithImpl(_$ListenForDangersDone _value,
+      $Res Function(_$ListenForDangersDone) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ListenForDangersDone implements ListenForDangersDone {
+  const _$ListenForDangersDone();
+
+  @override
+  String toString() {
+    return 'ListenForDangers.done()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ListenForDangersDone);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String uid) start,
+    required TResult Function() done,
+    required TResult Function(List<Danger> userDangers) event,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return done();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String uid)? start,
+    TResult? Function()? done,
+    TResult? Function(List<Danger> userDangers)? event,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return done?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String uid)? start,
+    TResult Function()? done,
+    TResult Function(List<Danger> userDangers)? event,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (done != null) {
+      return done();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ListenForDangersStart value) start,
+    required TResult Function(ListenForDangersDone value) done,
+    required TResult Function(OnDangerEvent value) event,
+    required TResult Function(_ListenForDangersError value) error,
+  }) {
+    return done(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ListenForDangersStart value)? start,
+    TResult? Function(ListenForDangersDone value)? done,
+    TResult? Function(OnDangerEvent value)? event,
+    TResult? Function(_ListenForDangersError value)? error,
+  }) {
+    return done?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ListenForDangersStart value)? start,
+    TResult Function(ListenForDangersDone value)? done,
+    TResult Function(OnDangerEvent value)? event,
+    TResult Function(_ListenForDangersError value)? error,
+    required TResult orElse(),
+  }) {
+    if (done != null) {
+      return done(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ListenForDangersDone implements ListenForDangers {
+  const factory ListenForDangersDone() = _$ListenForDangersDone;
+}
+
+/// @nodoc
+abstract class _$$OnDangerEventCopyWith<$Res> {
+  factory _$$OnDangerEventCopyWith(
+          _$OnDangerEvent value, $Res Function(_$OnDangerEvent) then) =
+      __$$OnDangerEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<Danger> userDangers});
+}
+
+/// @nodoc
+class __$$OnDangerEventCopyWithImpl<$Res>
+    extends _$ListenForDangersCopyWithImpl<$Res, _$OnDangerEvent>
+    implements _$$OnDangerEventCopyWith<$Res> {
+  __$$OnDangerEventCopyWithImpl(
+      _$OnDangerEvent _value, $Res Function(_$OnDangerEvent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userDangers = null,
+  }) {
+    return _then(_$OnDangerEvent(
+      null == userDangers
+          ? _value._userDangers
+          : userDangers // ignore: cast_nullable_to_non_nullable
+              as List<Danger>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OnDangerEvent implements OnDangerEvent {
+  const _$OnDangerEvent(final List<Danger> userDangers)
+      : _userDangers = userDangers;
+
+  final List<Danger> _userDangers;
+  @override
+  List<Danger> get userDangers {
+    if (_userDangers is EqualUnmodifiableListView) return _userDangers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_userDangers);
+  }
+
+  @override
+  String toString() {
+    return 'ListenForDangers.event(userDangers: $userDangers)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OnDangerEvent &&
+            const DeepCollectionEquality()
+                .equals(other._userDangers, _userDangers));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_userDangers));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OnDangerEventCopyWith<_$OnDangerEvent> get copyWith =>
+      __$$OnDangerEventCopyWithImpl<_$OnDangerEvent>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String uid) start,
+    required TResult Function() done,
+    required TResult Function(List<Danger> userDangers) event,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return event(userDangers);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String uid)? start,
+    TResult? Function()? done,
+    TResult? Function(List<Danger> userDangers)? event,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return event?.call(userDangers);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String uid)? start,
+    TResult Function()? done,
+    TResult Function(List<Danger> userDangers)? event,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (event != null) {
+      return event(userDangers);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ListenForDangersStart value) start,
+    required TResult Function(ListenForDangersDone value) done,
+    required TResult Function(OnDangerEvent value) event,
+    required TResult Function(_ListenForDangersError value) error,
+  }) {
+    return event(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ListenForDangersStart value)? start,
+    TResult? Function(ListenForDangersDone value)? done,
+    TResult? Function(OnDangerEvent value)? event,
+    TResult? Function(_ListenForDangersError value)? error,
+  }) {
+    return event?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ListenForDangersStart value)? start,
+    TResult Function(ListenForDangersDone value)? done,
+    TResult Function(OnDangerEvent value)? event,
+    TResult Function(_ListenForDangersError value)? error,
+    required TResult orElse(),
+  }) {
+    if (event != null) {
+      return event(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class OnDangerEvent implements ListenForDangers {
+  const factory OnDangerEvent(final List<Danger> userDangers) = _$OnDangerEvent;
+
+  List<Danger> get userDangers;
+  @JsonKey(ignore: true)
+  _$$OnDangerEventCopyWith<_$OnDangerEvent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_ListenForDangersErrorCopyWith<$Res> {
+  factory _$$_ListenForDangersErrorCopyWith(_$_ListenForDangersError value,
+          $Res Function(_$_ListenForDangersError) then) =
+      __$$_ListenForDangersErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$_ListenForDangersErrorCopyWithImpl<$Res>
+    extends _$ListenForDangersCopyWithImpl<$Res, _$_ListenForDangersError>
+    implements _$$_ListenForDangersErrorCopyWith<$Res> {
+  __$$_ListenForDangersErrorCopyWithImpl(_$_ListenForDangersError _value,
+      $Res Function(_$_ListenForDangersError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$_ListenForDangersError(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ListenForDangersError implements _ListenForDangersError {
+  const _$_ListenForDangersError(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'ListenForDangers.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ListenForDangersError &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ListenForDangersErrorCopyWith<_$_ListenForDangersError> get copyWith =>
+      __$$_ListenForDangersErrorCopyWithImpl<_$_ListenForDangersError>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String uid) start,
+    required TResult Function() done,
+    required TResult Function(List<Danger> userDangers) event,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String uid)? start,
+    TResult? Function()? done,
+    TResult? Function(List<Danger> userDangers)? event,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return error?.call(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String uid)? start,
+    TResult Function()? done,
+    TResult Function(List<Danger> userDangers)? event,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ListenForDangersStart value) start,
+    required TResult Function(ListenForDangersDone value) done,
+    required TResult Function(OnDangerEvent value) event,
+    required TResult Function(_ListenForDangersError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ListenForDangersStart value)? start,
+    TResult? Function(ListenForDangersDone value)? done,
+    TResult? Function(OnDangerEvent value)? event,
+    TResult? Function(_ListenForDangersError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ListenForDangersStart value)? start,
+    TResult Function(ListenForDangersDone value)? done,
+    TResult Function(OnDangerEvent value)? event,
+    TResult Function(_ListenForDangersError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ListenForDangersError implements ListenForDangers {
+  const factory _ListenForDangersError(
+          final Object error, final StackTrace stackTrace) =
+      _$_ListenForDangersError;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @JsonKey(ignore: true)
+  _$$_ListenForDangersErrorCopyWith<_$_ListenForDangersError> get copyWith =>
+      throw _privateConstructorUsedError;
+}

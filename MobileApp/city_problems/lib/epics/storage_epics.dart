@@ -12,6 +12,7 @@ class StorageEpics {
   Epic<AppState> get epic {
     return combineEpics(<Epic<AppState>>[
       TypedEpic<AppState, PostDangerStart>(_postDangerStart),
+      TypedEpic<AppState, ListenForDangersStart>(_listenForDangersStart),
     ]);
   }
 
@@ -23,4 +24,15 @@ class StorageEpics {
           .onErrorReturnWith((Object error, StackTrace stackTrace) => PostDanger.error(error, stackTrace));
     });
   }
+
+  Stream<dynamic> _listenForDangersStart(Stream<dynamic> actions, EpicStore<AppState> store) {
+    return actions.whereType<ListenForDangersStart>().flatMap(
+          (ListenForDangersStart action) => Stream<void>.value(null)
+          .flatMap((_) => storage.listenForDangers(action.uid))
+          .map((List<Danger> dangers) => ListenForDangers.event(dangers))
+          .takeUntil(actions.whereType<ListenForDangersDone>())
+          .onErrorReturnWith((Object error, StackTrace stackTrace) => ListenForDangers.error(error, stackTrace)),
+    );
+  }
+
 }
