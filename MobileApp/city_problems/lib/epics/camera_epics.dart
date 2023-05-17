@@ -23,6 +23,8 @@ class CameraEpics {
           .asyncMap((_) => client.getFromCamera())
           .map((String? url) => TakePicture.successful(url))
           .onErrorReturnWith((Object error, StackTrace stackTrace) => TakePicture.error(error, stackTrace));
+
+
     });
   }
 }

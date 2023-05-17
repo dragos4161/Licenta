@@ -24,3 +24,5 @@ part 'post_danger.dart';
 part 'listen_for_dangers.dart';
 
 part 'index.freezed.dart';
+
+typedef ActionResponse = void Function(dynamic action);

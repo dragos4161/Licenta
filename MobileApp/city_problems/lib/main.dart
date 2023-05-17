@@ -7,6 +7,7 @@ import 'package:city_problems/data/take_camera_picture.dart';
 import 'package:city_problems/epics/app_epics.dart';
 import 'package:city_problems/firebase_options.dart';
 import 'package:city_problems/models/index.dart';
+import 'package:city_problems/presentation/categories_page.dart';
 import 'package:city_problems/presentation/home.dart';
 import 'package:city_problems/presentation/home_page.dart';
 import 'package:city_problems/presentation/login_page.dart';
@@ -70,6 +71,7 @@ class MyApp extends StatelessWidget {
           '/signup': (BuildContext context) => const SignupPage(),
           '/home': (BuildContext context) => const HomePage(),
           '/profile': (BuildContext context) => const ProfilePage(),
+          '/categories': (BuildContext context) => const CategoriesPage(),
         },
         title: 'City Dangers',
         theme: ThemeData(

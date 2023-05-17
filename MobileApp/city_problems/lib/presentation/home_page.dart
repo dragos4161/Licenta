@@ -1,7 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:city_problems/actions/index.dart';
 import 'package:city_problems/models/index.dart';
@@ -70,16 +69,57 @@ class _HomePageState extends State<HomePage> {
                         width: MediaQuery.of(context).size.width,
                         child: Stack(
                           children: <Widget>[
-                            GoogleMap(
-                              initialCameraPosition: CameraPosition(
-                                target: LatLng(currentLocation!.latitude, currentLocation.longitude),
-                                zoom: 14.4746,
-                              ),
-                              myLocationEnabled: true,
-                              mapType: MapType.hybrid,
-                              onMapCreated: (GoogleMapController controller) {
-                                _controller.complete(controller);
-                                mapController = controller;
+                            StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+                              stream: FirebaseFirestore.instance.collection('dangers').snapshots(),
+                              builder:
+                                  (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+                                if (snapshot.connectionState == ConnectionState.waiting) {
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                } else if (snapshot.connectionState == ConnectionState.active) {
+                                  if (snapshot.hasData) {
+                                    markers = <Marker>{};
+                                    for (int i = 0; i < snapshot.data!.docs.length; i++) {
+                                      //print(snapshot.data!.docs[i].data()['uid']);
+                                      markers.add(
+                                        Marker(
+                                          markerId: MarkerId(
+                                            snapshot.data!.docs[i].data()['latitude'].toString() +
+                                                snapshot.data!.docs[i].data()['longitude'].toString(),
+                                          ),
+                                          position: LatLng(
+                                            double.parse(snapshot.data!.docs[i].data()['latitude'].toString()),
+                                            double.parse(snapshot.data!.docs[i].data()['longitude'].toString()),
+                                          ),
+                                          infoWindow:
+                                              InfoWindow(title: snapshot.data!.docs[i].data()['category'].toString()),
+                                        ),
+                                      );
+                                    }
+                                  } else {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  }
+                                } else {
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                }
+                                return GoogleMap(
+                                  initialCameraPosition: CameraPosition(
+                                    target: LatLng(currentLocation!.latitude, currentLocation.longitude),
+                                    zoom: 14.4746,
+                                  ),
+                                  myLocationEnabled: true,
+                                  mapType: MapType.hybrid,
+                                  markers: markers,
+                                  onMapCreated: (GoogleMapController controller) {
+                                    _controller.complete(controller);
+                                    mapController = controller;
+                                  },
+                                );
                               },
                             ),
                             Positioned(
@@ -119,96 +159,8 @@ class _HomePageState extends State<HomePage> {
                         visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
                         child: FloatingActionButton(
                           onPressed: () {
-                            showModalBottomSheet<void>(
-                              context: context,
-                              isScrollControlled: true,
-                              backgroundColor: Colors.white.withOpacity(0.3),
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(40),
-                                  topRight: Radius.circular(40),
-                                ),
-                              ),
-                              builder: (BuildContext builder) {
-                                return BackdropFilter(
-                                  filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                                  child: SingleChildScrollView(
-                                    child: Container(
-                                      color: Colors.transparent,
-                                      height: MediaQuery.of(context).size.height - 150,
-                                      child: Column(
-                                        children: <Widget>[
-                                          SizedBox(
-                                            height: MediaQuery.of(context).size.height - 150,
-                                            child: GridView.builder(
-                                              itemCount: 6,
-                                              padding: const EdgeInsets.all(20),
-                                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                                crossAxisCount: 2,
-                                                mainAxisSpacing: 20,
-                                                crossAxisSpacing: 20,
-                                              ),
-                                              itemBuilder: (BuildContext context, int index) {
-                                                return GestureDetector(
-                                                  onTap: () async {
-                                                    late final Danger postDanger;
-                                                    await StoreProvider.of<AppState>(context)
-                                                        .dispatch(const TakePicture());
-                                                    while (store.state.danger.currentDangerUrl == null) {
-                                                      await Future<void>.delayed(const Duration(seconds: 1));
-                                                    }
-                                                    postDanger = Danger(
-                                                      category: categories[index],
-                                                      uid: user!.uid,
-                                                      location: currentLocation,
-                                                      image: store.state.danger.currentDangerUrl,
-                                                    );
-                                                    if (!mounted) {
-                                                      const SnackBar snackBar =
-                                                          SnackBar(content: Text('Try again in a minute'));
-                                                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                                                      return;
-                                                    }
-                                                    await StoreProvider.of<AppState>(context)
-                                                        .dispatch(PostDanger(postDanger));
-                                                  },
-                                                  child: Column(
-                                                    children: <Widget>[
-                                                      SizedBox(
-                                                        width: 100,
-                                                        height: 100,
-                                                        child: ClipOval(
-                                                          child: Image.asset(
-                                                            'assets/images/${categories[index].split(' ').first}.jpg',
-                                                            fit: BoxFit.cover,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      const SizedBox(height: 10),
-                                                      Center(
-                                                        child: Text(
-                                                          categories[index],
-                                                          style: const TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 15,
-                                                          ),
-                                                          maxLines: 1,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              },
-                            );
-                            //StoreProvider.of<AppState>(context).dispatch(const GetLocation());
+
+                            Navigator.of(context).pushNamed('/categories');
                           },
                           shape: const CircleBorder(),
                           elevation: 20,

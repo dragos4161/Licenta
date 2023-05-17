@@ -3377,21 +3377,21 @@ abstract class UploadPictureError implements UploadPicture {
 mixin _$PostDanger {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(Danger danger) $default, {
+    TResult Function(Danger danger, ActionResponse response) $default, {
     required TResult Function(Danger danger) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(Danger danger)? $default, {
+    TResult? Function(Danger danger, ActionResponse response)? $default, {
     TResult? Function(Danger danger)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Danger danger)? $default, {
+    TResult Function(Danger danger, ActionResponse response)? $default, {
     TResult Function(Danger danger)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -3445,7 +3445,7 @@ abstract class _$$PostDangerStartCopyWith<$Res> {
           _$PostDangerStart value, $Res Function(_$PostDangerStart) then) =
       __$$PostDangerStartCopyWithImpl<$Res>;
   @useResult
-  $Res call({Danger danger});
+  $Res call({Danger danger, ActionResponse response});
 
   $DangerCopyWith<$Res> get danger;
 }
@@ -3462,12 +3462,17 @@ class __$$PostDangerStartCopyWithImpl<$Res>
   @override
   $Res call({
     Object? danger = null,
+    Object? response = null,
   }) {
     return _then(_$PostDangerStart(
       null == danger
           ? _value.danger
           : danger // ignore: cast_nullable_to_non_nullable
               as Danger,
+      null == response
+          ? _value.response
+          : response // ignore: cast_nullable_to_non_nullable
+              as ActionResponse,
     ));
   }
 
@@ -3483,14 +3488,16 @@ class __$$PostDangerStartCopyWithImpl<$Res>
 /// @nodoc
 
 class _$PostDangerStart implements PostDangerStart {
-  const _$PostDangerStart(this.danger);
+  const _$PostDangerStart(this.danger, this.response);
 
   @override
   final Danger danger;
+  @override
+  final ActionResponse response;
 
   @override
   String toString() {
-    return 'PostDanger(danger: $danger)';
+    return 'PostDanger(danger: $danger, response: $response)';
   }
 
   @override
@@ -3498,11 +3505,13 @@ class _$PostDangerStart implements PostDangerStart {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PostDangerStart &&
-            (identical(other.danger, danger) || other.danger == danger));
+            (identical(other.danger, danger) || other.danger == danger) &&
+            (identical(other.response, response) ||
+                other.response == response));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, danger);
+  int get hashCode => Object.hash(runtimeType, danger, response);
 
   @JsonKey(ignore: true)
   @override
@@ -3513,33 +3522,33 @@ class _$PostDangerStart implements PostDangerStart {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(Danger danger) $default, {
+    TResult Function(Danger danger, ActionResponse response) $default, {
     required TResult Function(Danger danger) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return $default(danger);
+    return $default(danger, response);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(Danger danger)? $default, {
+    TResult? Function(Danger danger, ActionResponse response)? $default, {
     TResult? Function(Danger danger)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return $default?.call(danger);
+    return $default?.call(danger, response);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Danger danger)? $default, {
+    TResult Function(Danger danger, ActionResponse response)? $default, {
     TResult Function(Danger danger)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(danger);
+      return $default(danger, response);
     }
     return orElse();
   }
@@ -3580,9 +3589,11 @@ class _$PostDangerStart implements PostDangerStart {
 }
 
 abstract class PostDangerStart implements PostDanger {
-  const factory PostDangerStart(final Danger danger) = _$PostDangerStart;
+  const factory PostDangerStart(
+      final Danger danger, final ActionResponse response) = _$PostDangerStart;
 
   Danger get danger;
+  ActionResponse get response;
   @JsonKey(ignore: true)
   _$$PostDangerStartCopyWith<_$PostDangerStart> get copyWith =>
       throw _privateConstructorUsedError;
@@ -3663,7 +3674,7 @@ class _$PostDangerSuccessful implements PostDangerSuccessful {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(Danger danger) $default, {
+    TResult Function(Danger danger, ActionResponse response) $default, {
     required TResult Function(Danger danger) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
@@ -3673,7 +3684,7 @@ class _$PostDangerSuccessful implements PostDangerSuccessful {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(Danger danger)? $default, {
+    TResult? Function(Danger danger, ActionResponse response)? $default, {
     TResult? Function(Danger danger)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
@@ -3683,7 +3694,7 @@ class _$PostDangerSuccessful implements PostDangerSuccessful {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Danger danger)? $default, {
+    TResult Function(Danger danger, ActionResponse response)? $default, {
     TResult Function(Danger danger)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -3810,7 +3821,7 @@ class _$PostDangerError implements PostDangerError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(Danger danger) $default, {
+    TResult Function(Danger danger, ActionResponse response) $default, {
     required TResult Function(Danger danger) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
@@ -3820,7 +3831,7 @@ class _$PostDangerError implements PostDangerError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(Danger danger)? $default, {
+    TResult? Function(Danger danger, ActionResponse response)? $default, {
     TResult? Function(Danger danger)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
@@ -3830,7 +3841,7 @@ class _$PostDangerError implements PostDangerError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Danger danger)? $default, {
+    TResult Function(Danger danger, ActionResponse response)? $default, {
     TResult Function(Danger danger)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),

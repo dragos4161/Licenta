@@ -21,7 +21,8 @@ class StorageEpics {
       return Stream<void>.value(null)
           .asyncMap((_) => storage.postDanger(danger: action.danger))
           .map((Danger danger) => PostDanger.successful(danger))
-          .onErrorReturnWith((Object error, StackTrace stackTrace) => PostDanger.error(error, stackTrace));
+          .onErrorReturnWith((Object error, StackTrace stackTrace) => PostDanger.error(error, stackTrace))
+          .doOnData(action.response);
     });
   }
 
