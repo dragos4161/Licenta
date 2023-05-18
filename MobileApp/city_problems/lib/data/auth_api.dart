@@ -29,7 +29,7 @@ class AuthApi {
     return AppUser(
       uid: user.uid,
       email: email,
-      displayName: user.displayName,
+      displayName: name,
     );
   }
 
@@ -70,6 +70,8 @@ class AuthApi {
     locationData = await location.getLocation();
     return CurrentLocation(latitude: locationData.latitude!, longitude: locationData.longitude!);
   }
+
+
 
   Future<void> logout() async {
     await auth.signOut();

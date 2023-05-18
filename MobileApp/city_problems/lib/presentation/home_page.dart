@@ -1,4 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:async';
+import 'dart:ui' as ui;
 
 import 'package:city_problems/actions/index.dart';
 import 'package:city_problems/models/index.dart';
@@ -6,6 +9,7 @@ import 'package:city_problems/presentation/containers/location_container.dart';
 import 'package:city_problems/presentation/containers/user_container.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:redux/redux.dart';
@@ -20,17 +24,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final Completer<GoogleMapController> _controller = Completer<GoogleMapController>();
 
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Future<void> didChangeDependencies() async {
-    await StoreProvider.of<AppState>(context).dispatch(const GetLocation());
-    super.didChangeDependencies();
-  }
-
   List<String> categories = <String>[
     'pothole',
     'overturned trash can',
@@ -39,6 +32,65 @@ class _HomePageState extends State<HomePage> {
     'broken traffic light',
     'missing sign'
   ];
+
+  late BitmapDescriptor pothole;
+  late BitmapDescriptor overturned;
+  late BitmapDescriptor destroyed;
+  late BitmapDescriptor dangerous;
+  late BitmapDescriptor broken;
+  late BitmapDescriptor missing;
+
+  Map<String,BitmapDescriptor> icons = <String,BitmapDescriptor>{};
+
+
+  @override
+  void initState() {
+    super.initState();
+    initializeMarkers();
+    super.initState();
+  }
+
+  Future<Uint8List> getBytesFromAsset(String path, int width) async {
+    final ByteData data = await rootBundle.load(path);
+    final ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(), targetWidth: width);
+    final ui.FrameInfo fi = await codec.getNextFrame();
+    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!.buffer.asUint8List();
+  }
+
+  Future<void> initializeMarkers() async {
+    final Uint8List upothole = await getBytesFromAsset('assets/images/pothole.png', 150);
+    pothole = BitmapDescriptor.fromBytes(upothole);
+    final Uint8List uoverturned = await getBytesFromAsset('assets/images/overturned.png', 150);
+    overturned = BitmapDescriptor.fromBytes(uoverturned);
+    final Uint8List udestroyed = await getBytesFromAsset('assets/images/destroyed.png', 150);
+    destroyed = BitmapDescriptor.fromBytes(udestroyed);
+    final Uint8List udangerous= await getBytesFromAsset('assets/images/dangerous.png', 150);
+    dangerous = BitmapDescriptor.fromBytes(udangerous);
+    final Uint8List ubroken= await getBytesFromAsset('assets/images/broken.png', 150);
+    broken = BitmapDescriptor.fromBytes(ubroken);
+    final Uint8List umissing= await getBytesFromAsset('assets/images/missing.png', 150);
+    missing = BitmapDescriptor.fromBytes(umissing);
+
+    icons['pothole'] = pothole;
+    icons['overturned'] = overturned;
+    icons['destroyed'] = destroyed;
+    icons['dangerous'] = dangerous;
+    icons['broken'] = broken;
+    icons['missing'] = missing;
+
+
+  }
+
+  @override
+  Future<void> didChangeDependencies() async {
+    await StoreProvider.of<AppState>(context).dispatch(const GetLocation());
+    super.didChangeDependencies();
+    setState(() {
+
+    });
+  }
+
+
 
   final TextEditingController _searchController = TextEditingController();
 
@@ -67,16 +119,59 @@ class _HomePageState extends State<HomePage> {
                         width: MediaQuery.of(context).size.width,
                         child: Stack(
                           children: <Widget>[
-                            GoogleMap(
-                              initialCameraPosition: CameraPosition(
-                                target: LatLng(currentLocation!.latitude,currentLocation.longitude),
-                                zoom: 14.4746,
-                              ),
-                              myLocationEnabled: true,
-                              mapType: MapType.hybrid,
-                              onMapCreated: (GoogleMapController controller) {
-                                _controller.complete(controller);
-                                mapController = controller;
+                            StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+                              stream: FirebaseFirestore.instance.collection('dangers').snapshots(),
+                              builder:
+                                  (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+                                if (snapshot.connectionState == ConnectionState.waiting) {
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                } else if (snapshot.connectionState == ConnectionState.active) {
+                                  if (snapshot.hasData) {
+                                    markers = <Marker>{};
+                                    for (int i = 0; i < snapshot.data!.docs.length; i++) {
+                                      //print(snapshot.data!.docs[i].data()['uid']);
+                                      markers.add(
+                                        Marker(
+                                          markerId: MarkerId(
+                                            snapshot.data!.docs[i].data()['latitude'].toString() +
+                                                snapshot.data!.docs[i].data()['longitude'].toString(),
+                                          ),
+                                          position: LatLng(
+                                            double.parse(snapshot.data!.docs[i].data()['latitude'].toString()),
+                                            double.parse(snapshot.data!.docs[i].data()['longitude'].toString()),
+                                          ),
+                                          infoWindow:
+                                              InfoWindow(title: snapshot.data!.docs[i].data()['category'].toString()),
+                                          icon: icons[snapshot.data!.docs[i].data()['category'].toString().split(' ').first]!,
+
+                                        ),
+                                      );
+                                    }
+                                  } else {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  }
+                                } else {
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                }
+                                return GoogleMap(
+                                  initialCameraPosition: CameraPosition(
+                                    target: LatLng(currentLocation!.latitude, currentLocation.longitude),
+                                    zoom: 18,
+                                  ),
+                                  myLocationEnabled: true,
+                                  mapType: MapType.hybrid,
+                                  markers: markers,
+                                  onMapCreated: (GoogleMapController controller) {
+                                    _controller.complete(controller);
+                                    mapController = controller;
+                                  },
+                                );
                               },
                             ),
                             Positioned(
@@ -116,71 +211,8 @@ class _HomePageState extends State<HomePage> {
                         visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
                         child: FloatingActionButton(
                           onPressed: () {
-                            showModalBottomSheet<void>(
-                              context: context,
-                              isScrollControlled: true,
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(10),
-                                  topRight: Radius.circular(10),
-                                ),
-                              ),
-                              builder: (BuildContext builder) {
-                                return SingleChildScrollView(
-                                  child: Container(
-                                    color: const Color.fromRGBO(103, 169, 249, 1),
-                                    height: MediaQuery.of(context).size.height - 150,
-                                    child: Column(
-                                      children: <Widget>[
-                                        SizedBox(
-                                          height: MediaQuery.of(context).size.height - 150,
-                                          child: GridView.builder(
-                                            itemCount: 6,
-                                            padding: const EdgeInsets.all(20),
-                                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                              crossAxisCount: 2,
-                                              mainAxisSpacing: 20,
-                                              crossAxisSpacing: 20,
-                                            ),
-                                            itemBuilder: (BuildContext context, int index) {
-                                              return GestureDetector(
-                                                onTap: () {},
-                                                child: Column(
-                                                  children: <Widget>[
-                                                    SizedBox(
-                                                      width: 100,
-                                                      height: 100,
-                                                      child: ClipOval(
-                                                        child: Image.asset(
-                                                          'assets/images/${categories[index].split(' ').first}.jpg',
-                                                          fit: BoxFit.cover,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    const SizedBox(height: 10),
-                                                    Center(
-                                                      child: Text(
-                                                        categories[index],
-                                                        style: const TextStyle(
-                                                          color: Colors.white,
-                                                          fontSize: 15,
-                                                        ),
-                                                        maxLines: 1,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              },
-                            );
-                            //StoreProvider.of<AppState>(context).dispatch(const GetLocation());
+
+                            Navigator.of(context).pushNamed('/categories');
                           },
                           shape: const CircleBorder(),
                           elevation: 20,
@@ -205,14 +237,16 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 MaterialButton(
-                                  onPressed: () async {
-                                    StoreProvider.of<AppState>(context).dispatch(const Logout());
+                                  onPressed: () {
+                                    Navigator.of(context).pushNamed('/profile');
                                   },
                                   splashColor: Colors.white,
                                   child: const Icon(Icons.person_outline_rounded),
                                 ),
                                 MaterialButton(
-                                  onPressed: () {},
+                                  onPressed: () async {
+                                    StoreProvider.of<AppState>(context).dispatch(const Logout());
+                                  },
                                   splashColor: Colors.white,
                                   child: const Icon(Icons.messenger_outline_rounded),
                                 ),

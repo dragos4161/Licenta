@@ -18,6 +18,7 @@ _$AppState$ _$$AppState$FromJson(Map<String, dynamic> json) => _$AppState$(
           : CurrentLocation.fromJson(
               json['userLocation'] as Map<String, dynamic>),
       isLoading: json['isLoading'] as bool? ?? true,
+      dangerPicture: json['dangerPicture'] as String?,
     );
 
 Map<String, dynamic> _$$AppState$ToJson(_$AppState$ instance) =>
@@ -26,6 +27,7 @@ Map<String, dynamic> _$$AppState$ToJson(_$AppState$ instance) =>
       'danger': instance.danger,
       'userLocation': instance.userLocation,
       'isLoading': instance.isLoading,
+      'dangerPicture': instance.dangerPicture,
     };
 
 _$AuthState$ _$$AuthState$FromJson(Map<String, dynamic> json) => _$AuthState$(
@@ -59,12 +61,16 @@ _$Danger$ _$$Danger$FromJson(Map<String, dynamic> json) => _$Danger$(
       uid: json['uid'] as String,
       location:
           CurrentLocation.fromJson(json['location'] as Map<String, dynamic>),
+      image: json['image'] as String?,
+      status: json['status'] as String? ?? 'submitted',
     );
 
 Map<String, dynamic> _$$Danger$ToJson(_$Danger$ instance) => <String, dynamic>{
       'category': instance.category,
       'uid': instance.uid,
       'location': instance.location,
+      'image': instance.image,
+      'status': instance.status,
     };
 
 _$DangerLocation$ _$$DangerLocation$FromJson(Map<String, dynamic> json) =>
@@ -89,12 +95,16 @@ _$DangerState$ _$$DangerState$FromJson(Map<String, dynamic> json) =>
           ? null
           : DangerLocation.fromJson(
               json['currentLocation'] as Map<String, dynamic>),
+      currentDangerUrl: json['currentDangerUrl'] as String?,
+      currentDangerCategory: json['currentDangerCategory'] as String?,
     );
 
 Map<String, dynamic> _$$DangerState$ToJson(_$DangerState$ instance) =>
     <String, dynamic>{
       'dangers': instance.dangers,
       'currentLocation': instance.currentLocation,
+      'currentDangerUrl': instance.currentDangerUrl,
+      'currentDangerCategory': instance.currentDangerCategory,
     };
 
 _$CurrentLocation$ _$$CurrentLocation$FromJson(Map<String, dynamic> json) =>
