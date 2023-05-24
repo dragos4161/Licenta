@@ -16,6 +16,8 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   late Store<AppState> _store;
+  int solved = 0;
+  List<Danger> dangers = <Danger>[];
 
   @override
   void initState() {
@@ -69,14 +71,155 @@ class _ProfilePageState extends State<ProfilePage> {
                 );
               } else if (snapshot.connectionState == ConnectionState.active) {
                 if (snapshot.data!.docs.isNotEmpty) {
-                  return ListView.builder(
-                    itemCount: snapshot.data!.docs.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return ListTile(
-                        title: Text(snapshot.data!.docs[index]['category'].toString()),
-                      );
-                    },
+                  dangers = <Danger>[];
+                  solved = 0;
+                  for (QueryDocumentSnapshot<Map<String, dynamic>> i in snapshot.data!.docs) {
+                    final Danger d = Danger(
+                      uid: i.data()['uid'].toString(),
+                      category: i.data()['category'].toString(),
+                      image: i.data()['image'].toString(),
+                      status: i.data()['status'].toString(),
+                      location: CurrentLocation(
+                          latitude: double.parse(i.data()['latitude'].toString()),
+                          longitude: double.parse(i.data()['longitude'].toString())),
+                    );
+                    dangers.add(d);
+                    if (i.data()['status'] == 'solved') {
+                      solved += 1;
+                    }
+                  }
+                  return SafeArea(
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Container(
+                                height: 70,
+                                width: 70,
+                                color: Colors.transparent,
+                                child: const Icon(
+                                  Icons.arrow_back_ios_new,
+                                  size: 40,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 140,
+                          child: Stack(
+                            children: <Widget>[
+                              Center(
+                                child: ClipOval(
+                                  child: Image.asset(
+                                    'assets/images/avatar.jpg',
+                                    width: 130,
+                                    height: 130,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                left: MediaQuery.of(context).size.width / 2 + 30,
+                                top: 90,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Center(
+                                          child: Text('works'),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: DecoratedBox(
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.grey,
+                                      border: Border.all(
+                                        color: Colors.white,
+                                        width: 4,
+                                      ),
+                                    ),
+                                    child: const Padding(
+                                      padding: EdgeInsets.all(8),
+                                      child: Icon(
+                                        Icons.mode_edit_outline_outlined,
+                                        size: 25,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Center(
+                          child: Text(
+                            store.state.auth.user!.displayName.toString().toUpperCase(),
+                            style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        const Center(
+                          child: Text('Points: '),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 50, right: 50),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Column(
+                                children: <Widget>[
+                                  const Text(
+                                    'Dangers submitted',
+                                    style: TextStyle(fontSize: 15),
+                                  ),
+                                  Text(
+                                    dangers.length.toString(),
+                                    //snapshot.data!.docs.length.toString(),
+                                    style: const TextStyle(fontSize: 15),
+                                  ),
+                                ],
+                              ),
+                              const Text(
+                                '|',
+                                style: TextStyle(
+                                  fontSize: 40,
+                                ),
+                              ),
+                              Column(
+                                children: <Widget>[
+                                  const Text(
+                                    'Dangers solved',
+                                    style: TextStyle(fontSize: 15),
+                                  ),
+                                  Text(
+                                    solved.toString(),
+                                    style: const TextStyle(fontSize: 15),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   );
+                  // return ListView.builder(
+                  //   itemCount: snapshot.data!.docs.length,
+                  //   itemBuilder: (BuildContext context, int index) {
+                  //     return ListTile(
+                  //       title: Text(snapshot.data!.docs[index]['category'].toString()),
+                  //     );
+                  //   },
+                  // );
                 } else {
                   return const Center(
                     child: Text('Nothing yet'),
