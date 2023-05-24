@@ -57,12 +57,12 @@ class _ProfilePageState extends State<ProfilePage> {
       converter: (Store<AppState> store) => store.state,
       builder: (BuildContext context, AppState state) {
         return Scaffold(
-          body: StreamBuilder<QuerySnapshot<Map<String,dynamic>>>(
+          body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
             stream: FirebaseFirestore.instance
                 .collection('dangers')
                 .where('uid', isEqualTo: store.state.auth.user!.uid)
                 .snapshots(),
-            builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String,dynamic>>> snapshot) {
+            builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(
                   child: CircularProgressIndicator(),
@@ -73,13 +73,13 @@ class _ProfilePageState extends State<ProfilePage> {
                     itemCount: snapshot.data!.docs.length,
                     itemBuilder: (BuildContext context, int index) {
                       return ListTile(
-                          title: Text(snapshot.data!.docs[index]['category'].toString()),
-                          );
+                        title: Text(snapshot.data!.docs[index]['category'].toString()),
+                      );
                     },
                   );
                 } else {
                   return const Center(
-                    child: CircularProgressIndicator(),
+                    child: Text('Nothing yet'),
                   );
                 }
               } else {
@@ -89,33 +89,6 @@ class _ProfilePageState extends State<ProfilePage> {
               }
             },
           ),
-          // body: FutureBuilder(
-          //   future: getUserDangers(store.state.auth.user!.uid),
-          //   builder: (context, snapshot) {
-          //     if (snapshot.connectionState == ConnectionState.done) {
-          //       if (snapshot.hasData) {
-          //         List<Danger> dng = snapshot.data as List<Danger>;
-          //         return ListView.builder(
-          //           itemCount: dng.length,
-          //           itemBuilder: (context, index) {
-          //             return ListTile(
-          //               title: Text(dng[index].category),
-          //             );
-          //           },
-          //         );
-          //       } else {
-          //         return Container(
-          //           height: 20,
-          //           color: Colors.black,
-          //         );
-          //       }
-          //     } else {
-          //       return const Center(
-          //         child: CircularProgressIndicator(),
-          //       );
-          //     }
-          //   },
-          // ),
         );
       },
     );

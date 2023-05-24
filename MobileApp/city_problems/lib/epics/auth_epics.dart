@@ -4,22 +4,22 @@ import 'package:city_problems/models/index.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/transformers.dart';
 
-class AuthEpics{
+class AuthEpics {
   const AuthEpics({required this.api});
 
   final AuthApi api;
 
-  Epic<AppState> get epic{
+  Epic<AppState> get epic {
     return combineEpics(<Epic<AppState>>[
-      TypedEpic<AppState,LoginStart>(_loginStart),
-      TypedEpic<AppState,SignUpStart>(_signUpStart),
-      TypedEpic<AppState,InitializeUserStart>(_initializeUserStart),
-      TypedEpic<AppState,LogoutStart>(_logoutStart),
+      TypedEpic<AppState, LoginStart>(_loginStart),
+      TypedEpic<AppState, SignUpStart>(_signUpStart),
+      TypedEpic<AppState, InitializeUserStart>(_initializeUserStart),
+      TypedEpic<AppState, LogoutStart>(_logoutStart),
     ]);
   }
 
   Stream<dynamic> _loginStart(Stream<LoginStart> actions, EpicStore<AppState> store) {
-    return actions.flatMap((LoginStart action){
+    return actions.flatMap((LoginStart action) {
       return Stream<void>.value(null)
           .asyncMap((_) => api.login(email: action.email, password: action.password))
           .map((AppUser user) => Login.successful(user))
@@ -28,7 +28,7 @@ class AuthEpics{
   }
 
   Stream<dynamic> _signUpStart(Stream<SignUpStart> actions, EpicStore<AppState> store) {
-    return actions.flatMap((SignUpStart action){
+    return actions.flatMap((SignUpStart action) {
       return Stream<void>.value(null)
           .asyncMap((_) => api.signUp(email: action.email, password: action.password, displayName: action.displayName))
           .map((AppUser user) => SignUp.successful(user))
@@ -53,7 +53,4 @@ class AuthEpics{
           .onErrorReturnWith((Object error, StackTrace stackTrace) => Logout.error(error, stackTrace));
     });
   }
-
-
-
 }
