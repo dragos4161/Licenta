@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of models;
+part of 'index.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -24,6 +24,7 @@ mixin _$AppState {
   DangerState get danger => throw _privateConstructorUsedError;
   CurrentLocation? get userLocation => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  int get points => throw _privateConstructorUsedError;
   String? get dangerPicture => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,6 +43,7 @@ abstract class $AppStateCopyWith<$Res> {
       DangerState danger,
       CurrentLocation? userLocation,
       bool isLoading,
+      int points,
       String? dangerPicture});
 
   $AuthStateCopyWith<$Res> get auth;
@@ -66,6 +68,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? danger = null,
     Object? userLocation = freezed,
     Object? isLoading = null,
+    Object? points = null,
     Object? dangerPicture = freezed,
   }) {
     return _then(_value.copyWith(
@@ -85,6 +88,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      points: null == points
+          ? _value.points
+          : points // ignore: cast_nullable_to_non_nullable
+              as int,
       dangerPicture: freezed == dangerPicture
           ? _value.dangerPicture
           : dangerPicture // ignore: cast_nullable_to_non_nullable
@@ -133,6 +140,7 @@ abstract class _$$AppState$CopyWith<$Res> implements $AppStateCopyWith<$Res> {
       DangerState danger,
       CurrentLocation? userLocation,
       bool isLoading,
+      int points,
       String? dangerPicture});
 
   @override
@@ -158,6 +166,7 @@ class __$$AppState$CopyWithImpl<$Res>
     Object? danger = null,
     Object? userLocation = freezed,
     Object? isLoading = null,
+    Object? points = null,
     Object? dangerPicture = freezed,
   }) {
     return _then(_$AppState$(
@@ -177,6 +186,10 @@ class __$$AppState$CopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      points: null == points
+          ? _value.points
+          : points // ignore: cast_nullable_to_non_nullable
+              as int,
       dangerPicture: freezed == dangerPicture
           ? _value.dangerPicture
           : dangerPicture // ignore: cast_nullable_to_non_nullable
@@ -193,6 +206,7 @@ class _$AppState$ implements AppState$ {
       this.danger = const DangerState(),
       this.userLocation,
       this.isLoading = true,
+      this.points = 0,
       this.dangerPicture});
 
   factory _$AppState$.fromJson(Map<String, dynamic> json) =>
@@ -210,11 +224,14 @@ class _$AppState$ implements AppState$ {
   @JsonKey()
   final bool isLoading;
   @override
+  @JsonKey()
+  final int points;
+  @override
   final String? dangerPicture;
 
   @override
   String toString() {
-    return 'AppState(auth: $auth, danger: $danger, userLocation: $userLocation, isLoading: $isLoading, dangerPicture: $dangerPicture)';
+    return 'AppState(auth: $auth, danger: $danger, userLocation: $userLocation, isLoading: $isLoading, points: $points, dangerPicture: $dangerPicture)';
   }
 
   @override
@@ -228,14 +245,15 @@ class _$AppState$ implements AppState$ {
                 other.userLocation == userLocation) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            (identical(other.points, points) || other.points == points) &&
             (identical(other.dangerPicture, dangerPicture) ||
                 other.dangerPicture == dangerPicture));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, auth, danger, userLocation, isLoading, dangerPicture);
+  int get hashCode => Object.hash(runtimeType, auth, danger, userLocation,
+      isLoading, points, dangerPicture);
 
   @JsonKey(ignore: true)
   @override
@@ -257,6 +275,7 @@ abstract class AppState$ implements AppState {
       final DangerState danger,
       final CurrentLocation? userLocation,
       final bool isLoading,
+      final int points,
       final String? dangerPicture}) = _$AppState$;
 
   factory AppState$.fromJson(Map<String, dynamic> json) = _$AppState$.fromJson;
@@ -269,6 +288,8 @@ abstract class AppState$ implements AppState {
   CurrentLocation? get userLocation;
   @override
   bool get isLoading;
+  @override
+  int get points;
   @override
   String? get dangerPicture;
   @override
@@ -436,6 +457,7 @@ AppUser _$AppUserFromJson(Map<String, dynamic> json) {
 mixin _$AppUser {
   String get uid => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
+  int get points => throw _privateConstructorUsedError;
   String? get displayName => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
 
@@ -449,7 +471,12 @@ abstract class $AppUserCopyWith<$Res> {
   factory $AppUserCopyWith(AppUser value, $Res Function(AppUser) then) =
       _$AppUserCopyWithImpl<$Res, AppUser>;
   @useResult
-  $Res call({String uid, String email, String? displayName, String? imageUrl});
+  $Res call(
+      {String uid,
+      String email,
+      int points,
+      String? displayName,
+      String? imageUrl});
 }
 
 /// @nodoc
@@ -467,6 +494,7 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
   $Res call({
     Object? uid = null,
     Object? email = null,
+    Object? points = null,
     Object? displayName = freezed,
     Object? imageUrl = freezed,
   }) {
@@ -479,6 +507,10 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      points: null == points
+          ? _value.points
+          : points // ignore: cast_nullable_to_non_nullable
+              as int,
       displayName: freezed == displayName
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
@@ -498,7 +530,12 @@ abstract class _$$AppUser$CopyWith<$Res> implements $AppUserCopyWith<$Res> {
       __$$AppUser$CopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String uid, String email, String? displayName, String? imageUrl});
+  $Res call(
+      {String uid,
+      String email,
+      int points,
+      String? displayName,
+      String? imageUrl});
 }
 
 /// @nodoc
@@ -513,6 +550,7 @@ class __$$AppUser$CopyWithImpl<$Res>
   $Res call({
     Object? uid = null,
     Object? email = null,
+    Object? points = null,
     Object? displayName = freezed,
     Object? imageUrl = freezed,
   }) {
@@ -525,6 +563,10 @@ class __$$AppUser$CopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      points: null == points
+          ? _value.points
+          : points // ignore: cast_nullable_to_non_nullable
+              as int,
       displayName: freezed == displayName
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
@@ -543,6 +585,7 @@ class _$AppUser$ implements AppUser$ {
   const _$AppUser$(
       {required this.uid,
       required this.email,
+      this.points = 0,
       this.displayName,
       this.imageUrl});
 
@@ -554,13 +597,16 @@ class _$AppUser$ implements AppUser$ {
   @override
   final String email;
   @override
+  @JsonKey()
+  final int points;
+  @override
   final String? displayName;
   @override
   final String? imageUrl;
 
   @override
   String toString() {
-    return 'AppUser(uid: $uid, email: $email, displayName: $displayName, imageUrl: $imageUrl)';
+    return 'AppUser(uid: $uid, email: $email, points: $points, displayName: $displayName, imageUrl: $imageUrl)';
   }
 
   @override
@@ -570,6 +616,7 @@ class _$AppUser$ implements AppUser$ {
             other is _$AppUser$ &&
             (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.email, email) || other.email == email) &&
+            (identical(other.points, points) || other.points == points) &&
             (identical(other.displayName, displayName) ||
                 other.displayName == displayName) &&
             (identical(other.imageUrl, imageUrl) ||
@@ -579,7 +626,7 @@ class _$AppUser$ implements AppUser$ {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, uid, email, displayName, imageUrl);
+      Object.hash(runtimeType, uid, email, points, displayName, imageUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -599,6 +646,7 @@ abstract class AppUser$ implements AppUser {
   const factory AppUser$(
       {required final String uid,
       required final String email,
+      final int points,
       final String? displayName,
       final String? imageUrl}) = _$AppUser$;
 
@@ -608,6 +656,8 @@ abstract class AppUser$ implements AppUser {
   String get uid;
   @override
   String get email;
+  @override
+  int get points;
   @override
   String? get displayName;
   @override

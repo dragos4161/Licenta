@@ -1,3 +1,4 @@
+
 import 'package:city_problems/actions/index.dart';
 import 'package:city_problems/models/index.dart';
 import 'package:city_problems/reducer/auth_reducer.dart';
@@ -9,6 +10,7 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   TypedReducer<AppState,LogoutSuccessful>(_logoutSuccessful),
   TypedReducer<AppState,GetLocationSuccessful>(_getLocationSuccessful),
   TypedReducer<AppState,GetLocationStart>(_getLocationStart),
+  TypedReducer<AppState,GetPointsSuccessful>(_getPointsSuccessful),
 ]);
 
 AppState _reducer(AppState state, dynamic action){
@@ -32,5 +34,11 @@ AppState _getLocationSuccessful(AppState state, GetLocationSuccessful action) {
 AppState _getLocationStart(AppState state, GetLocationStart action) {
   return state.copyWith(
     isLoading: true,
+  );
+}
+
+AppState _getPointsSuccessful(AppState state, GetPointsSuccessful action) {
+  return state.copyWith(
+    points: action.points,
   );
 }

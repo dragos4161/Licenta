@@ -13,7 +13,6 @@ class AuthApi {
 
     final User user = credentials.user!;
 
-    await postUser(uid: user.uid);
 
     return AppUser(
       uid: user.uid,
@@ -22,10 +21,11 @@ class AuthApi {
     );
   }
 
-  Future<void> postUser({required String uid}) async {
+  Future<void> postUser({required String uid, required String email}) async {
     final FirebaseFirestore store = FirebaseFirestore.instance;
     final Map<String, dynamic> user = <String, dynamic>{
       'uid': uid,
+      'email': email,
       'points': 0,
       'submitted': 0,
       'solved': 0,
@@ -39,6 +39,8 @@ class AuthApi {
     final User user = credentials.user!;
     final String name = displayName;
     await user.updateDisplayName(name);
+
+    await postUser(uid: user.uid,email: user.email!);
 
     return AppUser(
       uid: user.uid,

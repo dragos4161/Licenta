@@ -23,6 +23,7 @@ part 'post_danger.dart';
 
 part 'listen_for_dangers.dart';
 
+part 'get_points.dart';
 
 part 'index.freezed.dart';
 

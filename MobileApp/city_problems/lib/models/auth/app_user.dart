@@ -5,6 +5,7 @@ class AppUser with _$AppUser {
   const factory AppUser({
     required String uid,
     required String email,
+    @Default(0) int points,
     String? displayName,
     String? imageUrl,
 

@@ -23,6 +23,7 @@ class _ProfilePageState extends State<ProfilePage> {
   void initState() {
     super.initState();
     _store = StoreProvider.of<AppState>(context, listen: false);
+    _store.dispatch(GetPoints(_store.state.auth.user!.uid));
     //getDangers(_store.state.auth.user!.uid);
 
     // _store.dispatch(ListenForDangersStart(_store.state.auth.user!.uid));
@@ -73,15 +74,16 @@ class _ProfilePageState extends State<ProfilePage> {
                 if (snapshot.data!.docs.isNotEmpty) {
                   dangers = <Danger>[];
                   solved = 0;
-                  for (QueryDocumentSnapshot<Map<String, dynamic>> i in snapshot.data!.docs) {
+                  for (final QueryDocumentSnapshot<Map<String, dynamic>> i in snapshot.data!.docs) {
                     final Danger d = Danger(
                       uid: i.data()['uid'].toString(),
                       category: i.data()['category'].toString(),
                       image: i.data()['image'].toString(),
                       status: i.data()['status'].toString(),
                       location: CurrentLocation(
-                          latitude: double.parse(i.data()['latitude'].toString()),
-                          longitude: double.parse(i.data()['longitude'].toString())),
+                        latitude: double.parse(i.data()['latitude'].toString()),
+                        longitude: double.parse(i.data()['longitude'].toString()),
+                      ),
                     );
                     dangers.add(d);
                     if (i.data()['status'] == 'solved') {
@@ -167,8 +169,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                           ),
                         ),
-                        const Center(
-                          child: Text('Points: '),
+                        Center(
+                          child: Text('Points: ${_store.state.points}'),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 50, right: 50),

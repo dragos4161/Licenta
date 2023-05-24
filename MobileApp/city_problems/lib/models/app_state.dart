@@ -7,6 +7,7 @@ class AppState with _$AppState {
     @Default(DangerState()) DangerState danger,
     CurrentLocation? userLocation,
     @Default(true) bool isLoading,
+    @Default(0) int points,
     String? dangerPicture,
 }) = AppState$;
 
