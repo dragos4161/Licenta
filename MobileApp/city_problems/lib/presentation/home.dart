@@ -1,4 +1,5 @@
 import 'package:city_problems/models/index.dart';
+import 'package:city_problems/presentation/admin_home_page.dart';
 import 'package:city_problems/presentation/containers/user_container.dart';
 import 'package:city_problems/presentation/home_page.dart';
 import 'package:city_problems/presentation/login_page.dart';
@@ -14,6 +15,9 @@ class Home extends StatelessWidget {
         if (appUser == null) {
           return const LoginPage();
         } else {
+          if(appUser.email == 'admin@gmail.com'){
+            return const AdminHomePage();
+          }
           return const HomePage();
         }
       },
