@@ -20,6 +20,7 @@ _$AppState$ _$$AppState$FromJson(Map<String, dynamic> json) => _$AppState$(
       isLoading: json['isLoading'] as bool? ?? true,
       points: json['points'] as int? ?? 0,
       dangerPicture: json['dangerPicture'] as String?,
+      profilePicture: json['profilePicture'] as String?,
     );
 
 Map<String, dynamic> _$$AppState$ToJson(_$AppState$ instance) =>
@@ -30,6 +31,7 @@ Map<String, dynamic> _$$AppState$ToJson(_$AppState$ instance) =>
       'isLoading': instance.isLoading,
       'points': instance.points,
       'dangerPicture': instance.dangerPicture,
+      'profilePicture': instance.profilePicture,
     };
 
 _$AuthState$ _$$AuthState$FromJson(Map<String, dynamic> json) => _$AuthState$(

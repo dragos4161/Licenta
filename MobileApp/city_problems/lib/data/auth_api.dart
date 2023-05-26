@@ -29,6 +29,7 @@ class AuthApi {
       'points': 0,
       'submitted': 0,
       'solved': 0,
+      'profilePicture': '',
     };
     await store.collection('users').add(user);
   }

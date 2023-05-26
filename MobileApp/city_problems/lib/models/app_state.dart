@@ -9,6 +9,7 @@ class AppState with _$AppState {
     @Default(true) bool isLoading,
     @Default(0) int points,
     String? dangerPicture,
+    String? profilePicture,
 }) = AppState$;
 
   factory AppState.fromJson(Map<dynamic, dynamic> json) => _$AppStateFromJson(Map<String, dynamic>.from(json));

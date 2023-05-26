@@ -11,6 +11,7 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   TypedReducer<AppState,GetLocationSuccessful>(_getLocationSuccessful),
   TypedReducer<AppState,GetLocationStart>(_getLocationStart),
   TypedReducer<AppState,GetPointsSuccessful>(_getPointsSuccessful),
+  TypedReducer<AppState,UploadProfilePictureSuccessful>(_uploadProfilePictureSuccessful),
 ]);
 
 AppState _reducer(AppState state, dynamic action){
@@ -40,5 +41,11 @@ AppState _getLocationStart(AppState state, GetLocationStart action) {
 AppState _getPointsSuccessful(AppState state, GetPointsSuccessful action) {
   return state.copyWith(
     points: action.points,
+  );
+}
+
+AppState _uploadProfilePictureSuccessful(AppState state, UploadProfilePictureSuccessful action) {
+  return state.copyWith(
+    profilePicture: action.url,
   );
 }

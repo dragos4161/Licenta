@@ -26,6 +26,7 @@ mixin _$AppState {
   bool get isLoading => throw _privateConstructorUsedError;
   int get points => throw _privateConstructorUsedError;
   String? get dangerPicture => throw _privateConstructorUsedError;
+  String? get profilePicture => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,7 +45,8 @@ abstract class $AppStateCopyWith<$Res> {
       CurrentLocation? userLocation,
       bool isLoading,
       int points,
-      String? dangerPicture});
+      String? dangerPicture,
+      String? profilePicture});
 
   $AuthStateCopyWith<$Res> get auth;
   $DangerStateCopyWith<$Res> get danger;
@@ -70,6 +72,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? isLoading = null,
     Object? points = null,
     Object? dangerPicture = freezed,
+    Object? profilePicture = freezed,
   }) {
     return _then(_value.copyWith(
       auth: null == auth
@@ -95,6 +98,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
       dangerPicture: freezed == dangerPicture
           ? _value.dangerPicture
           : dangerPicture // ignore: cast_nullable_to_non_nullable
+              as String?,
+      profilePicture: freezed == profilePicture
+          ? _value.profilePicture
+          : profilePicture // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -141,7 +148,8 @@ abstract class _$$AppState$CopyWith<$Res> implements $AppStateCopyWith<$Res> {
       CurrentLocation? userLocation,
       bool isLoading,
       int points,
-      String? dangerPicture});
+      String? dangerPicture,
+      String? profilePicture});
 
   @override
   $AuthStateCopyWith<$Res> get auth;
@@ -168,6 +176,7 @@ class __$$AppState$CopyWithImpl<$Res>
     Object? isLoading = null,
     Object? points = null,
     Object? dangerPicture = freezed,
+    Object? profilePicture = freezed,
   }) {
     return _then(_$AppState$(
       auth: null == auth
@@ -194,6 +203,10 @@ class __$$AppState$CopyWithImpl<$Res>
           ? _value.dangerPicture
           : dangerPicture // ignore: cast_nullable_to_non_nullable
               as String?,
+      profilePicture: freezed == profilePicture
+          ? _value.profilePicture
+          : profilePicture // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -207,7 +220,8 @@ class _$AppState$ implements AppState$ {
       this.userLocation,
       this.isLoading = true,
       this.points = 0,
-      this.dangerPicture});
+      this.dangerPicture,
+      this.profilePicture});
 
   factory _$AppState$.fromJson(Map<String, dynamic> json) =>
       _$$AppState$FromJson(json);
@@ -228,10 +242,12 @@ class _$AppState$ implements AppState$ {
   final int points;
   @override
   final String? dangerPicture;
+  @override
+  final String? profilePicture;
 
   @override
   String toString() {
-    return 'AppState(auth: $auth, danger: $danger, userLocation: $userLocation, isLoading: $isLoading, points: $points, dangerPicture: $dangerPicture)';
+    return 'AppState(auth: $auth, danger: $danger, userLocation: $userLocation, isLoading: $isLoading, points: $points, dangerPicture: $dangerPicture, profilePicture: $profilePicture)';
   }
 
   @override
@@ -247,13 +263,15 @@ class _$AppState$ implements AppState$ {
                 other.isLoading == isLoading) &&
             (identical(other.points, points) || other.points == points) &&
             (identical(other.dangerPicture, dangerPicture) ||
-                other.dangerPicture == dangerPicture));
+                other.dangerPicture == dangerPicture) &&
+            (identical(other.profilePicture, profilePicture) ||
+                other.profilePicture == profilePicture));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, auth, danger, userLocation,
-      isLoading, points, dangerPicture);
+      isLoading, points, dangerPicture, profilePicture);
 
   @JsonKey(ignore: true)
   @override
@@ -276,7 +294,8 @@ abstract class AppState$ implements AppState {
       final CurrentLocation? userLocation,
       final bool isLoading,
       final int points,
-      final String? dangerPicture}) = _$AppState$;
+      final String? dangerPicture,
+      final String? profilePicture}) = _$AppState$;
 
   factory AppState$.fromJson(Map<String, dynamic> json) = _$AppState$.fromJson;
 
@@ -292,6 +311,8 @@ abstract class AppState$ implements AppState {
   int get points;
   @override
   String? get dangerPicture;
+  @override
+  String? get profilePicture;
   @override
   @JsonKey(ignore: true)
   _$$AppState$CopyWith<_$AppState$> get copyWith =>
