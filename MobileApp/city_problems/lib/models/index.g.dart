@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of models;
+part of 'index.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -18,7 +18,9 @@ _$AppState$ _$$AppState$FromJson(Map<String, dynamic> json) => _$AppState$(
           : CurrentLocation.fromJson(
               json['userLocation'] as Map<String, dynamic>),
       isLoading: json['isLoading'] as bool? ?? true,
+      points: json['points'] as int? ?? 0,
       dangerPicture: json['dangerPicture'] as String?,
+      profilePicture: json['profilePicture'] as String?,
     );
 
 Map<String, dynamic> _$$AppState$ToJson(_$AppState$ instance) =>
@@ -27,7 +29,9 @@ Map<String, dynamic> _$$AppState$ToJson(_$AppState$ instance) =>
       'danger': instance.danger,
       'userLocation': instance.userLocation,
       'isLoading': instance.isLoading,
+      'points': instance.points,
       'dangerPicture': instance.dangerPicture,
+      'profilePicture': instance.profilePicture,
     };
 
 _$AuthState$ _$$AuthState$FromJson(Map<String, dynamic> json) => _$AuthState$(
@@ -44,6 +48,7 @@ Map<String, dynamic> _$$AuthState$ToJson(_$AuthState$ instance) =>
 _$AppUser$ _$$AppUser$FromJson(Map<String, dynamic> json) => _$AppUser$(
       uid: json['uid'] as String,
       email: json['email'] as String,
+      points: json['points'] as int? ?? 0,
       displayName: json['displayName'] as String?,
       imageUrl: json['imageUrl'] as String?,
     );
@@ -52,6 +57,7 @@ Map<String, dynamic> _$$AppUser$ToJson(_$AppUser$ instance) =>
     <String, dynamic>{
       'uid': instance.uid,
       'email': instance.email,
+      'points': instance.points,
       'displayName': instance.displayName,
       'imageUrl': instance.imageUrl,
     };

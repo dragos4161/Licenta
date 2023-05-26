@@ -27,6 +27,15 @@ class StorageApi {
     return danger;
   }
 
+  Future<int> getPoints({required String uid}) async {
+    final QuerySnapshot<Map<String, dynamic>> snapshot =
+        await storage.collection('users').where('uid', isEqualTo: uid).get();
+
+    final int points = int.parse(snapshot.docs.first.data()['points'].toString());
+
+    return points;
+  }
+
   Stream<List<Danger>> listenForDangers(String uid) {
     return storage
         .collection('dangers')

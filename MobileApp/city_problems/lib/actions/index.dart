@@ -23,6 +23,10 @@ part 'post_danger.dart';
 
 part 'listen_for_dangers.dart';
 
+part 'get_points.dart';
+
+part 'upload_profile_picture.dart';
+
 part 'index.freezed.dart';
 
 typedef ActionResponse = void Function(dynamic action);

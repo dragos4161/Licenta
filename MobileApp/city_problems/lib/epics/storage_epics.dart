@@ -13,6 +13,7 @@ class StorageEpics {
     return combineEpics(<Epic<AppState>>[
       TypedEpic<AppState, PostDangerStart>(_postDangerStart),
       TypedEpic<AppState, ListenForDangersStart>(_listenForDangersStart),
+      TypedEpic<AppState, GetPointsStart>(_getPointsStart),
     ]);
   }
 
@@ -36,4 +37,13 @@ class StorageEpics {
     );
   }
 
+
+  Stream<dynamic> _getPointsStart(Stream<GetPointsStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((GetPointsStart action) {
+      return Stream<void>.value(null)
+          .asyncMap((_) => storage.getPoints(uid: action.uid))
+          .map((int points) => GetPoints.successful(points))
+          .onErrorReturnWith((Object error, StackTrace stackTrace) => GetPoints.error(error, stackTrace));
+    });
+  }
 }
