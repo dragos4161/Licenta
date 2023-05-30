@@ -1475,6 +1475,7 @@ mixin _$QueueItem {
   String get name => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String get uid => throw _privateConstructorUsedError;
+  String get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1487,7 +1488,12 @@ abstract class $QueueItemCopyWith<$Res> {
   factory $QueueItemCopyWith(QueueItem value, $Res Function(QueueItem) then) =
       _$QueueItemCopyWithImpl<$Res, QueueItem>;
   @useResult
-  $Res call({String description, String name, String status, String uid});
+  $Res call(
+      {String description,
+      String name,
+      String status,
+      String uid,
+      String image});
 }
 
 /// @nodoc
@@ -1507,6 +1513,7 @@ class _$QueueItemCopyWithImpl<$Res, $Val extends QueueItem>
     Object? name = null,
     Object? status = null,
     Object? uid = null,
+    Object? image = null,
   }) {
     return _then(_value.copyWith(
       description: null == description
@@ -1525,6 +1532,10 @@ class _$QueueItemCopyWithImpl<$Res, $Val extends QueueItem>
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -1536,7 +1547,12 @@ abstract class _$$QueueItem$CopyWith<$Res> implements $QueueItemCopyWith<$Res> {
       __$$QueueItem$CopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String description, String name, String status, String uid});
+  $Res call(
+      {String description,
+      String name,
+      String status,
+      String uid,
+      String image});
 }
 
 /// @nodoc
@@ -1554,6 +1570,7 @@ class __$$QueueItem$CopyWithImpl<$Res>
     Object? name = null,
     Object? status = null,
     Object? uid = null,
+    Object? image = null,
   }) {
     return _then(_$QueueItem$(
       description: null == description
@@ -1572,6 +1589,10 @@ class __$$QueueItem$CopyWithImpl<$Res>
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -1583,7 +1604,8 @@ class _$QueueItem$ implements QueueItem$ {
       {required this.description,
       required this.name,
       required this.status,
-      required this.uid});
+      required this.uid,
+      required this.image});
 
   factory _$QueueItem$.fromJson(Map<String, dynamic> json) =>
       _$$QueueItem$FromJson(json);
@@ -1596,10 +1618,12 @@ class _$QueueItem$ implements QueueItem$ {
   final String status;
   @override
   final String uid;
+  @override
+  final String image;
 
   @override
   String toString() {
-    return 'QueueItem(description: $description, name: $name, status: $status, uid: $uid)';
+    return 'QueueItem(description: $description, name: $name, status: $status, uid: $uid, image: $image)';
   }
 
   @override
@@ -1611,12 +1635,14 @@ class _$QueueItem$ implements QueueItem$ {
                 other.description == description) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.uid, uid) || other.uid == uid));
+            (identical(other.uid, uid) || other.uid == uid) &&
+            (identical(other.image, image) || other.image == image));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, description, name, status, uid);
+  int get hashCode =>
+      Object.hash(runtimeType, description, name, status, uid, image);
 
   @JsonKey(ignore: true)
   @override
@@ -1637,7 +1663,8 @@ abstract class QueueItem$ implements QueueItem {
       {required final String description,
       required final String name,
       required final String status,
-      required final String uid}) = _$QueueItem$;
+      required final String uid,
+      required final String image}) = _$QueueItem$;
 
   factory QueueItem$.fromJson(Map<String, dynamic> json) =
       _$QueueItem$.fromJson;
@@ -1650,6 +1677,8 @@ abstract class QueueItem$ implements QueueItem {
   String get status;
   @override
   String get uid;
+  @override
+  String get image;
   @override
   @JsonKey(ignore: true)
   _$$QueueItem$CopyWith<_$QueueItem$> get copyWith =>

@@ -25,6 +25,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.13.0"
+  animated_text_kit:
+    dependency: "direct main"
+    description:
+      name: animated_text_kit
+      sha256: "37392a5376c9a1a503b02463c38bc0342ef814ddbb8f9977bc90f2a84b22fa92"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.2"
   args:
     dependency: transitive
     description:
@@ -520,6 +528,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.6.3"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      sha256: "3bc132a9dbce73a7e4a21a17d06e1878839ffbf975568bc875c60537824b0c4d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.18.1"
   io:
     dependency: transitive
     description:
@@ -552,6 +568,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.7.0"
+  loading_animation_widget:
+    dependency: "direct main"
+    description:
+      name: loading_animation_widget
+      sha256: "1901682600273a966c34cf44a85fc5355da92a8d08a8a43c11adc4e471993e3a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.0+4"
   location:
     dependency: "direct main"
     description:
@@ -861,6 +885,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  syncfusion_flutter_charts:
+    dependency: "direct main"
+    description:
+      name: syncfusion_flutter_charts
+      sha256: a70aa0b2608c5b11bfe549c13572e87d929553703f6987497589217d106b2ad7
+      url: "https://pub.dev"
+    source: hosted
+    version: "21.2.6"
+  syncfusion_flutter_core:
+    dependency: transitive
+    description:
+      name: syncfusion_flutter_core
+      sha256: "998d242c1f022eccf53f414a4343af34ab980700fee36cef8f78d94538ca749f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "21.2.6"
   synchronized:
     dependency: transitive
     description:

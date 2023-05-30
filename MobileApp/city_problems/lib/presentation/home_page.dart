@@ -223,8 +223,8 @@ class _HomePageState extends State<HomePage> {
                                           child: const Icon(Icons.person_outline_rounded),
                                         ),
                                         MaterialButton(
-                                          onPressed: () async {
-                                            StoreProvider.of<AppState>(context).dispatch(const Logout());
+                                          onPressed: () {
+                                            Navigator.of(context).pushNamed('/userchat');
                                           },
                                           splashColor: Colors.white,
                                           child: const Icon(Icons.messenger_outline_rounded),

@@ -7,6 +7,7 @@ class QueueItem with _$QueueItem {
     required String name,
     required String status,
     required String uid,
+    required String image,
   }) = QueueItem$;
 
   factory QueueItem.fromJson(Map<dynamic, dynamic> json) => _$QueueItemFromJson(Map<String, dynamic>.from(json));

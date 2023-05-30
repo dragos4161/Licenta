@@ -13,6 +13,7 @@ import 'package:city_problems/presentation/home_page.dart';
 import 'package:city_problems/presentation/login_page.dart';
 import 'package:city_problems/presentation/profile_page.dart';
 import 'package:city_problems/presentation/signup_page.dart';
+import 'package:city_problems/presentation/user_chat_page.dart';
 import 'package:city_problems/reducer/reducer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -72,6 +73,8 @@ class MyApp extends StatelessWidget {
           '/home': (BuildContext context) => const HomePage(),
           '/profile': (BuildContext context) => const ProfilePage(),
           '/categories': (BuildContext context) => const CategoriesPage(),
+          '/userchat': (BuildContext context) => const UserChatPage(),
+
         },
         title: 'City Dangers',
         theme: ThemeData(
