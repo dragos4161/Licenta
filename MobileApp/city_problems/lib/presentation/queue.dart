@@ -41,7 +41,6 @@ class _QueuePageState extends State<QueuePage> {
                 StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
                   stream: FirebaseFirestore.instance.collection('queue').snapshots(),
                   builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
-
                     queue = <QueueItem>[];
 
                     if (snapshot.connectionState == ConnectionState.waiting) {
@@ -76,42 +75,56 @@ class _QueuePageState extends State<QueuePage> {
                                 itemBuilder: (BuildContext context, int index) {
                                   return GestureDetector(
                                     onTap: () {
-                                      showDialog<String>(
-                                        context: context,
-                                        builder: (BuildContext context) => AlertDialog(
-                                          title: const Center(
-                                            child: Text('New Chat Room'),
+                                      if (queue[index].status == 'pending') {
+                                        showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) => AlertDialog(
+                                            title: const Center(
+                                              child: Text('New Chat Room'),
+                                            ),
+                                            content: Text('Start a chat room with ${queue[index].name} ?'),
+                                            actions: <Widget>[
+                                              TextButton(
+                                                onPressed: () async {
+                                                  await FirebaseFirestore.instance
+                                                      .collection('queue')
+                                                      .doc(queue[index].uid)
+                                                      .update(
+                                                    <String, dynamic>{'status': 'active'},
+                                                  );
+                                                  setState(() {
+                                                    chatActive = true;
+                                                    currentUser = queue[index].name;
+                                                    currentUserUid = queue[index].uid;
+                                                    profilePicture = queue[index].image;
+                                                  });
+                                                  // ignore: use_build_context_synchronously
+                                                  Navigator.pop(context, 'Yes');
+                                                },
+                                                child: const Text('Yes'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context, 'No');
+                                                },
+                                                child: const Text('No'),
+                                              ),
+                                            ],
                                           ),
-                                          content: Text('Start a chat room with ${queue[index].name} ?'),
-                                          actions: <Widget>[
-                                            TextButton(
-                                              onPressed: () async {
-                                                await FirebaseFirestore.instance
-                                                    .collection('queue')
-                                                    .doc(queue[index].uid)
-                                                    .update(
-                                                  <String, dynamic>{'status': 'active'},
-                                                );
-                                                setState(() {
-                                                  chatActive = true;
-                                                  currentUser = queue[index].name;
-                                                  currentUserUid = queue[index].uid;
-                                                  profilePicture = queue[index].image;
-                                                });
-                                                // ignore: use_build_context_synchronously
-                                                Navigator.pop(context, 'Yes');
-                                              },
-                                              child: const Text('Yes'),
+                                        );
+                                      } else {
+                                        ScaffoldMessenger.of(context).showSnackBar(
+                                          SnackBar(
+                                            content: const Center(
+                                              child: Text(
+                                                'This request was solved',
+                                                style: TextStyle(color: Colors.green, fontSize: 20),
+                                              ),
                                             ),
-                                            TextButton(
-                                              onPressed: () {
-                                                Navigator.pop(context, 'No');
-                                              },
-                                              child: const Text('No'),
-                                            ),
-                                          ],
-                                        ),
-                                      );
+                                            backgroundColor: Colors.grey.shade400,
+                                          ),
+                                        );
+                                      }
                                     },
                                     child: Padding(
                                       padding: const EdgeInsets.only(bottom: 20, top: 10),
@@ -171,208 +184,203 @@ class _QueuePageState extends State<QueuePage> {
               ],
             )
           : SafeArea(
-              child: Column(
+              child: Stack(
                 children: <Widget>[
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    height: 60,
-                    width: MediaQuery.of(context).size.width,
-                    color: Colors.blueAccent,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(
-                          'Chatting with $currentUser',
-                          style: const TextStyle(fontSize: 24, color: Colors.white),
-                          textAlign: TextAlign.center,
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            showDialog<String>(
-                              context: context,
-                              builder: (BuildContext context) => AlertDialog(
-                                title: const Center(
-                                  child: Text('Chat Room'),
-                                ),
-                                content: const Text('Leave the chat?'),
-                                actions: <Widget>[
-                                  TextButton(
-                                    onPressed: () async {
-                                      await FirebaseFirestore.instance.collection('queue').doc(currentUserUid).update(
-                                        <String, dynamic>{'status': 'closed'},
-                                      );
-                                      setState(() {
-                                        chatActive = false;
-                                      });
-                                      // ignore: use_build_context_synchronously
-                                      Navigator.pop(context, 'Yes');
-                                    },
-                                    child: const Text('Yes'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.pop(context, 'No');
-                                    },
-                                    child: const Text('No'),
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                          icon: const Icon(
-                            Icons.logout_rounded,
-                            size: 30,
-                            color: Colors.white,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      height: MediaQuery.of(context).size.height - 150,
-                      color: Colors.white,
-                      child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-                        stream: FirebaseFirestore.instance
-                            .collection('chatRooms')
-                            .doc(currentUserUid)
-                            .collection('messageId')
-                            .snapshots(),
-                        builder: (
-                          BuildContext context,
-                          AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot,
-                        ) {
-                          final List<Message> messages = <Message>[];
-                          for (final QueryDocumentSnapshot<Map<String, dynamic>> m in snapshot.data!.docs) {
-                            final Message message = Message(
-                              sender: m.data()['sender'].toString(),
-                              message: m.data()['message'].toString(),
-                              time: DateTime.fromMillisecondsSinceEpoch(int.parse(m.data()['timestamp'].toString())),
-                            );
-                            messages.add(message);
-
-                          }
-                          messages.sort((Message b, Message a) => a.time.compareTo(b.time));
-                          return ListView.builder(
-                            padding: const EdgeInsets.all(10),
-                            reverse: true,
-                            controller: listViewScrollController,
-                            itemCount: messages.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Align(
-                                alignment: messages[index].sender == 'admin' ? Alignment.topRight : Alignment.topLeft,
-                                child: SizedBox(
-                                  width: 200,
-                                  child: Row(
-                                    children: <Widget>[
-                                      if (messages[index].sender != 'admin')
-                                        ClipOval(
-                                          child: CachedNetworkImage(
-                                            imageUrl: profilePicture,
-                                            width: 40,
-                                            height: 40,
-                                            fit: BoxFit.cover,
-                                            placeholder: (BuildContext context, String url) => Image.asset(
-                                              'assets/images/avatar.jpg',
-                                              width: 60,
-                                              height: 60,
-                                              fit: BoxFit.cover,
+                  Column(
+                    children: <Widget>[
+                      Expanded(
+                        child: Container(
+                          height: MediaQuery.of(context).size.height - 150,
+                          color: Colors.white,
+                          child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+                            stream: FirebaseFirestore.instance
+                                .collection('chatRooms')
+                                .doc(currentUserUid)
+                                .collection('messageId')
+                                .snapshots(),
+                            builder: (
+                              BuildContext context,
+                              AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot,
+                            ) {
+                              final List<Message> messages = <Message>[];
+                              for (final QueryDocumentSnapshot<Map<String, dynamic>> m in snapshot.data!.docs) {
+                                final Message message = Message(
+                                  sender: m.data()['sender'].toString(),
+                                  message: m.data()['message'].toString(),
+                                  time:
+                                      DateTime.fromMillisecondsSinceEpoch(int.parse(m.data()['timestamp'].toString())),
+                                );
+                                messages.add(message);
+                              }
+                              messages.sort((Message b, Message a) => a.time.compareTo(b.time));
+                              return ListView.builder(
+                                padding: const EdgeInsets.all(10),
+                                reverse: true,
+                                controller: listViewScrollController,
+                                itemCount: messages.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Align(
+                                    alignment:
+                                        messages[index].sender == 'admin' ? Alignment.topRight : Alignment.topLeft,
+                                    child: SizedBox(
+                                      width: 200,
+                                      child: Row(
+                                        children: <Widget>[
+                                          if (messages[index].sender != 'admin')
+                                            ClipOval(
+                                              child: CachedNetworkImage(
+                                                imageUrl: profilePicture,
+                                                width: 40,
+                                                height: 40,
+                                                fit: BoxFit.cover,
+                                                placeholder: (BuildContext context, String url) => Image.asset(
+                                                  'assets/images/avatar.jpg',
+                                                  width: 60,
+                                                  height: 60,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            )
+                                          else
+                                            const SizedBox.shrink(),
+                                          Container(
+                                            width: 200,
+                                            padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
+                                            margin: const EdgeInsets.all(8),
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  messages[index].sender == 'admin' ? Colors.blueAccent : Colors.grey,
+                                              borderRadius: messages[index].sender == 'admin'
+                                                  ? const BorderRadius.only(
+                                                      topLeft: Radius.circular(15),
+                                                      topRight: Radius.circular(25),
+                                                      bottomLeft: Radius.circular(15),
+                                                    )
+                                                  : const BorderRadius.only(
+                                                      topRight: Radius.circular(15),
+                                                      topLeft: Radius.circular(25),
+                                                      bottomRight: Radius.circular(15),
+                                                    ),
+                                            ),
+                                            child: Text(
+                                              messages[index].message,
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                color: messages[index].sender == 'admin' ? Colors.white : Colors.black,
+                                              ),
                                             ),
                                           ),
-                                        )
-                                      else
-                                        const SizedBox.shrink(),
-                                      Container(
-                                        width: 200,
-                                        padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
-                                        margin: const EdgeInsets.all(8),
-                                        decoration: BoxDecoration(
-                                          color: messages[index].sender == 'admin' ? Colors.blueAccent : Colors.grey,
-                                          borderRadius: messages[index].sender == 'admin' ? const BorderRadius.only(
-                                            topLeft: Radius.circular(15),
-                                            topRight: Radius.circular(25),
-                                            bottomLeft: Radius.circular(15),
-                                          ) : const BorderRadius.only(
-                                            topRight: Radius.circular(15),
-                                            topLeft: Radius.circular(25),
-                                            bottomRight: Radius.circular(15),
-                                          ),
-                                        ),
-                                        child: Text(
-                                          messages[index].message,
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            color: messages[index].sender == 'admin' ? Colors.white : Colors.black,
-                                          ),
-                                        ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
-                                ),
+                                    ),
+                                  );
+                                },
                               );
                             },
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    margin: const EdgeInsets.only(bottom: 15, left: 10, right: 10),
-                    height: 60,
-                    //width: MediaQuery.of(context).size.width,
-                    alignment: Alignment.bottomCenter,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(color: Colors.grey, width: 2),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Row(
-                      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Container(
-                          width: MediaQuery.of(context).size.width - 50,
-                          padding: const EdgeInsets.only(left: 10, right: 10),
-                          child: TextField(
-                            controller: messageController,
-                            decoration: InputDecoration(
-                              hintText: 'Type...',
-                              enabledBorder: InputBorder.none,
-                              focusedBorder: InputBorder.none,
-                              disabledBorder: InputBorder.none,
-                              hintStyle: const TextStyle(color: Colors.black),
-                              suffixIcon: GestureDetector(
-                                child: const Icon(
-                                  Icons.send,
-                                  color: Colors.blue,
-                                ),
-                                onTap: () async {
-                                  final Map<String, dynamic> message = <String, dynamic>{
-                                    'sender': 'admin',
-                                    'message': messageController.text,
-                                    'timestamp': DateTime.now().millisecondsSinceEpoch,
-                                  };
-                                  await FirebaseFirestore.instance
-                                      .collection('chatRooms')
-                                      .doc(currentUserUid)
-                                      .collection('messageId')
-                                      .add(message);
-                                  await listViewScrollController.animateTo(
-                                    0,
-                                    duration: const Duration(milliseconds: 300),
-                                    curve: Curves.easeOut,
-                                  );
-                                  if (!mounted) {
-                                    return;
-                                  }
-                                  FocusScope.of(context).unfocus();
-                                  messageController.clear();
-                                },
-                              ),
-                            ),
                           ),
                         ),
-                      ],
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        margin: const EdgeInsets.only(bottom: 15, left: 10, right: 10),
+                        height: 60,
+                        //width: MediaQuery.of(context).size.width,
+                        alignment: Alignment.bottomCenter,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(color: Colors.grey, width: 2),
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Row(
+                          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Container(
+                              width: MediaQuery.of(context).size.width - 50,
+                              padding: const EdgeInsets.only(left: 10, right: 10),
+                              child: TextField(
+                                controller: messageController,
+                                decoration: InputDecoration(
+                                  hintText: 'Type...',
+                                  enabledBorder: InputBorder.none,
+                                  focusedBorder: InputBorder.none,
+                                  disabledBorder: InputBorder.none,
+                                  hintStyle: const TextStyle(color: Colors.black),
+                                  suffixIcon: GestureDetector(
+                                    child: const Icon(
+                                      Icons.send,
+                                      color: Colors.blue,
+                                    ),
+                                    onTap: () async {
+                                      final Map<String, dynamic> message = <String, dynamic>{
+                                        'sender': 'admin',
+                                        'message': messageController.text,
+                                        'timestamp': DateTime.now().millisecondsSinceEpoch,
+                                      };
+                                      await FirebaseFirestore.instance
+                                          .collection('chatRooms')
+                                          .doc(currentUserUid)
+                                          .collection('messageId')
+                                          .add(message);
+                                      await listViewScrollController.animateTo(
+                                        0,
+                                        duration: const Duration(milliseconds: 300),
+                                        curve: Curves.easeOut,
+                                      );
+                                      if (!mounted) {
+                                        return;
+                                      }
+                                      FocusScope.of(context).unfocus();
+                                      messageController.clear();
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: FloatingActionButton(
+                      onPressed: () {
+                        showDialog<String>(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                            title: const Center(
+                              child: Text('Chat Room'),
+                            ),
+                            content: Text('Close the chat with $currentUser?'),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () async {
+                                  await FirebaseFirestore.instance.collection('queue').doc(currentUserUid).update(
+                                    <String, dynamic>{'status': 'closed'},
+                                  );
+                                  setState(() {
+                                    chatActive = false;
+                                  });
+                                  // ignore: use_build_context_synchronously
+                                  Navigator.pop(context, 'Yes');
+                                },
+                                child: const Text('Yes'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context, 'No');
+                                },
+                                child: const Text('No'),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                      child: const Icon(
+                        Icons.logout_rounded,
+                        size: 30,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ],

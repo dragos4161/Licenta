@@ -28,6 +28,10 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+
+
+
   final AuthApi authApi = AuthApi(auth: FirebaseAuth.instance);
   final FirebaseFirestore storage = FirebaseFirestore.instance;
   final PictureApi pictureApi = PictureApi();
