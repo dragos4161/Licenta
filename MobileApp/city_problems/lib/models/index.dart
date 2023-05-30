@@ -20,6 +20,8 @@ part 'dangers/danger_state.dart';
 
 part 'current_location.dart';
 
+part 'queue_item.dart';
+
 part 'index.freezed.dart';
 
 part 'index.g.dart';

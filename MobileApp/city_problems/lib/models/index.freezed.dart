@@ -1464,3 +1464,223 @@ abstract class CurrentLocation$ implements CurrentLocation {
   _$$CurrentLocation$CopyWith<_$CurrentLocation$> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+QueueItem _$QueueItemFromJson(Map<String, dynamic> json) {
+  return QueueItem$.fromJson(json);
+}
+
+/// @nodoc
+mixin _$QueueItem {
+  String get description => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
+  String get uid => throw _privateConstructorUsedError;
+  String get image => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $QueueItemCopyWith<QueueItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $QueueItemCopyWith<$Res> {
+  factory $QueueItemCopyWith(QueueItem value, $Res Function(QueueItem) then) =
+      _$QueueItemCopyWithImpl<$Res, QueueItem>;
+  @useResult
+  $Res call(
+      {String description,
+      String name,
+      String status,
+      String uid,
+      String image});
+}
+
+/// @nodoc
+class _$QueueItemCopyWithImpl<$Res, $Val extends QueueItem>
+    implements $QueueItemCopyWith<$Res> {
+  _$QueueItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? description = null,
+    Object? name = null,
+    Object? status = null,
+    Object? uid = null,
+    Object? image = null,
+  }) {
+    return _then(_value.copyWith(
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$QueueItem$CopyWith<$Res> implements $QueueItemCopyWith<$Res> {
+  factory _$$QueueItem$CopyWith(
+          _$QueueItem$ value, $Res Function(_$QueueItem$) then) =
+      __$$QueueItem$CopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String description,
+      String name,
+      String status,
+      String uid,
+      String image});
+}
+
+/// @nodoc
+class __$$QueueItem$CopyWithImpl<$Res>
+    extends _$QueueItemCopyWithImpl<$Res, _$QueueItem$>
+    implements _$$QueueItem$CopyWith<$Res> {
+  __$$QueueItem$CopyWithImpl(
+      _$QueueItem$ _value, $Res Function(_$QueueItem$) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? description = null,
+    Object? name = null,
+    Object? status = null,
+    Object? uid = null,
+    Object? image = null,
+  }) {
+    return _then(_$QueueItem$(
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$QueueItem$ implements QueueItem$ {
+  const _$QueueItem$(
+      {required this.description,
+      required this.name,
+      required this.status,
+      required this.uid,
+      required this.image});
+
+  factory _$QueueItem$.fromJson(Map<String, dynamic> json) =>
+      _$$QueueItem$FromJson(json);
+
+  @override
+  final String description;
+  @override
+  final String name;
+  @override
+  final String status;
+  @override
+  final String uid;
+  @override
+  final String image;
+
+  @override
+  String toString() {
+    return 'QueueItem(description: $description, name: $name, status: $status, uid: $uid, image: $image)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$QueueItem$ &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.uid, uid) || other.uid == uid) &&
+            (identical(other.image, image) || other.image == image));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, description, name, status, uid, image);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$QueueItem$CopyWith<_$QueueItem$> get copyWith =>
+      __$$QueueItem$CopyWithImpl<_$QueueItem$>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$QueueItem$ToJson(
+      this,
+    );
+  }
+}
+
+abstract class QueueItem$ implements QueueItem {
+  const factory QueueItem$(
+      {required final String description,
+      required final String name,
+      required final String status,
+      required final String uid,
+      required final String image}) = _$QueueItem$;
+
+  factory QueueItem$.fromJson(Map<String, dynamic> json) =
+      _$QueueItem$.fromJson;
+
+  @override
+  String get description;
+  @override
+  String get name;
+  @override
+  String get status;
+  @override
+  String get uid;
+  @override
+  String get image;
+  @override
+  @JsonKey(ignore: true)
+  _$$QueueItem$CopyWith<_$QueueItem$> get copyWith =>
+      throw _privateConstructorUsedError;
+}

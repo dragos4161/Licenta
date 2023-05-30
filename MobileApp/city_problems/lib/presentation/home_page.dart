@@ -8,6 +8,7 @@ import 'package:city_problems/models/index.dart';
 import 'package:city_problems/presentation/containers/location_container.dart';
 import 'package:city_problems/presentation/containers/user_container.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -22,6 +23,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  Future<void> retrieveDeviceToken() async {
+    final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+    final String? token = await firebaseMessaging.getToken();
+    final String uid = StoreProvider.of<AppState>(context).state.auth.user!.uid;
+    await FirebaseFirestore.instance.collection('tokens').doc(uid).set(<String,dynamic>{'token' : token});
+  }
+
   final Completer<GoogleMapController> _controller = Completer<GoogleMapController>();
 
   List<String> categories = <String>[
@@ -46,7 +55,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     initializeMarkers();
-    //super.initState();
+    retrieveDeviceToken();
   }
 
   Future<Uint8List> getBytesFromAsset(String path, int width) async {
@@ -85,12 +94,19 @@ class _HomePageState extends State<HomePage> {
     //setState(() {});
   }
 
-  final TextEditingController _searchController = TextEditingController();
 
   Set<Marker> markers = <Marker>{};
 
   FirebaseFirestore db = FirebaseFirestore.instance;
   late GoogleMapController mapController;
+  late String status;
+  TextEditingController descriptionController = TextEditingController();
+  String dropdownValue = 'submitted';
+  List<String> items = <String>[
+    'All',
+    'submitted',
+    'solved',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -106,10 +122,12 @@ class _HomePageState extends State<HomePage> {
                   return const Center(child: SizedBox(height: 50, child: CircularProgressIndicator()));
                 } else {
                   return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-                    stream: FirebaseFirestore.instance
-                        .collection('dangers')
-                        .where('status', isEqualTo: 'submitted')
-                        .snapshots(),
+                    stream: dropdownValue != 'All'
+                        ? FirebaseFirestore.instance
+                            .collection('dangers')
+                            .where('status', isEqualTo: dropdownValue)
+                            .snapshots()
+                        : FirebaseFirestore.instance.collection('dangers').snapshots(),
                     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return const Center(
@@ -155,33 +173,50 @@ class _HomePageState extends State<HomePage> {
                                       },
                                     ),
                                     Positioned(
-                                      top: 70,
-                                      left: 65,
-                                      right: 65,
+                                      top: 50,
+                                      left: 105,
+                                      right: 105,
                                       child: Container(
-                                        height: MediaQuery.of(context).size.height * 0.06,
+                                        height: MediaQuery.of(context).size.height * 0.05,
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(15),
                                           color: Colors.white,
                                         ),
-                                        child: TextField(
-                                          controller: _searchController,
-                                          decoration: InputDecoration(
-                                            border: InputBorder.none,
-                                            contentPadding: const EdgeInsets.all(10),
-                                            suffixIcon: GestureDetector(
-                                              onTap: () {
-                                                FocusManager.instance.primaryFocus?.unfocus();
-                                              },
-                                              child: const Icon(Icons.filter_alt_outlined),
-                                            ),
-                                            labelText: user == null ? 'Category' : user.displayName,
-                                            labelStyle: const TextStyle(
-                                              color: Colors.grey,
-                                              fontSize: 15,
-                                            ),
+                                        child: Center(
+                                          child: DropdownButton<String>(
+                                            value: dropdownValue,
+                                            icon: const Icon(Icons.keyboard_arrow_down),
+                                            items: items.map((String items) {
+                                              return DropdownMenuItem<String>(
+                                                value: items,
+                                                child: Text(items),
+                                              );
+                                            }).toList(),
+                                            onChanged: (String? newValue) {
+                                              setState(() {
+                                                dropdownValue = newValue!;
+                                              });
+                                            },
                                           ),
                                         ),
+                                        // child: TextField(
+                                        //   controller: _searchController,
+                                        //   decoration: InputDecoration(
+                                        //     border: InputBorder.none,
+                                        //     contentPadding: const EdgeInsets.all(10),
+                                        //     suffixIcon: GestureDetector(
+                                        //       onTap: () {
+                                        //         FocusManager.instance.primaryFocus?.unfocus();
+                                        //       },
+                                        //       child: const Icon(Icons.filter_alt_outlined),
+                                        //     ),
+                                        //     labelText: user == null ? 'Category' : user.displayName,
+                                        //     labelStyle: const TextStyle(
+                                        //       color: Colors.grey,
+                                        //       fontSize: 15,
+                                        //     ),
+                                        //   ),
+                                        // ),
                                       ),
                                     ),
                                   ],
@@ -224,7 +259,111 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         MaterialButton(
                                           onPressed: () async {
-                                            StoreProvider.of<AppState>(context).dispatch(const Logout());
+                                            final DocumentSnapshot<Map<String, dynamic>> doc = await FirebaseFirestore
+                                                .instance
+                                                .collection('queue')
+                                                .doc(user!.uid)
+                                                .get();
+                                            if (doc.exists) {
+                                              status = doc.data()!['status'].toString();
+                                              if (status == 'pending' || status == 'active') {
+                                                await Navigator.pushNamed(context, '/userchat');
+                                              } else {
+                                                await showDialog<String>(
+                                                  context: context,
+                                                  builder: (BuildContext context) => AlertDialog(
+                                                    title: const Center(
+                                                      child: Text('Write a description'),
+                                                    ),
+                                                    content: SizedBox(
+                                                      height: 40,
+                                                      width: 120,
+                                                      child: TextField(
+                                                        controller: descriptionController,
+                                                      ),
+                                                    ),
+                                                    actions: <Widget>[
+                                                      TextButton(
+                                                        onPressed: () async {
+                                                          final QuerySnapshot<Map<String, dynamic>> img =
+                                                              await FirebaseFirestore.instance
+                                                                  .collection('users')
+                                                                  .where('uid', isEqualTo: user.uid)
+                                                                  .get();
+                                                          final String image =
+                                                              img.docs.first.data()['profilePicture'].toString();
+                                                          final Map<String, dynamic> data = <String, dynamic>{
+                                                            'uid': user.uid,
+                                                            'name': user.displayName,
+                                                            'description': descriptionController.text,
+                                                            'status': 'pending',
+                                                            'image': image,
+                                                          };
+                                                          await db.collection('queue').doc(user.uid).set(data);
+                                                          descriptionController.clear();
+                                                          Navigator.pop(context);
+                                                          await Navigator.pushNamed(context, '/userchat');
+                                                        },
+                                                        child: const Text('Yes'),
+                                                      ),
+                                                      TextButton(
+                                                        onPressed: () {
+                                                          Navigator.pop(context, 'No');
+                                                        },
+                                                        child: const Text('No'),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              }
+                                            } else {
+                                              await showDialog<String>(
+                                                context: context,
+                                                builder: (BuildContext context) => AlertDialog(
+                                                  title: const Center(
+                                                    child: Text('Write a description'),
+                                                  ),
+                                                  content: SizedBox(
+                                                    height: 40,
+                                                    width: 120,
+                                                    child: TextField(
+                                                      controller: descriptionController,
+                                                    ),
+                                                  ),
+                                                  actions: <Widget>[
+                                                    TextButton(
+                                                      onPressed: () async {
+                                                        final QuerySnapshot<Map<String, dynamic>> img =
+                                                            await FirebaseFirestore.instance
+                                                                .collection('users')
+                                                                .where('uid', isEqualTo: user.uid)
+                                                                .get();
+                                                        final String image =
+                                                            img.docs.first.data()['profilePicture'].toString();
+                                                        final Map<String, dynamic> data = <String, dynamic>{
+                                                          'uid': user.uid,
+                                                          'name': user.displayName,
+                                                          'description': descriptionController.text,
+                                                          'status': 'pending',
+                                                          'image': image,
+                                                        };
+                                                        await db.collection('queue').doc(user.uid).set(data);
+                                                        descriptionController.clear();
+                                                        Navigator.pop(context);
+                                                        await Navigator.pushNamed(context, '/userchat');
+                                                      },
+                                                      child: const Text('Yes'),
+                                                    ),
+                                                    TextButton(
+                                                      onPressed: () {
+                                                        Navigator.pop(context, 'No');
+                                                      },
+                                                      child: const Text('No'),
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            }
                                           },
                                           splashColor: Colors.white,
                                           child: const Icon(Icons.messenger_outline_rounded),

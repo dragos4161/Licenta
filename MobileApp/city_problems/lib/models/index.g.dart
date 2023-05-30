@@ -124,3 +124,20 @@ Map<String, dynamic> _$$CurrentLocation$ToJson(_$CurrentLocation$ instance) =>
       'latitude': instance.latitude,
       'longitude': instance.longitude,
     };
+
+_$QueueItem$ _$$QueueItem$FromJson(Map<String, dynamic> json) => _$QueueItem$(
+      description: json['description'] as String,
+      name: json['name'] as String,
+      status: json['status'] as String,
+      uid: json['uid'] as String,
+      image: json['image'] as String,
+    );
+
+Map<String, dynamic> _$$QueueItem$ToJson(_$QueueItem$ instance) =>
+    <String, dynamic>{
+      'description': instance.description,
+      'name': instance.name,
+      'status': instance.status,
+      'uid': instance.uid,
+      'image': instance.image,
+    };
