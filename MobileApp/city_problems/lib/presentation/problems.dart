@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:city_problems/models/index.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -146,13 +147,30 @@ class _ProblemsPageState extends State<ProblemsPage> {
                                   context: context,
                                   builder: (BuildContext context) => AlertDialog(
                                     title: Center(
-                                      child: Text(dangersToShow[index].category),
+                                      child: Text(dangersToShow[index].category.toUpperCase()),
                                     ),
-                                    content: Text(
-                                      'Do you want to mark the problem (${dangersToShow[index].category}) as solved?',
+                                    content: SizedBox(
+                                      height: 350,
+                                      child: Column(
+                                        children: <Widget>[
+                                          if (dangersToShow[index].status == 'submitted') const Text(
+                                            'Do you want to mark it as solved ore delete it?',
+                                          ) else const Text(
+                                            'Do you want to delete it?',
+                                          ) ,
+                                          const SizedBox(height: 20,),
+                                          CachedNetworkImage(
+                                            imageUrl: dangersToShow[index].image!,
+                                            width: 250,
+                                            height: 250,
+                                            fit: BoxFit.cover,
+                                            placeholder: (BuildContext context, String url) => const CircularProgressIndicator(),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                     actions: <Widget>[
-                                      TextButton(
+                                      if (dangersToShow[index].status == 'submitted') TextButton(
                                         onPressed: () async {
                                           final FirebaseFirestore db = FirebaseFirestore.instance;
                                           final CollectionReference<Map<String, dynamic>> ref = db.collection('dangers');
@@ -168,15 +186,36 @@ class _ProblemsPageState extends State<ProblemsPage> {
                                             selectedColors = <Color>[Colors.greenAccent,Colors.blue,Colors.blue];
                                           });
                                           // ignore: use_build_context_synchronously
-                                          Navigator.pop(context, 'Yes');
+                                          Navigator.pop(context, 'Mark as solved');
                                         },
-                                        child: const Text('Yes'),
+                                        child: const Text('Mark as solved'),
+                                      ) else const SizedBox.shrink(),
+                                      TextButton(
+                                        onPressed: () async {
+                                          final FirebaseFirestore db = FirebaseFirestore.instance;
+                                          final CollectionReference<Map<String, dynamic>> ref = db.collection('dangers');
+                                          await ref.where('latitude', isEqualTo : dangersToShow[index].location.latitude)
+                                              .where('longitude',isEqualTo : dangersToShow[index].location.longitude)
+                                              .get().then((QuerySnapshot<Map<String, dynamic>> querySnapshot) {
+                                            for(final QueryDocumentSnapshot<Map<String, dynamic>> doc in querySnapshot.docs){
+                                              doc.reference.delete();
+                                            }
+                                          });
+                                          setState(() {
+                                            page = 0;
+                                            selectedColors = <Color>[Colors.greenAccent,Colors.blue,Colors.blue];
+                                          });
+                                          // ignore: use_build_context_synchronously
+                                          Navigator.pop(context, 'Delete');
+                                        },
+                                        child: const Text('Delete'),
                                       ),
                                       TextButton(
                                         onPressed: () async {
-                                          Navigator.pop(context, 'No');
+
+                                          Navigator.pop(context, 'Cancel');
                                         },
-                                        child: const Text('No'),
+                                        child: const Text('Cancel'),
                                       ),
                                     ],
                                   ),

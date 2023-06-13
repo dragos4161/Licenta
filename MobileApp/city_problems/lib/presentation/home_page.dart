@@ -23,12 +23,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   Future<void> retrieveDeviceToken() async {
     final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
     final String? token = await firebaseMessaging.getToken();
     final String uid = StoreProvider.of<AppState>(context).state.auth.user!.uid;
-    await FirebaseFirestore.instance.collection('tokens').doc(uid).set(<String,dynamic>{'token' : token});
+    await FirebaseFirestore.instance.collection('tokens').doc(uid).set(<String, dynamic>{'deviceToken': token});
   }
 
   final Completer<GoogleMapController> _controller = Completer<GoogleMapController>();
@@ -48,6 +47,7 @@ class _HomePageState extends State<HomePage> {
   late BitmapDescriptor dangerous;
   late BitmapDescriptor broken;
   late BitmapDescriptor missing;
+  Color notification = Colors.black;
 
   Map<String, BitmapDescriptor> icons = <String, BitmapDescriptor>{};
 
@@ -56,6 +56,18 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     initializeMarkers();
     retrieveDeviceToken();
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      setState(() {
+        notification = Colors.red;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Center(
+            child: Text('An admin accepted your request'),
+          ),
+        ),
+      );
+    });
   }
 
   Future<Uint8List> getBytesFromAsset(String path, int width) async {
@@ -93,7 +105,6 @@ class _HomePageState extends State<HomePage> {
     super.didChangeDependencies();
     //setState(() {});
   }
-
 
   Set<Marker> markers = <Marker>{};
 
@@ -259,6 +270,9 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         MaterialButton(
                                           onPressed: () async {
+                                            setState(() {
+                                              notification = Colors.black;
+                                            });
                                             final DocumentSnapshot<Map<String, dynamic>> doc = await FirebaseFirestore
                                                 .instance
                                                 .collection('queue')
@@ -366,7 +380,10 @@ class _HomePageState extends State<HomePage> {
                                             }
                                           },
                                           splashColor: Colors.white,
-                                          child: const Icon(Icons.messenger_outline_rounded),
+                                          child: Icon(
+                                            Icons.messenger_outline_rounded,
+                                            color: notification,
+                                          ),
                                         ),
                                       ],
                                     ),

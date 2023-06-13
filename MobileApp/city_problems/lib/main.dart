@@ -18,6 +18,8 @@ import 'package:city_problems/reducer/reducer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
@@ -29,7 +31,17 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  @pragma('vm:entry-point')
+  Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+    await Firebase.initializeApp();
 
+    if (kDebugMode) {
+      print('Handling a background message: ${message.messageId}');
+    }
+  }
+
+
+  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
 
 
   final AuthApi authApi = AuthApi(auth: FirebaseAuth.instance);
@@ -39,7 +51,6 @@ void main() async {
   final AppEpics epics = AppEpics(authApi: authApi,imageApi: pictureApi, storageApi: storageApi);
 
   final StreamController<dynamic> controller = StreamController<dynamic>();
-
   final Store<AppState> store = Store<AppState>(
     reducer,
     initialState: const AppState(),
