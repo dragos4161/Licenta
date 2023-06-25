@@ -99,7 +99,6 @@ class _SignupPageState extends State<SignupPage> {
                     child: TextField(
                       controller: nameController,
                       keyboardType: TextInputType.text,
-                      obscureText: true,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25),

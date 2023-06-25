@@ -1,4 +1,5 @@
 import 'package:city_problems/models/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:location/location.dart';
 
@@ -12,11 +13,25 @@ class AuthApi {
 
     final User user = credentials.user!;
 
+
     return AppUser(
       uid: user.uid,
       email: email,
       displayName: user.displayName,
     );
+  }
+
+  Future<void> postUser({required String uid, required String email}) async {
+    final FirebaseFirestore store = FirebaseFirestore.instance;
+    final Map<String, dynamic> user = <String, dynamic>{
+      'uid': uid,
+      'email': email,
+      'points': 0,
+      'submitted': 0,
+      'solved': 0,
+      'profilePicture': '',
+    };
+    await store.collection('users').add(user);
   }
 
   Future<AppUser> signUp({required String email, required String password, required String displayName}) async {
@@ -26,10 +41,12 @@ class AuthApi {
     final String name = displayName;
     await user.updateDisplayName(name);
 
+    await postUser(uid: user.uid,email: user.email!);
+
     return AppUser(
       uid: user.uid,
       email: email,
-      displayName: user.displayName,
+      displayName: name,
     );
   }
 
